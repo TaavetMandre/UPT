@@ -1,5 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dqoo1ibyw4h5g"]
-
-[ext_resource type="PackedScene" uid="uid://mcufqna5mjjw" path="res://3d/ruutel2.0.glb" id="1_5vh4t"]
-
-[node name="ruutel2_0" instance=ExtResource("1_5vh4t")]
