@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ta07jyp6vcp1"]
+
+[ext_resource type="Shader" path="res://Textures/muru.gdshader" id="1_6vii6"]
+[ext_resource type="ArrayMesh" uid="uid://baddp3sj76xl3" path="res://3d/rohi3.obj" id="1_d3iii"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3juew"]
+render_priority = 0
+shader = ExtResource("1_6vii6")
+shader_parameter/offset = 0.0
+
+[sub_resource type="MultiMesh" id="MultiMesh_m4fax"]
+transform_format = 1
+mesh = ExtResource("1_d3iii")
+
+[node name="Muru" type="MultiMeshInstance3D"]
+material_override = SubResource("ShaderMaterial_3juew")
+cast_shadow = 0
+multimesh = SubResource("MultiMesh_m4fax")

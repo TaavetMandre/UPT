@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://drkh1pv8xrjmg"]
+
+[ext_resource type="Script" path="res://Content/Other/ruutel.gd" id="1_72kv8"]
+[ext_resource type="PackedScene" uid="uid://dqoo1ibyw4h5g" path="res://3d/ruutel_2_0.tscn" id="1_c2m8h"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgp3k"]
+radius = 0.65
+height = 2.9
+
+[node name="ruutel" type="CharacterBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+slide_on_ceiling = false
+floor_constant_speed = true
+floor_max_angle = 1.40674
+floor_snap_length = 0.15
+script = ExtResource("1_72kv8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tgp3k")
+
+[node name="ruutel2_0" parent="." instance=ExtResource("1_c2m8h")]
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 5.0
+autostart = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+path_height_offset = 0.25
+debug_enabled = true
+
+[connection signal="timeout" from="Timer" to="." method="test_timer"]
