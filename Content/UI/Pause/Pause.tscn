@@ -1,0 +1,368 @@
+[gd_scene load_steps=24 format=3 uid="uid://buv3brrjuek3h"]
+
+[ext_resource type="Script" path="res://Content/UI/Pause/Pause.gd" id="1_yn3ha"]
+[ext_resource type="Shader" path="res://Textures/Blur.gdshader" id="2_8b070"]
+[ext_resource type="Shader" path="res://Textures/sidebar.gdshader" id="3_f3jqe"]
+[ext_resource type="Texture2D" uid="uid://dif30fcglpsp" path="res://Textures/gradient.png" id="4_xwjtt"]
+[ext_resource type="Shader" path="res://Content/UI/Pause/ButtonSkew.gdshader" id="5_w8hop"]
+[ext_resource type="Script" path="res://Content/UI/Pause/buttonparticles_button.gd" id="6_vrtfn"]
+[ext_resource type="PackedScene" uid="uid://cdy5c37cavjak" path="res://Content/UI/Pause/buttonparticles.tscn" id="7_vsh06"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qxakv"]
+shader = ExtResource("2_8b070")
+shader_parameter/Lod = 0.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_t3w4d"]
+seed = -230
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tm31h"]
+width = 600
+height = 120
+seamless = true
+noise = SubResource("FastNoiseLite_t3w4d")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nalhg"]
+shader = ExtResource("3_f3jqe")
+shader_parameter/scroll_speed = Vector2(0.05, 0)
+shader_parameter/direction = Vector2(1, 0)
+shader_parameter/noise_speed = 0.01
+shader_parameter/noise = SubResource("NoiseTexture2D_tm31h")
+
+[sub_resource type="LabelSettings" id="LabelSettings_3nnhv"]
+font_size = 72
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yjel1"]
+shader = ExtResource("5_w8hop")
+
+[sub_resource type="InputEventKey" id="InputEventKey_ml3bh"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_i4557"]
+events = [SubResource("InputEventKey_ml3bh")]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sm21p"]
+shader = ExtResource("5_w8hop")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5y3s5"]
+shader = ExtResource("5_w8hop")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gaon1"]
+shader = ExtResource("5_w8hop")
+
+[sub_resource type="InputEventKey" id="InputEventKey_y3ljs"]
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_4p7fo"]
+events = [SubResource("InputEventKey_y3ljs")]
+
+[sub_resource type="Curve" id="Curve_k8q6i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.72831, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_hufvm"]
+curve = SubResource("Curve_k8q6i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lmt4k"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(960, 1130, 0)
+emission_shape = 3
+emission_box_extents = Vector3(960, 50, 1)
+direction = Vector3(0, 0, 0)
+spread = 0.0
+gravity = Vector3(0, -30, 0)
+scale_min = 10.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_hufvm")
+color = Color(1, 0, 1, 1)
+hue_variation_min = -0.1
+turbulence_noise_strength = 7.74
+
+[node name="PauseSettings" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yn3ha")
+metadata/_edit_vertical_guides_ = [0.0]
+
+[node name="Blur" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_qxakv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sidebar" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_nalhg")
+layout_mode = 0
+offset_left = -431.0
+offset_top = -2930.0
+offset_right = 5569.0
+offset_bottom = -1730.0
+rotation = 1.309
+texture = ExtResource("4_xwjtt")
+expand_mode = 3
+
+[node name="Label" type="Label" parent="Sidebar"]
+layout_mode = 0
+offset_left = 3150.0
+offset_top = 300.0
+offset_right = 3550.0
+offset_bottom = 400.0
+rotation = -1.309
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_3nnhv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Sidebar" groups=["pause_main"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yjel1")
+layout_mode = 0
+offset_left = 3300.0
+offset_top = 300.0
+offset_right = 3700.0
+offset_bottom = 400.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+shortcut = SubResource("Shortcut_i4557")
+text = "CONTINUE"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+
+[node name="SettingsButton" type="Button" parent="Sidebar" groups=["pause_main"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sm21p")
+layout_mode = 2
+offset_left = 3450.0
+offset_top = 300.0
+offset_right = 3850.0
+offset_bottom = 400.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "SETTINGS"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.05
+
+[node name="MenuButton" type="Button" parent="Sidebar" groups=["pause_main"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_5y3s5")
+layout_mode = 2
+offset_left = 3600.0
+offset_top = 300.0
+offset_right = 4000.0
+offset_bottom = 400.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "MENU"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.1
+
+[node name="QuitButton" type="Button" parent="Sidebar" groups=["pause_main"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_gaon1")
+layout_mode = 2
+offset_left = 3750.0
+offset_top = 300.0
+offset_right = 4150.0
+offset_bottom = 400.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "QUIT"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.15
+
+[node name="SettingsGeneral" type="Button" parent="Sidebar" groups=["pause_settings"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_yjel1")
+layout_mode = 0
+offset_left = 3300.0
+offset_top = 1000.0
+offset_right = 3700.0
+offset_bottom = 1100.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "GENERAL"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+
+[node name="SettingsVideo" type="Button" parent="Sidebar" groups=["pause_settings"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sm21p")
+layout_mode = 2
+offset_left = 3450.0
+offset_top = 1000.0
+offset_right = 3850.0
+offset_bottom = 1100.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "VIDEO"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.05
+
+[node name="SettingsAudio" type="Button" parent="Sidebar" groups=["pause_settings"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_5y3s5")
+layout_mode = 2
+offset_left = 3600.0
+offset_top = 1000.0
+offset_right = 4000.0
+offset_bottom = 1100.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "AUDIO"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.1
+
+[node name="SettingsBack" type="Button" parent="Sidebar" groups=["pause_settings"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_gaon1")
+layout_mode = 2
+offset_left = 3750.0
+offset_top = 1000.0
+offset_right = 4150.0
+offset_bottom = 1100.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "BACK"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.15
+
+[node name="QuitYes" type="Button" parent="Sidebar" groups=["pause_quit"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_sm21p")
+layout_mode = 0
+offset_left = 3450.0
+offset_top = 1000.0
+offset_right = 3850.0
+offset_bottom = 1100.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+text = "YES"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.05
+
+[node name="QuitNo" type="Button" parent="Sidebar" groups=["pause_quit"]]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_5y3s5")
+layout_mode = 0
+offset_left = 3600.0
+offset_top = 1000.0
+offset_right = 4000.0
+offset_bottom = 1100.0
+rotation = -1.309
+focus_mode = 0
+disabled = true
+shortcut = SubResource("Shortcut_4p7fo")
+text = "NO"
+script = ExtResource("6_vrtfn")
+particles = ExtResource("7_vsh06")
+delay = 0.1
+
+[node name="SettingsBoxContainer" type="ColorRect" parent="Sidebar"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 200.0
+offset_top = -800.0
+offset_right = 1600.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -1.309
+color = Color(1, 1, 1, 0)
+
+[node name="SettingsBoxBackground" type="ColorRect" parent="Sidebar/SettingsBoxContainer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -700.0
+offset_top = -440.0
+offset_right = 250.0
+offset_bottom = 730.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.261799
+
+[node name="BottomParticles" type="GPUParticles2D" parent="."]
+visible = false
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_lmt4k")
+lifetime = 5.0
+preprocess = 5.0
+randomness = 0.2
+
+[node name="BlackFade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 1.0
+offset_right = 6.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="mouse_entered" from="Sidebar/ContinueButton" to="Sidebar/ContinueButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/ContinueButton" to="Sidebar/ContinueButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="Sidebar/ContinueButton" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Sidebar/ContinueButton" to="Sidebar" method="_on_continue_button_pressed"]
+[connection signal="mouse_entered" from="Sidebar/SettingsButton" to="Sidebar/SettingsButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/SettingsButton" to="Sidebar/SettingsButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="Sidebar/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="mouse_entered" from="Sidebar/MenuButton" to="Sidebar/MenuButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/MenuButton" to="Sidebar/MenuButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="Sidebar/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="mouse_entered" from="Sidebar/QuitButton" to="Sidebar/QuitButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/QuitButton" to="Sidebar/QuitButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="Sidebar/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="mouse_entered" from="Sidebar/SettingsGeneral" to="Sidebar/SettingsGeneral" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/SettingsGeneral" to="Sidebar/SettingsGeneral" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Sidebar/SettingsVideo" to="Sidebar/SettingsVideo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/SettingsVideo" to="Sidebar/SettingsVideo" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Sidebar/SettingsAudio" to="Sidebar/SettingsAudio" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/SettingsAudio" to="Sidebar/SettingsAudio" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Sidebar/SettingsBack" to="Sidebar/SettingsBack" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/SettingsBack" to="Sidebar/SettingsBack" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="Sidebar/QuitYes" to="Sidebar/QuitYes" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/QuitYes" to="Sidebar/QuitYes" method="_on_mouse_exited"]
+[connection signal="pressed" from="Sidebar/QuitYes" to="." method="_on_quit_yes_pressed"]
+[connection signal="mouse_entered" from="Sidebar/QuitNo" to="Sidebar/QuitNo" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Sidebar/QuitNo" to="Sidebar/QuitNo" method="_on_mouse_exited"]
+[connection signal="pressed" from="Sidebar/QuitNo" to="." method="_on_quit_no_pressed"]
