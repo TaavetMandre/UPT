@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsquk5ia5rvbo"]
+
+[ext_resource type="Script" path="res://Content/UI/MainMenu/settings.gd" id="1_dtqfh"]
+[ext_resource type="PackedScene" uid="uid://3ejgfrionrf2" path="res://Content/UI/Pause/Volume Sliders.tscn" id="2_eeay4"]
+
+[sub_resource type="Theme" id="Theme_vl13x"]
+
+[node name="MenuSettings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_vl13x")
+script = ExtResource("1_dtqfh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -89.5
+offset_top = -64.0
+offset_right = 89.5
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Volume Sliders" parent="VBoxContainer" instance=ExtResource("2_eeay4")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "volume sliders"
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "graphics settings??"
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "language"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BACK"
+
+[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

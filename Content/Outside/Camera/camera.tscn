@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://butvmd0m34epq"]
+
+[ext_resource type="Script" path="res://Content/Outside/Camera/CameraZoom.gd" id="1_bd1yb"]
+[ext_resource type="Script" path="res://Content/Outside/Camera/TopCamera.gd" id="1_e6kew"]
+[ext_resource type="Texture2D" uid="uid://bu177fgjcj2f5" path="res://icon.svg" id="3_axjr2"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8g8kp"]
+
+[node name="Camera" type="Node3D"]
+script = ExtResource("1_e6kew")
+movement_sensitivity = 1.0
+
+[node name="TopCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 50, 29.25)
+script = ExtResource("1_bd1yb")
+highest_height = 100
+
+[node name="TestPillar" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 530.627, 0, 0, 0, 1, 0, 0, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_8g8kp")
+skeleton = NodePath("")
+
+[node name="Decal" type="Decal" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866026, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+visible = false
+size = Vector3(5, 166.276, 5)
+texture_albedo = ExtResource("3_axjr2")
+normal_fade = 0.504
+upper_fade = 1e-05
+lower_fade = 1e-05
