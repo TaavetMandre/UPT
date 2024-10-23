@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://drkh1pv8xrjmg"]
+[gd_scene load_steps=5 format=3 uid="uid://drkh1pv8xrjmg"]
 
 [ext_resource type="Script" path="res://Content/Other/ruutel.gd" id="1_72kv8"]
 [ext_resource type="PackedScene" uid="uid://dqoo1ibyw4h5g" path="res://3d/ruutel_2_0.tscn" id="1_c2m8h"]
@@ -7,8 +7,11 @@
 radius = 0.65
 height = 2.9
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_68h03"]
+size = Vector3(1, 1, 2.4)
+
 [node name="ruutel" type="CharacterBody3D"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+rotation_edit_mode = 2
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 slide_on_ceiling = false
@@ -21,15 +24,31 @@ script = ExtResource("1_72kv8")
 shape = SubResource("CapsuleShape3D_tgp3k")
 
 [node name="ruutel2_0" parent="." instance=ExtResource("1_c2m8h")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 5.0
+wait_time = 8.0
 autostart = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 3.0
 path_height_offset = 0.25
+avoidance_enabled = true
+height = 3.0
+radius = 1.0
+max_speed = 5.0
 debug_enabled = true
 
+[node name="attack" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+shape = SubResource("BoxShape3D_68h03")
+
 [connection signal="timeout" from="Timer" to="." method="test_timer"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
+[connection signal="body_exited" from="attack" to="." method="_on_attack_body_exited"]
