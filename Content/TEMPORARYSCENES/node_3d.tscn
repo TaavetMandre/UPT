@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://n7pemufbgiy4"]
+[gd_scene load_steps=38 format=3 uid="uid://n7pemufbgiy4"]
 
 [ext_resource type="PackedScene" uid="uid://butvmd0m34epq" path="res://Content/Outside/Camera/camera.tscn" id="1_17a4g"]
 [ext_resource type="Shader" path="res://Content/TEMPORARYSCENES/cloudysky.gdshader" id="1_tjfk1"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/TEMPORARYPauseScript.gd" id="5_hkn4x"]
 [ext_resource type="Shader" path="res://Content/Outside/lowpolywater.gdshader" id="6_ealrg"]
 [ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/explosion.tscn" id="10_3cbit"]
+[ext_resource type="PackedScene" uid="uid://c0ehtogoo644u" path="res://Content/Other/lightning.tscn" id="11_1if2u"]
 
 [sub_resource type="Curve" id="Curve_s7b3f"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.276119, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.714286), 0.0, 0.0, 0, 0]
@@ -245,6 +246,9 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 50, 29.
 script = ExtResource("5_hkn4x")
 
 [node name="Node3D" parent="." instance=ExtResource("10_3cbit")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, -1, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.42251, -6)
+
+[node name="Lightning" parent="." instance=ExtResource("11_1if2u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6641, -3.77715, -22.8318)
 
 [connection signal="pressed" from="Clouds/CanvasLayer/Button" to="Clouds/CanvasLayer/ColorRect" method="_on_button_pressed"]

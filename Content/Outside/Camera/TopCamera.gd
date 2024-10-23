@@ -16,7 +16,7 @@ var previous_frame_mouse_position = Vector2(0, 0) # the position of the mouse in
 @export var WASDVectorneg = Vector3(0, 0, 0)
 
 # speed at max height - 15; speed at min height - 5, shifting reduces the speed; note: the speed is used in division
-var speed: float = 0.0
+#var speed: float = 0.0
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == 1: # Left click detection
@@ -39,7 +39,7 @@ func _input(event):
 @warning_ignore("unused_parameter")
 func _process(delta):
 	if dragging: # Mouse camera movement
-		speed = 15 - (10 * (top_camera.position.y-top_camera.lowest_height)/(top_camera.highest_height-top_camera.lowest_height)) # used to make mouse movement slower if the camera is more zoomed in, (value-min)/(max-min) => convert value to a 0-1 range
+		var speed = 15 - (10 * (top_camera.position.y-top_camera.lowest_height)/(top_camera.highest_height-top_camera.lowest_height)) # used to make mouse movement slower if the camera is more zoomed in, (value-min)/(max-min) => convert value to a 0-1 range
 		var position_difference = (previous_frame_mouse_position - get_viewport().get_mouse_position()).rotated(PI - rotation.y)
 		var position_difference3 = Vector3(position_difference.x, 0, position_difference.y)
 		

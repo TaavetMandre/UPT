@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0ehtogoo644u"]
+
+[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/explosion.tscn" id="1_k7r1g"]
+
+[sub_resource type="Curve" id="Curve_lj0pb"]
+_data = [Vector2(0.195652, 1), 0.0, -3.22253, 0, 0, Vector2(0.5, 0), -2.80549, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_71apl"]
+curve = SubResource("Curve_lj0pb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cyknv"]
+emission_shape_offset = Vector3(0, 5, 0)
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 0, 1)
+alpha_curve = SubResource("CurveTexture_71apl")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpps7"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+disable_receive_shadows = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_86t5d"]
+material = SubResource("StandardMaterial3D_gpps7")
+top_radius = 0.3
+bottom_radius = 0.1
+height = 10.0
+
+[node name="Lightning" type="Node3D"]
+
+[node name="Explosion" parent="." instance=ExtResource("1_k7r1g")]
+
+[node name="Lightning" type="GPUParticles3D" parent="."]
+amount = 1
+lifetime = 2.5
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_cyknv")
+draw_pass_1 = SubResource("CylinderMesh_86t5d")
