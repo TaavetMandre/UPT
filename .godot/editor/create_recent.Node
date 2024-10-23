@@ -1,0 +1,14 @@
+NavigationAgent3D
+Timer
+NavigationRegion3D
+CollisionShape3D
+CharacterBody3D
+StaticBody3D
+MeshInstance3D
+MultiMeshInstance3D
+CSGSphere3D
+ImporterMeshInstance3D
+Area3D
+RayCast3D
+WorldEnvironment
+RigidBody3D
