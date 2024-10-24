@@ -110,6 +110,14 @@ rotation = 1.309
 texture = ExtResource("4_xwjtt")
 expand_mode = 3
 
+[node name="Shadow" type="TextureRect" parent="Sidebar"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+offset_top = -3.0
+offset_right = 6000.0
+texture = ExtResource("4_xwjtt")
+expand_mode = 3
+
 [node name="Label" type="Label" parent="Sidebar"]
 layout_mode = 0
 offset_left = 3150.0
