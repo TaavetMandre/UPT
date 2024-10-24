@@ -1,10 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://butvmd0m34epq"]
+[gd_scene load_steps=10 format=3 uid="uid://butvmd0m34epq"]
 
 [ext_resource type="Script" path="res://Content/Outside/Camera/CameraZoom.gd" id="1_bd1yb"]
 [ext_resource type="Script" path="res://Content/Outside/Camera/TopCamera.gd" id="1_e6kew"]
 [ext_resource type="Texture2D" uid="uid://duvct07xo1lym" path="res://icon.svg" id="3_axjr2"]
+[ext_resource type="Script" path="res://Content/Outside/Camera/spell_y_level.gd" id="3_ojqja"]
+[ext_resource type="Script" path="res://Content/Outside/Camera/test_spell.gd" id="4_4exik"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_8g8kp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snde8"]
+size = Vector3(10, 10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxnbp"]
+blend_mode = 1
+diffuse_mode = 1
+specular_mode = 2
+albedo_color = Color(1, 0.166929, 0.106073, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_0q3x1"]
+material = SubResource("StandardMaterial3D_dxnbp")
+size = Vector3(8, 8, 8)
 
 [node name="Camera" type="Node3D"]
 script = ExtResource("1_e6kew")
@@ -17,13 +33,29 @@ highest_height = 100
 
 [node name="TestPillar" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 530.627, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 mesh = SubResource("CapsuleMesh_8g8kp")
 skeleton = NodePath("")
 
-[node name="Decal" type="Decal" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866026, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
-size = Vector3(5, 166.276, 5)
+[node name="spell_y_level" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 49, 0)
+target_position = Vector3(0, -50, 0)
+script = ExtResource("3_ojqja")
+
+[node name="test_spell" type="Node3D" parent="."]
+script = ExtResource("4_4exik")
+
+[node name="Decal" type="Decal" parent="test_spell"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.8147e-06)
+size = Vector3(10, 10, 10)
 texture_albedo = ExtResource("3_axjr2")
-normal_fade = 0.504
-upper_fade = 1e-05
-lower_fade = 1e-05
+
+[node name="spell_area" type="Area3D" parent="test_spell"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="test_spell/spell_area"]
+shape = SubResource("BoxShape3D_snde8")
+
+[node name="debugmesh" type="MeshInstance3D" parent="test_spell"]
+mesh = SubResource("BoxMesh_0q3x1")

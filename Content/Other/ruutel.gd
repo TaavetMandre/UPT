@@ -1,11 +1,13 @@
 extends CharacterBody3D
+
+@export var HP: int = 100
 @export_range(0.1, 10.0) var nodrift: float = 1.0
 @onready var meh = $ruutel2_0
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
+@onready var timer = $Timer
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var suun: bool = true
-
 
 enum States{TOWER, ENEMY, ATTACK, FROG}
 var current_state : States
@@ -13,8 +15,6 @@ var current_state : States
 
 func _ready():
 	current_state = States.TOWER
-
-
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -38,7 +38,7 @@ func _physics_process(delta):
 
 
 func test_timer():
-	suun = !suun
+	self.queue_free()
 
 
 func velocity_computed(safe_velocity):
@@ -53,3 +53,11 @@ func _on_attack_body_entered(body):
 
 func _on_attack_body_exited(body):
 	pass # Replace with function body.
+
+func damaged(dam: int):
+	HP -= dam
+	#animatsioon/indikaator vahel
+	if HP <= 0 and timer.is_stopped():
+		#animatsioon/indikaator vahel
+		#maailmale (globalile arvatavasti) teade, et surid
+		timer.start()

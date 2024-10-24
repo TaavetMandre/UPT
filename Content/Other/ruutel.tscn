@@ -12,8 +12,8 @@ size = Vector3(1, 1, 2.4)
 
 [node name="ruutel" type="CharacterBody3D"]
 rotation_edit_mode = 2
-axis_lock_angular_x = true
-axis_lock_angular_z = true
+collision_layer = 3
+collision_mask = 3
 slide_on_ceiling = false
 floor_constant_speed = true
 floor_max_angle = 1.40674
@@ -28,8 +28,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
-wait_time = 8.0
-autostart = true
+one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 3.0
