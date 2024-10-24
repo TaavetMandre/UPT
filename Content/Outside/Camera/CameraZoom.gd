@@ -4,7 +4,7 @@ extends Camera3D
 # Highest and lowest y values used for zoom
 @export var highest_height = 50
 @export var lowest_height = 25
-@export_range(1, 50) var zoom_sensitivity = 10
+@export_range(1, 50) var zoom_sensitivity = 10 # currently has to be changed in the script
 
 var displacement3 = Vector3(0, zoom_sensitivity, zoom_sensitivity * tan(deg_to_rad(rotation_degrees.x+90))) # the 3d version of camera zoom movement
 
