@@ -61,7 +61,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114, -1, -3.999)
 transform = Transform3D(0.980378, 0.0130094, 0.196697, -0.197127, 0.0647003, 0.978241, 5.12971e-10, -0.99782, 0.0659953, 7.18693, 23.3054, 0)
 
 [node name="ruutel" parent="." instance=ExtResource("2_ud6mv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5958, 5.70044, -2.46195)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.2377, 5.70044, -2.46195)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mx7t8")
