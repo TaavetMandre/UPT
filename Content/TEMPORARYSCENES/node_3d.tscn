@@ -1,27 +1,26 @@
-[gd_scene load_steps=38 format=3 uid="uid://n7pemufbgiy4"]
+[gd_scene load_steps=33 format=3 uid="uid://n7pemufbgiy4"]
 
 [ext_resource type="PackedScene" uid="uid://butvmd0m34epq" path="res://Content/Outside/Camera/camera.tscn" id="1_17a4g"]
 [ext_resource type="Shader" path="res://Content/TEMPORARYSCENES/cloudysky.gdshader" id="1_tjfk1"]
 [ext_resource type="PackedScene" uid="uid://vko3tjcrqt8k" path="res://Models/tekstuurita_torn1.0.glb" id="2_1tfty"]
-[ext_resource type="Shader" path="res://Content/Other/distort.gdshader" id="3_8hb73"]
 [ext_resource type="PackedScene" uid="uid://w7g27ji6t3qx" path="res://Models/ruutel2.0.glb" id="3_li0bm"]
 [ext_resource type="PackedScene" uid="uid://c0613fv4654ul" path="res://Models/maa_1_0.tscn" id="4_fn35a"]
-[ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/TEMPORARYtransitionwave.gd" id="4_sn671"]
 [ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/TEMPORARYPauseScript.gd" id="5_hkn4x"]
 [ext_resource type="Shader" path="res://Content/Outside/lowpolywater.gdshader" id="6_ealrg"]
+[ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/switchinout.gd" id="8_hkje5"]
 [ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/explosion.tscn" id="10_3cbit"]
-[ext_resource type="PackedScene" uid="uid://c0ehtogoo644u" path="res://Content/Other/lightning.tscn" id="11_1if2u"]
+[ext_resource type="PackedScene" uid="uid://ca55qpxds71t6" path="res://Content/Other/bubbles.tscn" id="12_r8wgv"]
 
 [sub_resource type="Curve" id="Curve_s7b3f"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.276119, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.714286), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_mpw8h"]
+[sub_resource type="CurveTexture" id="CurveTexture_hvm1d"]
 curve = SubResource("Curve_s7b3f")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_s5qjl"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_qh6qn"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_30k0i"]
 seamless = true
 noise = SubResource("FastNoiseLite_s5qjl")
 
@@ -34,11 +33,11 @@ shader_parameter/clouds_scale = 1.0
 shader_parameter/clouds_smoothness = 0.03
 shader_parameter/clouds_light_color = Color(1, 1, 1, 1)
 shader_parameter/clouds_shadow_intensity = 1.0
-shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_qh6qn")
-shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_qh6qn")
-shader_parameter/cloud_curves = SubResource("CurveTexture_mpw8h")
+shader_parameter/cloud_shape_sampler = SubResource("NoiseTexture2D_30k0i")
+shader_parameter/cloud_noise_sampler = SubResource("NoiseTexture2D_30k0i")
+shader_parameter/cloud_curves = SubResource("CurveTexture_hvm1d")
 shader_parameter/high_clouds_density = 0.3
-shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_qh6qn")
+shader_parameter/high_clouds_sampler = SubResource("NoiseTexture2D_30k0i")
 shader_parameter/top_color = Color(0, 0.701961, 1, 1)
 shader_parameter/bottom_color = Color(0, 0.454902, 0.886275, 1)
 shader_parameter/sun_scatter = Color(0.288518, 0.288518, 0.288518, 1)
@@ -49,12 +48,12 @@ shader_parameter/stars_intensity = 0.0
 shader_parameter/shooting_stars_intensity = 0.0
 shader_parameter/shooting_star_tint = Color(0.625597, 0.625597, 0.625597, 1)
 
-[sub_resource type="Sky" id="Sky_bbgsk"]
+[sub_resource type="Sky" id="Sky_yd13v"]
 sky_material = SubResource("ShaderMaterial_bdfo1")
 
 [sub_resource type="Environment" id="Environment_l6iw7"]
 background_mode = 2
-sky = SubResource("Sky_bbgsk")
+sky = SubResource("Sky_yd13v")
 ambient_light_sky_contribution = 0.6
 ssao_enabled = true
 
@@ -78,23 +77,6 @@ transform_format = 1
 instance_count = 64
 mesh = SubResource("BoxMesh_4thyf")
 buffer = PackedFloat32Array(-0.580418, 0.200463, 0.834413, 0.958129, -0.0323606, -1.01174, 0.220556, 1, 0.857545, 0.0975012, 0.573084, 2.6352, -0.892362, -0.335163, 0.32158, -3.18052, 0.328193, -0.947836, -0.0771582, 1, 0.32869, 0.036468, 0.9501, -0.988123, -0.203825, -0.33709, 0.886014, -2.44428, -0.0562085, -0.90037, -0.355483, 1, 0.946304, -0.126086, 0.169724, -0.969591, -0.945373, 0.298731, -0.0941595, -4.38085, 0.307675, 0.941767, -0.101232, 1, 0.0586751, -0.125185, -0.986267, 1.3969, 0.47898, 0.159926, 0.918281, -5.04762, -0.268717, -0.964902, 0.30821, 1, 0.892529, -0.376333, -0.400006, 1.60375, 0.555879, -0.0620947, -0.818804, 4.43887, -0.249614, 0.929207, -0.239928, 1, 0.782297, 0.340613, 0.505264, 0.715715, -0.114591, 0.118503, 0.970975, -5.12663, -0.364684, -0.912308, 0.0683046, 1, 0.907657, -0.351592, 0.150029, 0.834324, 0.727189, -0.354388, 0.562053, 2.85955, -0.386375, -0.90341, -0.0697256, 1, 0.540563, -0.168988, -0.805936, -0.841029, -0.86629, 0.071953, 0.399872, 1.71871, 0.0852361, -0.88857, 0.344546, 1, 0.397253, 0.347563, 0.798075, 2.8708, 0.902782, -0.174259, -0.288834, 4.23531, -0.193368, -0.943493, -0.0351666, 1, -0.276405, 0.0908944, -0.918774, -2.93674, -0.248273, -0.18872, -0.97945, 4.40924, 0.276754, 0.956672, -0.254484, 1, 0.958303, -0.325176, -0.180258, 0.590977, 0.176763, 0.192097, 0.970279, 2.45369, 0.0485041, -0.986149, 0.186402, 1, 0.987922, 0.0140465, -0.182758, -2.14083, -0.55162, -0.084089, 0.855791, -1.11029, -0.261873, 0.98487, -0.0720241, 1, -0.819067, -0.258251, -0.553325, -0.617356, -0.746072, 0.233003, 0.642566, -3.70392, -0.0614248, -0.970233, 0.2805, 1, 0.680741, 0.167818, 0.729543, -0.364791, 0.598037, 0.187912, 0.790284, 4.69927, 0.307996, -0.960533, -0.00467848, 1, 0.751664, 0.244075, -0.626847, -1.96346, -0.211686, -0.121197, 0.974399, 3.32167, -0.368894, 0.933582, 0.0359786, 1, -0.909978, -0.35027, -0.241258, -2.6213, 0.846451, 0.161223, 0.566217, 0.792043, 0.299361, -0.971738, -0.170832, 1, 0.50693, 0.304644, -0.844564, 2.57948, 0.526954, 0.200269, -0.872468, 5.30195, 0.273863, -0.999938, -0.0641202, 1, -0.852237, -0.197497, -0.560069, -0.0385059, -1.03143, -0.010198, -0.134705, 5.13864, 0.024147, 1.00664, -0.2611, 1, 0.132915, -0.262016, -0.997882, -0.882619, -0.669409, 0.0137886, 0.772569, 2.60444, -0.00260508, -1.0222, 0.0159867, 1, 0.772688, 0.00849926, 0.66936, 2.04896, -0.352005, -0.0151386, -0.884001, -2.25235, 0.244608, 0.91268, -0.113032, 1, 0.849619, -0.269036, -0.333708, -2.10687, 0.820835, -0.21895, -0.584252, -3.08679, -0.234648, -1.00293, 0.046186, 1, -0.578126, 0.0961957, -0.848278, -1.74878, -0.268573, -0.0303142, 0.923688, -1.0363, 0.00826518, -0.961941, -0.0291664, 1, 0.924148, -0.00020664, 0.268701, 1.13499, -0.204701, -0.203361, 0.91159, -3.22416, -0.187881, -0.905185, -0.244121, 1, 0.914906, -0.231385, 0.153828, 2.46675, 0.731026, 0.345808, -0.669603, 4.12571, 0.133794, -0.977604, -0.358804, 1, -0.741654, 0.164494, -0.724736, -1.87248, 0.700819, 0.0533705, 0.687557, 0.220954, 0.271407, -0.922513, -0.205033, 1, 0.633973, 0.335934, -0.672277, -1.71754, 0.744917, 0.182004, 0.676373, 2.72432, 0.148693, -1.00596, 0.106932, 1, 0.684468, 0.0204566, -0.759337, -2.44684, 0.677845, 0.0827458, -0.708331, 4.3816, -0.0857543, 0.979618, 0.0323735, 1, 0.707973, 0.0394332, 0.682109, 1.4942, 0.431822, 0.00858495, -0.933006, 3.02396, -0.249956, 0.99157, -0.106563, 1, 0.898942, 0.271587, 0.418555, 0.841439, 0.719565, -0.00946355, -0.764764, 3.07634, 0.149046, 1.03163, 0.127471, 1, 0.750159, -0.195893, 0.708247, -0.36981, -0.820624, -0.230398, 0.507326, 2.92769, 0.178137, -0.964224, -0.149749, 1, 0.527948, -0.0327789, 0.839096, 2.5823, -0.709611, -0.23778, 0.73425, -3.2917, -0.231615, 1.01707, 0.105525, 1, -0.736218, -0.0907849, -0.740913, -2.28196, -0.550912, 0.118457, -0.860868, -4.64632, 0.176092, 1.01336, 0.0267507, 1, 0.850951, -0.133011, -0.562868, 0.763869, -0.925719, 0.171444, 0.186428, -3.72799, -0.164079, -0.944099, 0.0534736, 1, 0.192941, 0.0197061, 0.939941, 1.7195, -0.566922, -0.166547, 0.768276, -0.903677, 0.379348, -0.887594, 0.0875142, 1, 0.688535, 0.351889, 0.584363, 0.122007, 0.664737, -0.107541, -0.699606, 3.91982, 0.169233, 0.956063, 0.0138358, 1, 0.687294, -0.131401, 0.673237, -0.919526, -0.898312, -0.0806389, -0.313723, -3.34171, -0.115186, 0.943937, 0.0871947, 1, 0.302749, 0.119867, -0.897699, 1.89603, -0.96669, -0.268411, -0.192099, 0.480544, -0.226332, 0.971762, -0.218838, 1, 0.240251, -0.164535, -0.979104, 2.51598, -0.160249, -0.302397, -0.919378, 0.731608, 0.0297716, 0.929914, -0.311052, 1, 0.967374, -0.0787119, -0.142725, 2.55611, 0.830484, -0.32699, -0.368971, 1.25975, 0.347624, 0.900926, -0.0159846, 1, 0.3496, -0.11906, 0.892396, 1.07957, -0.691006, -0.0902892, 0.744011, 1.44117, -0.285403, 0.967436, -0.147668, 1, -0.693, -0.308397, -0.681055, -2.54751, 0.229232, -0.217006, -1.00026, 1.39827, 0.117247, -1.01273, 0.24658, 1, -1.01679, -0.165701, -0.197071, -1.36518, -0.799677, 0.0707987, -0.634485, 3.41998, -0.127693, 0.978665, 0.270142, 1, 0.625523, 0.290292, -0.755989, -2.57793, -0.754759, 0.33865, -0.643213, 3.79266, 0.0444648, 0.946997, 0.446415, 1, 0.725554, 0.294245, -0.696462, -0.50754, -0.145767, -0.139063, -1.02635, -0.634451, -0.294644, 0.99921, -0.0935388, 1, 0.992936, 0.276091, -0.178429, 0.947345, -0.873967, 0.29805, 0.255954, -4.01699, -0.222283, -0.889883, 0.277242, 1, 0.323939, 0.193492, 0.880789, 0.541684, -0.0849868, -0.10247, 0.988047, -0.217045, 0.269117, -0.956946, -0.0760969, 1, 0.956197, 0.26022, 0.109235, 0.854935, -0.866891, 0.000459427, 0.501871, -2.07356, 0.124821, 0.970408, 0.214717, 1, -0.486101, 0.248362, -0.839879, -0.806738, 0.339396, -0.164638, 0.940248, 0.704245, 0.00331763, -0.997703, -0.175896, 1, 0.954547, 0.062006, -0.333701, -1.79701, 0.697917, -0.215933, 0.664686, 2.34041, -0.259869, -0.952187, -0.0364699, 1, 0.64877, -0.149115, -0.729647, -1.13212, 0.783005, -0.187612, -0.570729, 0.952706, -0.186171, -0.967191, 0.0625233, 1, -0.571201, 0.0580559, -0.802736, -2.62555, 0.801913, -0.0999411, 0.511995, 3.27336, -0.0317238, -0.946541, -0.135077, 1, 0.520693, 0.096249, -0.796747, 2.97312, -0.124571, 0.000361634, 0.999714, 1.22858, 0.071268, -1.00488, 0.00924395, 1, 0.997171, 0.071864, 0.124228, 1.70556, -0.165977, -0.156957, -0.98677, -4.94748, -0.272565, 0.969467, -0.108358, 1, 0.96128, 0.247786, -0.201102, -0.628413, -0.741059, -0.3095, 0.536397, -4.33417, -0.0249519, 0.850738, 0.456403, 1, -0.61878, 0.336356, -0.6608, 0.622701, -0.0163237, -0.314652, 0.992107, 2.94656, 0.368637, -0.929657, -0.28878, 1, 0.973339, 0.346816, 0.126009, 2.69282, 0.651996, 0.137865, -0.704405, -1.69897, 0.272141, -0.92806, 0.0702553, 1, -0.664178, -0.244929, -0.662699, -2.89954, 0.478276, 0.26694, 0.785459, -1.87192, 0.269379, -0.907491, 0.144385, 1, 0.784626, 0.148845, -0.528354, -1.5098, 0.0728069, -0.013516, -1.04084, 4.11579, -0.313717, 0.994587, -0.0348598, 1, 0.992531, 0.315358, 0.0653324, -0.696574, -0.733976, 0.319684, 0.644356, -4.15893, 0.422506, 0.936658, 0.016566, 1, -0.582135, 0.276745, -0.800403, 1.62514, -0.662865, 0.173861, 0.787913, -2.37789, 0.0875109, 1.02918, -0.153476, 1, -0.802108, -0.0313944, -0.667879, -0.172854, 0.939757, -0.248316, -0.0170502, 4.93806, -0.247558, -0.925579, -0.16466, 1, 0.0258255, 0.163514, -0.957962, -0.942231, -0.819548, 0.295704, -0.451882, 4.90697, 0.277052, 0.935175, 0.109491, 1, 0.463552, -0.0361303, -0.864356, -1.85807, -0.932586, 0.204283, -0.208541, 4.50214, 0.150843, 0.934877, 0.241226, 1, 0.249935, 0.19802, -0.92372, -0.249099)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lq3av"]
-shader = ExtResource("3_8hb73")
-shader_parameter/scrollAmount = Vector2(0.05, 0.05)
-shader_parameter/multiplierAmount = 0.022
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tna0"]
-shader = ExtResource("3_8hb73")
-shader_parameter/scrollAmount = Vector2(0.05, 0.05)
-shader_parameter/multiplierAmount = 0.01
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_flwrs"]
-seed = 785
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_a2xwf"]
-seamless = true
-noise = SubResource("FastNoiseLite_flwrs")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvrdr"]
 albedo_color = Color(0.172549, 0.541176, 0, 1)
@@ -173,29 +155,6 @@ transform = Transform3D(320, 0, 0, 0, 0, 0, 0, 0, 180, 0, 60, 0)
 visible = false
 mesh = SubResource("BoxMesh_4thyf")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Clouds"]
-visible = false
-
-[node name="Button" type="Button" parent="Clouds/CanvasLayer"]
-offset_left = 66.0
-offset_top = 55.0
-offset_right = 225.0
-offset_bottom = 161.0
-
-[node name="ColorRect" type="ColorRect" parent="Clouds/CanvasLayer"]
-material = SubResource("ShaderMaterial_lq3av")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_sn671")
-
-[node name="Sprite2D" type="Sprite2D" parent="Clouds/CanvasLayer"]
-material = SubResource("ShaderMaterial_0tna0")
-position = Vector2(172, 142)
-texture = SubResource("NoiseTexture2D_a2xwf")
-
 [node name="Tempenvironment" type="Node" parent="."]
 
 [node name="Torn" parent="Tempenvironment" instance=ExtResource("2_1tfty")]
@@ -245,10 +204,17 @@ transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 50, 29.
 [node name="TEMPPauseMenuDetector" type="CanvasLayer" parent="."]
 script = ExtResource("5_hkn4x")
 
+[node name="Button" type="Button" parent="TEMPPauseMenuDetector"]
+offset_left = 36.0
+offset_top = 15.0
+offset_right = 135.0
+offset_bottom = 86.0
+script = ExtResource("8_hkje5")
+
 [node name="Node3D" parent="." instance=ExtResource("10_3cbit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.42251, -6)
 
-[node name="Lightning" parent="." instance=ExtResource("11_1if2u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.6641, -3.77715, -22.8318)
+[node name="Bubbles" parent="." instance=ExtResource("12_r8wgv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89483, 3.59685, -36.0905)
 
-[connection signal="pressed" from="Clouds/CanvasLayer/Button" to="Clouds/CanvasLayer/ColorRect" method="_on_button_pressed"]
+[connection signal="pressed" from="TEMPPauseMenuDetector/Button" to="TEMPPauseMenuDetector/Button" method="_on_pressed"]
