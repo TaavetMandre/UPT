@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://vlk52ptrwdeh"]
+[gd_scene load_steps=15 format=3 uid="uid://vlk52ptrwdeh"]
 
 [ext_resource type="PackedScene" uid="uid://duhlrddw3jmln" path="res://3d/tekstuurita_torn1.0.glb" id="1_wsryg"]
 [ext_resource type="PackedScene" uid="uid://drkh1pv8xrjmg" path="res://Content/Other/ruutel.tscn" id="2_ud6mv"]
 [ext_resource type="PackedScene" uid="uid://ta07jyp6vcp1" path="res://muru.tscn" id="3_70ytn"]
 [ext_resource type="ArrayMesh" uid="uid://baddp3sj76xl3" path="res://3d/rohi3.obj" id="4_crlen"]
+[ext_resource type="PackedScene" uid="uid://butvmd0m34epq" path="res://Content/Outside/Camera/camera.tscn" id="5_msflc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aj8pr"]
 resource_local_to_scene = true
@@ -59,10 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.114, -1, -3.999)
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.980378, 0.0130094, 0.196697, -0.197127, 0.0647003, 0.978241, 5.12971e-10, -0.99782, 0.0659953, 7.18693, 23.3054, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-0.112908, 0.993604, 0.0015033, 0.102456, 0.0101377, 0.994686, 0.988309, 0.112462, -0.102945, 22.6391, 63.4348, 2.08788)
-fov = 73.8116
-
 [node name="ruutel" parent="." instance=ExtResource("2_ud6mv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.5958, 5.70044, -2.46195)
 
@@ -101,3 +98,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.4504, -1.51014, 0)
 radius = 3.81
 height = 4.81
 vertices = PackedVector3Array(1.856, 0, -4.47, -4.469, 0, -1.3372, -3.48554, 0, 2.64756, 3.11763, 0, 4.70589)
+
+[node name="Camera" parent="." instance=ExtResource("5_msflc")]
