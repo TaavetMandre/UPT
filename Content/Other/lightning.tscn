@@ -1,7 +1,25 @@
-[gd_scene load_steps=19 format=3 uid="uid://c0ehtogoo644u"]
+[gd_scene load_steps=25 format=3 uid="uid://c0ehtogoo644u"]
 
 [ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/explosion.tscn" id="1_k7r1g"]
 [ext_resource type="Script" path="res://Content/Other/lightning.gd" id="1_y67fr"]
+[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/TEMPORARYSCENES/spherical spell indicator.tscn" id="2_i53ya"]
+[ext_resource type="Shader" path="res://Content/TEMPORARYSCRIPTS/spellselectaura.gdshader" id="3_g5kql"]
+[ext_resource type="AudioStream" uid="uid://bk3xuslwn210b" path="res://Sounds/SFX/electricity_magic_windup.ogg" id="3_okh75"]
+[ext_resource type="AudioStream" uid="uid://cv1khu0s48y0l" path="res://Sounds/SFX/explosion.ogg" id="4_be5a1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sojy5"]
+render_priority = 0
+shader = ExtResource("3_g5kql")
+shader_parameter/albedo = null
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/emission_amount = 5.0
+shader_parameter/rim_steepness = 3.0
+shader_parameter/uv_scale = null
+shader_parameter/uv_offset = null
+
+[sub_resource type="SphereMesh" id="SphereMesh_482lv"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_sojy5")
 
 [sub_resource type="Curve" id="Curve_lj0pb"]
 _data = [Vector2(0.195652, 1), 0.0, -3.22253, 0, 0, Vector2(0.5, 0), -2.80549, 0.0, 0, 0]
@@ -60,12 +78,12 @@ curve = SubResource("Curve_pu88w")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nwtj8"]
 particle_flag_align_y = true
 emission_shape = 2
-emission_sphere_radius = 3.0
+emission_sphere_radius = 6.0
 orbit_velocity_min = 0.2
 orbit_velocity_max = 0.2
 gravity = Vector3(0, 0, 0)
-radial_accel_min = -3.0
-radial_accel_max = -3.0
+radial_accel_min = -6.0
+radial_accel_max = -6.0
 scale_curve = SubResource("CurveTexture_a1leh")
 color_ramp = SubResource("GradientTexture1D_g1oi0")
 alpha_curve = SubResource("CurveTexture_ru3tv")
@@ -86,7 +104,11 @@ bottom_radius = 0.1
 [node name="Lightning" type="Node3D"]
 script = ExtResource("1_y67fr")
 
+[node name="Indicator" parent="." instance=ExtResource("2_i53ya")]
+mesh = SubResource("SphereMesh_482lv")
+
 [node name="Explosion" parent="." instance=ExtResource("1_k7r1g")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Lightning" type="GPUParticles3D" parent="."]
 emitting = false
@@ -107,3 +129,19 @@ explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nwtj8")
 draw_pass_1 = SubResource("CylinderMesh_on0fq")
+
+[node name="Windup Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_okh75")
+volume_db = -10.0
+unit_size = 75.0
+max_distance = 500.0
+max_polyphony = 5
+bus = &"sfx"
+
+[node name="Explosion Sound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_be5a1")
+volume_db = -10.0
+unit_size = 75.0
+max_distance = 500.0
+max_polyphony = 5
+bus = &"sfx"

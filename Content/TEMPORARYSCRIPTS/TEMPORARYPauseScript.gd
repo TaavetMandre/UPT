@@ -1,6 +1,6 @@
 extends CanvasLayer
 """THIS SCRIPT IS WAITING FOR GLOBAL VARIABLES AND A MAIN SCENE"""
-@onready var camera = $"../Camera"
+@onready var camera = $"../Outdoor Camera"
 
 func _input(event):
 	if event is InputEventKey and event.keycode == KEY_ESCAPE and event.pressed:

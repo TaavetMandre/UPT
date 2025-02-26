@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmbvewmrbrcil"]
+
+[ext_resource type="PackedScene" uid="uid://c82avvn6o54c2" path="res://Content/UI/indoor-outdoor_switcher.tscn" id="1_22h3o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5m0so"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5k2km"]
+sky_material = SubResource("ProceduralSkyMaterial_5m0so")
+
+[sub_resource type="Environment" id="Environment_iekp1"]
+background_mode = 2
+sky = SubResource("Sky_5k2km")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_idsrh"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_iekp1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_idsrh")
+
+[node name="Outdoor Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.969693, 0.244326, 0, -0.244326, 0.969693, 0, 1.10353, 2.40059)
+
+[node name="Indoor Camera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.663195, -0.473485, 0.579641, 0, 0.774459, 0.632624, -0.748447, -0.419553, 0.513617, 2.62933, 2.84215, 1.95261)
+
+[node name="Camera switcher" parent="." instance=ExtResource("1_22h3o")]
