@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy0r1gla4opln"]
+
+[ext_resource type="Shader" path="res://Content/TEMPORARYSCRIPTS/spellselectaura.gdshader" id="1_ml5g1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c37r5"]
+render_priority = 0
+shader = ExtResource("1_ml5g1")
+shader_parameter/albedo = null
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/emission_amount = 5.0
+shader_parameter/rim_steepness = 3.0
+shader_parameter/uv_scale = null
+shader_parameter/uv_offset = null
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tu55q"]
+material = SubResource("ShaderMaterial_c37r5")
+height = 1.5
+
+[node name="bean" type="MeshInstance3D"]
+transform = Transform3D(-4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_tu55q")

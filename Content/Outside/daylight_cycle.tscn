@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://x6hudvnyuuvd"]
+
+[ext_resource type="Script" path="res://Content/Outside/daylight_cycle.gd" id="1_1cd0i"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_t8h4e"]
+sky_top_color = Color(0.107313, 0.14932, 0.449425, 1)
+sky_horizon_color = Color(0.825103, 0.543011, 0, 1)
+
+[sub_resource type="Sky" id="Sky_20fdm"]
+sky_material = SubResource("ProceduralSkyMaterial_t8h4e")
+
+[sub_resource type="Environment" id="Environment_2d4wu"]
+background_mode = 2
+sky = SubResource("Sky_20fdm")
+ambient_light_source = 2
+ambient_light_color = Color(0.355314, 0.355314, 0.355314, 1)
+tonemap_mode = 2
+glow_enabled = true
+fog_light_energy = 0.0
+fog_density = 0.0
+volumetric_fog_anisotropy = 0.9
+
+[node name="Daylight Cycle" type="Node"]
+script = ExtResource("1_1cd0i")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
+environment = SubResource("Environment_2d4wu")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.866025, -0.0435779, 0.498097, 0, 0.996195, 0.0871557, -0.5, 0.0754791, -0.86273, 0, 0, 0)
+light_color = Color(1, 0.541176, 0, 1)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 250.0
+
+[node name="Moon" type="DirectionalLight3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-0.866025, -0.45853, -0.199375, -3.48598e-08, -0.398749, 0.91706, -0.5, 0.794197, 0.345327, 0, 0, 0)
+visible = false
+light_color = Color(0.4, 0.4, 0.4, 1)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_max_distance = 250.0
+
+[node name="Button" type="Button" parent="."]
+offset_left = 262.0
+offset_top = 18.0
+offset_right = 382.0
+offset_bottom = 66.0
+text = "cycle time"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2gguyquo2lu2"]
+
+[ext_resource type="Script" path="res://Content/Inside/indoor_lookaround.gd" id="1_eewce"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_x1hdp"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lkobr"]
+
+[node name="Indoor camera" type="Node3D"]
+script = ExtResource("1_eewce")
+move_speed = 5.0
+gravity = 10.0
+
+[node name="bean" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49458, 0)
+
+[node name="Camera3D" type="Camera3D" parent="bean"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.60708, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bean"]
+shape = SubResource("CapsuleShape3D_x1hdp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="bean"]
+mesh = SubResource("CapsuleMesh_lkobr")

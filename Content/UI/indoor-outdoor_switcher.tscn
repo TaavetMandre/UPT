@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://c82avvn6o54c2"]
+
+[ext_resource type="Shader" path="res://Content/Other/dissolve.gdshader" id="1_qoo6o"]
+[ext_resource type="Script" path="res://Content/UI/indooroutdoorswitcher.gd" id="2_crq5a"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_lnwwt"]
+noise_type = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vnmnn"]
+noise = SubResource("FastNoiseLite_lnwwt")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gs5it"]
+shader = ExtResource("1_qoo6o")
+shader_parameter/dissolve_value = 0.505
+shader_parameter/burn_size = 0.1
+shader_parameter/burn_color = Color(0.868985, 0.868985, 0.868985, 1)
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_vnmnn")
+
+[sub_resource type="Gradient" id="Gradient_e8hrw"]
+colors = PackedColorArray(0.851769, 0.851769, 0.851769, 1, 0.95158, 0.95158, 0.95158, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_btgh2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_utah3"]
+color_ramp = SubResource("Gradient_e8hrw")
+noise = SubResource("FastNoiseLite_btgh2")
+
+[node name="Camera switcher" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("2_crq5a")
+
+[node name="Clouds" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_gs5it")
+position = Vector2(954, 422)
+scale = Vector2(4.01269, 4.01269)
+texture = SubResource("NoiseTexture2D_utah3")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 14.0
+offset_right = 642.0
+offset_bottom = 70.0
+text = "switch camera to indoor"
+
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
