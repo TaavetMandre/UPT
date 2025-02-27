@@ -1,15 +1,15 @@
-[gd_scene load_steps=25 format=3 uid="uid://c0ehtogoo644u"]
+[gd_scene load_steps=26 format=3 uid="uid://c0ehtogoo644u"]
 
-[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/Spells/explosion.tscn" id="1_k7r1g"]
-[ext_resource type="Script" path="res://Content/Other/Spells/lightning.gd" id="1_y67fr"]
-[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/Other/Spells/spherical spell indicator.tscn" id="2_o6qqa"]
-[ext_resource type="AudioStream" uid="uid://bk3xuslwn210b" path="res://Sounds/SFX/electricity_magic_windup.ogg" id="3_okh75"]
-[ext_resource type="Shader" path="res://Content/Other/Spells/spellselectaura.gdshader" id="3_q6ajf"]
-[ext_resource type="AudioStream" uid="uid://cv1khu0s48y0l" path="res://Sounds/SFX/explosion.ogg" id="4_be5a1"]
+[ext_resource type="Script" path="res://Content/Other/Spells/lightning.gd" id="1_nsgeg"]
+[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/Other/Spells/spherical spell indicator.tscn" id="2_sn8r2"]
+[ext_resource type="Shader" path="res://Content/Other/Spells/spellselectaura.gdshader" id="3_odkd3"]
+[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/Spells/explosion.tscn" id="4_1j1h5"]
+[ext_resource type="AudioStream" uid="uid://bk3xuslwn210b" path="res://Sounds/SFX/electricity_magic_windup.ogg" id="5_nj8ke"]
+[ext_resource type="AudioStream" uid="uid://cv1khu0s48y0l" path="res://Sounds/SFX/explosion.ogg" id="6_5nh1v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sojy5"]
 render_priority = 0
-shader = ExtResource("3_q6ajf")
+shader = ExtResource("3_odkd3")
 shader_parameter/albedo = null
 shader_parameter/emission_color = Color(1, 1, 1, 1)
 shader_parameter/emission_amount = 5.0
@@ -101,13 +101,16 @@ flip_faces = true
 top_radius = 0.0
 bottom_radius = 0.1
 
-[node name="Lightning" type="Node3D"]
-script = ExtResource("1_y67fr")
+[sub_resource type="SphereShape3D" id="SphereShape3D_ofjeh"]
+radius = 5.0
 
-[node name="Indicator" parent="." instance=ExtResource("2_o6qqa")]
+[node name="Lightning" type="Node3D"]
+script = ExtResource("1_nsgeg")
+
+[node name="Indicator" parent="." instance=ExtResource("2_sn8r2")]
 mesh = SubResource("SphereMesh_482lv")
 
-[node name="Explosion" parent="." instance=ExtResource("1_k7r1g")]
+[node name="Explosion" parent="." instance=ExtResource("4_1j1h5")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
 
 [node name="Lightning" type="GPUParticles3D" parent="."]
@@ -130,8 +133,15 @@ fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_nwtj8")
 draw_pass_1 = SubResource("CylinderMesh_on0fq")
 
+[node name="Hurtbox Area" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox Area"]
+shape = SubResource("SphereShape3D_ofjeh")
+disabled = true
+
 [node name="Windup Sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_okh75")
+stream = ExtResource("5_nj8ke")
 volume_db = -10.0
 unit_size = 75.0
 max_distance = 500.0
@@ -139,7 +149,7 @@ max_polyphony = 5
 bus = &"sfx"
 
 [node name="Explosion Sound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_be5a1")
+stream = ExtResource("6_5nh1v")
 volume_db = -10.0
 unit_size = 75.0
 max_distance = 500.0

@@ -503,6 +503,7 @@ position = Vector2(572, 552)
 texture = ExtResource("5_xhe6k")
 script = ExtResource("6_u1s5u")
 card_show_area = NodePath("../Card Show Area")
+indicator_scene = ExtResource("9_kin2f")
 
 [node name="Spellcard hitbox" type="Control" parent="Spellcard3"]
 material = SubResource("ShaderMaterial_vf3ll")

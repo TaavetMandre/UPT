@@ -3,6 +3,7 @@
 [ext_resource type="Shader" path="res://Content/Other/Spells/spellselectaura.gdshader" id="1_ml5g1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c37r5"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_ml5g1")
 shader_parameter/albedo = null
@@ -13,6 +14,7 @@ shader_parameter/uv_scale = null
 shader_parameter/uv_offset = null
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tu55q"]
+resource_local_to_scene = true
 material = SubResource("ShaderMaterial_c37r5")
 height = 1.5
 
