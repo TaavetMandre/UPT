@@ -12,6 +12,10 @@ uniform vec2 direction = vec2(1, 0);
 uniform float noise_speed = 0.1;
 uniform sampler2D noise;
 
+// Transparency gradient
+uniform float gradient_start = 1.0; // Where the gradient starts (in UV.y)
+uniform float gradient_end = 1.0;   // Where the gradient fully fades (in UV.y)
+
 vec4 color_burn(vec4 base, vec4 blend){
 	return 1.0 - (1.0 - base) / blend;
 }
@@ -25,5 +29,13 @@ void fragment() {
 	// Noise texture
 	vec4 blend = texture(noise, mod(UV + TIME * noise_speed, 1.0));
 	
+	// Gradient
+	if (gradient_start != gradient_end) {
+		// Apply adjustable gradient fade
+		float fade_factor = smoothstep(gradient_start, gradient_end, UV.y);
+		blend.a *= (1.0 - fade_factor);  // Invert to fade out as UV.y increases
+	}
+	
 	COLOR.rgb = color_burn(base, blend).rgb;
+	COLOR.a *= blend.a;
 }

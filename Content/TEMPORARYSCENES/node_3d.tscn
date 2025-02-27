@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c0613fv4654ul" path="res://Models/maa_1_0.tscn" id="4_fn35a"]
 [ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/TEMPORARYPauseScript.gd" id="5_hkn4x"]
 [ext_resource type="Shader" path="res://Content/Outside/lowpolywater.gdshader" id="6_ealrg"]
-[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/explosion.tscn" id="10_3cbit"]
+[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/Spells/explosion.tscn" id="10_3cbit"]
 [ext_resource type="PackedScene" uid="uid://c82avvn6o54c2" path="res://Content/UI/indoor-outdoor_switcher.tscn" id="10_fvvxe"]
-[ext_resource type="PackedScene" uid="uid://ca55qpxds71t6" path="res://Content/Other/bubbles.tscn" id="12_r8wgv"]
-[ext_resource type="PackedScene" uid="uid://bs4t8lbvflsle" path="res://Content/TEMPORARYSCENES/spell deploy thingy.tscn" id="12_xo07a"]
+[ext_resource type="PackedScene" uid="uid://ca55qpxds71t6" path="res://Content/Other/Spells/bubbles.tscn" id="12_r8wgv"]
+[ext_resource type="PackedScene" uid="uid://bs4t8lbvflsle" path="res://Content/Other/Spells/spell deploy thingy.tscn" id="12_xo07a"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvrdr"]
 albedo_color = Color(0.172549, 0.541176, 0, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cy0r1gla4opln"]
 
-[ext_resource type="Shader" path="res://Content/TEMPORARYSCRIPTS/spellselectaura.gdshader" id="1_ml5g1"]
+[ext_resource type="Shader" path="res://Content/Other/Spells/spellselectaura.gdshader" id="1_ml5g1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c37r5"]
 render_priority = 0

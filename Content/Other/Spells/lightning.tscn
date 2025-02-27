@@ -1,15 +1,15 @@
 [gd_scene load_steps=25 format=3 uid="uid://c0ehtogoo644u"]
 
-[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/explosion.tscn" id="1_k7r1g"]
-[ext_resource type="Script" path="res://Content/Other/lightning.gd" id="1_y67fr"]
-[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/TEMPORARYSCENES/spherical spell indicator.tscn" id="2_i53ya"]
-[ext_resource type="Shader" path="res://Content/TEMPORARYSCRIPTS/spellselectaura.gdshader" id="3_g5kql"]
+[ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/Spells/explosion.tscn" id="1_k7r1g"]
+[ext_resource type="Script" path="res://Content/Other/Spells/lightning.gd" id="1_y67fr"]
+[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/Other/Spells/spherical spell indicator.tscn" id="2_o6qqa"]
 [ext_resource type="AudioStream" uid="uid://bk3xuslwn210b" path="res://Sounds/SFX/electricity_magic_windup.ogg" id="3_okh75"]
+[ext_resource type="Shader" path="res://Content/Other/Spells/spellselectaura.gdshader" id="3_q6ajf"]
 [ext_resource type="AudioStream" uid="uid://cv1khu0s48y0l" path="res://Sounds/SFX/explosion.ogg" id="4_be5a1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sojy5"]
 render_priority = 0
-shader = ExtResource("3_g5kql")
+shader = ExtResource("3_q6ajf")
 shader_parameter/albedo = null
 shader_parameter/emission_color = Color(1, 1, 1, 1)
 shader_parameter/emission_amount = 5.0
@@ -104,7 +104,7 @@ bottom_radius = 0.1
 [node name="Lightning" type="Node3D"]
 script = ExtResource("1_y67fr")
 
-[node name="Indicator" parent="." instance=ExtResource("2_i53ya")]
+[node name="Indicator" parent="." instance=ExtResource("2_o6qqa")]
 mesh = SubResource("SphereMesh_482lv")
 
 [node name="Explosion" parent="." instance=ExtResource("1_k7r1g")]

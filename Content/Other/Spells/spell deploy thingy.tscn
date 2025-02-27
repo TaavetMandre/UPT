@@ -1,14 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://bs4t8lbvflsle"]
+[gd_scene load_steps=25 format=3 uid="uid://bs4t8lbvflsle"]
 
-[ext_resource type="Script" path="res://Content/TEMPORARYSCENES/spell_deploy_bar_master.gd" id="1_2olev"]
+[ext_resource type="Script" path="res://Content/Other/Spells/spell_deploy_bar_master.gd" id="1_2olev"]
 [ext_resource type="Shader" path="res://Textures/sidebar.gdshader" id="1_u46bc"]
 [ext_resource type="Texture2D" uid="uid://dif30fcglpsp" path="res://Textures/gradient.png" id="2_xtsg2"]
-[ext_resource type="Script" path="res://Content/TEMPORARYSCENES/Bar.gd" id="3_y7yvf"]
-[ext_resource type="Shader" path="res://Content/TEMPORARYSCRIPTS/balatrocardthingy.gdshader" id="4_ymv5u"]
+[ext_resource type="Script" path="res://Content/Other/Spells/Bar.gd" id="3_y7yvf"]
+[ext_resource type="Shader" path="res://Content/Other/Spells/balatrocardthingy.gdshader" id="4_ymv5u"]
 [ext_resource type="Texture2D" uid="uid://duvct07xo1lym" path="res://icon.svg" id="5_xhe6k"]
-[ext_resource type="Script" path="res://Content/TEMPORARYSCENES/untoolbalatrocard.gd" id="6_u1s5u"]
-[ext_resource type="PackedScene" uid="uid://c0ehtogoo644u" path="res://Content/Other/lightning.tscn" id="7_jcw33"]
-[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/TEMPORARYSCENES/spherical spell indicator.tscn" id="9_kin2f"]
+[ext_resource type="Script" path="res://Content/Other/Spells/untoolbalatrocard.gd" id="6_u1s5u"]
+[ext_resource type="PackedScene" uid="uid://c0ehtogoo644u" path="res://Content/Other/Spells/lightning.tscn" id="7_jcw33"]
+[ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/Other/Spells/spherical spell indicator.tscn" id="9_kin2f"]
+[ext_resource type="PackedScene" uid="uid://d3fcfy48iisy7" path="res://Content/Other/Spells/wave_spell.tscn" id="10_dvy8s"]
+[ext_resource type="PackedScene" uid="uid://cy0r1gla4opln" path="res://Content/Other/Spells/beanical spell indicator.tscn" id="11_ofpea"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o0wks"]
 noise_type = 4
@@ -25,6 +27,8 @@ shader = ExtResource("1_u46bc")
 shader_parameter/scroll_speed = Vector2(0.05, 0)
 shader_parameter/direction = Vector2(1, 0)
 shader_parameter/noise_speed = 0.01
+shader_parameter/gradient_start = 0.25
+shader_parameter/gradient_end = 0.0
 shader_parameter/noise = SubResource("NoiseTexture2D_vf6w1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_utdb3"]
@@ -389,6 +393,21 @@ shader_parameter/normal_strength = 0.1
 shader_parameter/effect_alpha_mult = 0.0
 shader_parameter/direction = 0.5
 
+[sub_resource type="Gradient" id="Gradient_nyfkn"]
+colors = PackedColorArray(1, 0.1, 0.1, 0.784314, 1, 0.25, 0.25, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yusl4"]
+gradient = SubResource("Gradient_nyfkn")
+fill_from = Vector2(1, 0.1)
+metadata/_snap_enabled = true
+
+[sub_resource type="SystemFont" id="SystemFont_f0mid"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6f8v"]
+font = SubResource("SystemFont_f0mid")
+font_size = 64
+
 [node name="Spell deploy bar" type="Control" node_paths=PackedStringArray("spells")]
 layout_mode = 3
 anchors_preset = 15
@@ -451,6 +470,9 @@ position = Vector2(350, 552)
 texture = ExtResource("5_xhe6k")
 script = ExtResource("6_u1s5u")
 card_show_area = NodePath("../Card Show Area")
+spell_scene = ExtResource("10_dvy8s")
+indicator_scene = ExtResource("11_ofpea")
+metadata/_edit_lock_ = true
 
 [node name="Spellcard hitbox" type="Control" parent="Wave spell"]
 material = SubResource("ShaderMaterial_vf3ll")
@@ -512,6 +534,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.152941)
+metadata/_edit_lock_ = true
+
+[node name="DismissArea" type="TextureRect" parent="Card Show Area"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_yusl4")
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="Card Show Area/DismissArea"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1151.0
+offset_top = 119.0
+offset_right = 1333.0
+offset_bottom = 167.0
+text = "DISMISS/KATKESTA"
+label_settings = SubResource("LabelSettings_g6f8v")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Card Show Area/DismissArea/Label"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 metadata/_edit_lock_ = true
 
 [connection signal="gui_input" from="Lightning spell/Spellcard hitbox" to="Lightning spell" method="_on_texture_rect_gui_input"]
