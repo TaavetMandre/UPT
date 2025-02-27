@@ -6,6 +6,8 @@ extends Node3D
 @onready var lightning = $Lightning
 @onready var lightning_windup = $LightningWindup
 
+@onready var hurtbox = $"Hurtbox Area/CollisionShape3D"
+
 @onready var windup_sound = $"Windup Sound"
 @onready var explosion_sound = $"Explosion Sound"
 
@@ -26,6 +28,10 @@ func _ready():
 	await get_tree().create_timer(1).timeout
 	explosion_sound.play()
 	indicator.visible = false
+	
+	## flash the hurtbox for a frame probably?
+	hurtbox.disabled = false
+	hurtbox.disabled = true
 	
 	lightning.emitting = true
 	fire.emitting = true
