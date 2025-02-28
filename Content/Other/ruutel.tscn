@@ -28,6 +28,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
+wait_time = 0.2
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
@@ -50,4 +51,3 @@ shape = SubResource("BoxShape3D_68h03")
 [connection signal="timeout" from="Timer" to="." method="test_timer"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
-[connection signal="body_exited" from="attack" to="." method="_on_attack_body_exited"]

@@ -1,12 +1,14 @@
 extends Node3D
 
+@export var damage: int = 5
+
 @onready var sparks = $Explosion/Sparks
 @onready var smoke = $Explosion/Smoke
 @onready var fire = $Explosion/Fire
 @onready var lightning = $Lightning
 @onready var lightning_windup = $LightningWindup
 
-@onready var hurtbox = $"Hurtbox Area/CollisionShape3D"
+@onready var hurtbox = $"Hurtbox Area"
 
 @onready var windup_sound = $"Windup Sound"
 @onready var explosion_sound = $"Explosion Sound"
@@ -29,9 +31,10 @@ func _ready():
 	explosion_sound.play()
 	indicator.visible = false
 	
-	## flash the hurtbox for a frame probably?
-	hurtbox.disabled = false
-	hurtbox.disabled = true
+	# flash the hurtbox for a frame probably? ---- no just keep enabled and damage once.
+	for i in hurtbox.get_overlapping_bodies():
+		i.damaged(damage)
+		
 	
 	lightning.emitting = true
 	fire.emitting = true
