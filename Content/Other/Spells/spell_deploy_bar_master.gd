@@ -60,7 +60,8 @@ func deploy_spell(spell_card):
 		indicator.visible = false
 
 func hide_indicator(spell_card):
-	var indicator = indicators.get(spell_card)
+	var indicator_list = indicators.get(spell_card)
+	var indicator = indicator_list[0]
 	if spell_card.indicator_scene and camera and indicator and spell_card.spell_scene:
 		indicator.visible = false
 

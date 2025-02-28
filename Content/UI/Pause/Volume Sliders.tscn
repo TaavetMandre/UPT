@@ -4,6 +4,7 @@
 
 [node name="Volume Sliders" type="Control"]
 process_mode = 3
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

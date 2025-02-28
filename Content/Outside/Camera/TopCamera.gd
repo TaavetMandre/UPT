@@ -7,7 +7,8 @@ ln40 - change min and max camera speed (multiplied by movement_sensitivity)
 """
 @onready var top_camera = %Camera3D
 ## Changes the sensitivity of camera movement
-@export_range(0.1, 1.0) var movement_sensitivity = SettingsGlobal.outdoor_mouse_sensitivity
+@onready var movement_sensitivity = SettingsGlobal.outdoor_mouse_sensitivity
+@onready var rotation_sensitivity = SettingsGlobal.outdoor_rotation_sensitivity
 @export var dragging:bool = false # for left click detection and camera movement with the mouse
 @export var rotating:bool = false # for right click detection and camera rotation
 
@@ -57,7 +58,7 @@ func _process(delta):
 		
 		if position_difference != Vector2(0, 0): # The if condition checks for movement to avoid creating unnecessary tweens
 			var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC) # Smoothing
-			tween.tween_property(self, "position", position - position_difference3 / speed * movement_sensitivity, 1)
+			tween.tween_property(self, "position", position - position_difference3 / speed * movement_sensitivity, 25 * delta)
 	
 	#if dragging:
 		#if InputEventMouseMotion:
@@ -67,7 +68,7 @@ func _process(delta):
 	if rotating: # Camera rotation using right click
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		var mouse_movementx = previous_frame_mouse_position[0] - get_viewport().get_mouse_position()[0]
-		tween.tween_property(self, "rotation:y", rotation.y + mouse_movementx / 10, 0.5) #rotation_degrees.y += previous_frame_mouse_position[0] - get_viewport().get_mouse_position()[0]
+		tween.tween_property(self, "rotation:y", rotation.y + mouse_movementx / 10 * rotation_sensitivity, 50 * delta) #rotation_degrees.y += previous_frame_mouse_position[0] - get_viewport().get_mouse_position()[0]
 		tween.tween_callback(tween.kill)
 	previous_frame_mouse_position = get_viewport().get_mouse_position()
 	
@@ -77,13 +78,13 @@ func _process(delta):
 	WASDVector.x = -Input.get_action_strength("D_button") + Input.get_action_strength("A_button")
 	WASDVector.z = -Input.get_action_strength("S_button") + Input.get_action_strength("W_button")
 	WASDVector = WASDVector.rotated(Vector3.UP, rotation.y).normalized()
-	if WASDVector and Input.is_key_pressed(KEY_SHIFT): # shift slows down the speed
-		var speed = 15 - (10 * (top_camera.position.y - top_camera.lowest_height) / (top_camera.highest_height - top_camera.lowest_height)) # ln48
-		var tweenWASD = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		tweenWASD.tween_property(self, "position",
-								position - WASDVector * 10 / speed / sqrt(WASDVector.dot(WASDVector)), 0.5)
-	elif WASDVector:
+	#if WASDVector and Input.is_key_pressed(KEY_SHIFT): # shift slows down the speed
+		#var speed = 15 - (10 * (top_camera.position.y - top_camera.lowest_height) / (top_camera.highest_height - top_camera.lowest_height)) # ln48
+		#var tweenWASD = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		#tweenWASD.tween_property(self, "position",
+								#position - WASDVector * 10 / speed / sqrt(WASDVector.dot(WASDVector)), 0.5 * movement_sensitivity)
+	if WASDVector:
 		var speed = 5 - (2.5 * (top_camera.position.y - top_camera.lowest_height) / (top_camera.highest_height - top_camera.lowest_height)) # ln48
 		var tweenWASD = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		tweenWASD.tween_property(self, "position",
-								position - WASDVector * 10 / speed / sqrt(WASDVector.dot(WASDVector)), 0.5)
+								position - WASDVector * 10 / speed / sqrt(WASDVector.dot(WASDVector)) * movement_sensitivity, 0.5)

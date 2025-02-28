@@ -26,6 +26,8 @@ shader = ExtResource("3_f3jqe")
 shader_parameter/scroll_speed = Vector2(0.05, 0)
 shader_parameter/direction = Vector2(1, 0)
 shader_parameter/noise_speed = 0.01
+shader_parameter/gradient_start = 1.0
+shader_parameter/gradient_end = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_tm31h")
 
 [sub_resource type="LabelSettings" id="LabelSettings_3nnhv"]
@@ -113,6 +115,7 @@ expand_mode = 3
 [node name="Shadow" type="TextureRect" parent="Sidebar"]
 modulate = Color(0, 0, 0, 1)
 show_behind_parent = true
+layout_mode = 0
 offset_top = -3.0
 offset_right = 6000.0
 texture = ExtResource("4_xwjtt")

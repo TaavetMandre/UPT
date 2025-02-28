@@ -1,0 +1,16 @@
+[gd_resource type="Theme" format=3 uid="uid://cjbnk0kwmvg8y"]
+
+[resource]
+default_font_size = 32
+Button/fonts/font = null
+FlatButton/base_type = &"Button"
+FlatButton/font_sizes/font_size = 32
+FlatButtonBig/base_type = &"Button"
+FlatButtonBig/font_sizes/font_size = 64
+FlatMenuButton/font_sizes/size = 64
+MarginContainer/constants/margin_bottom = 24
+MarginContainer/constants/margin_left = 24
+MarginContainer/constants/margin_right = 24
+MarginContainer/constants/margin_top = 24
+TabBar/font_sizes/font_size = 32
+VBoxContainer/constants/separation = 10
