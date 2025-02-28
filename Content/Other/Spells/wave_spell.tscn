@@ -253,8 +253,8 @@ tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "handle_modes": PackedInt32Array(0, 0),
-"points": PackedFloat32Array(-10, -0.25, 0, 0.2, 46, 91, -0.25, 0, 0.25, 0),
-"times": PackedFloat32Array(0.3, 2)
+"points": PackedFloat32Array(-25, -0.25, 0, 0.2, 46, 100, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 2)
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -340,12 +340,15 @@ material_override = SubResource("StandardMaterial3D_y4ife")
 mesh = SubResource("PrismMesh_03flu")
 
 [node name="Hurtbox Area" type="Area3D" parent="."]
-unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, -10, 0)
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox Area"]
+transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, 0, -8.9945e-07)
 shape = SubResource("BoxShape3D_3i7cl")
 
 [node name="bean" parent="." instance=ExtResource("2_rpv6h")]
 transform = Transform3D(-4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0, 100, 0, -25, 0)
 mesh = SubResource("CapsuleMesh_shjt7")
+
+[connection signal="body_entered" from="Hurtbox Area" to="." method="_on_hurtbox_area_body_entered"]
