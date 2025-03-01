@@ -30,9 +30,6 @@ material = SubResource("StandardMaterial3D_b6tgr")
 top_radius = 0.1
 bottom_radius = 0.0
 height = 1.0
-radial_segments = 4
-rings = 2
-cap_bottom = false
 
 [sub_resource type="Curve" id="Curve_d18hs"]
 _data = [Vector2(0, 0), 0.0, 6.47033, 0, 0, Vector2(0.442029, 0.802198), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
