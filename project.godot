@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SettingsGlobal="*res://Global/settings_global.gd"
+GameMaster="*res://Global/GAMEMASTER.gd"
 
 [display]
 
