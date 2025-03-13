@@ -43,8 +43,11 @@ disable_receive_shadows = true
 [sub_resource type="CylinderMesh" id="CylinderMesh_86t5d"]
 material = SubResource("StandardMaterial3D_gpps7")
 top_radius = 0.3
-bottom_radius = 0.1
+bottom_radius = 0.0
 height = 10.0
+radial_segments = 4
+rings = 2
+cap_bottom = false
 
 [sub_resource type="Curve" id="Curve_l2u3q"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 3.23516, 0.0, 0, 0]
@@ -77,8 +80,11 @@ curve = SubResource("Curve_pu88w")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nwtj8"]
 particle_flag_align_y = true
-emission_shape = 2
-emission_sphere_radius = 6.0
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 6.0
+emission_ring_radius = 6.0
+emission_ring_inner_radius = 6.0
 orbit_velocity_min = 0.2
 orbit_velocity_max = 0.2
 gravity = Vector3(0, 0, 0)
@@ -100,6 +106,10 @@ material = SubResource("StandardMaterial3D_3u634")
 flip_faces = true
 top_radius = 0.0
 bottom_radius = 0.1
+height = 1.0
+radial_segments = 4
+rings = 2
+cap_top = false
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ofjeh"]
 radius = 5.0
@@ -125,7 +135,7 @@ draw_pass_1 = SubResource("CylinderMesh_86t5d")
 
 [node name="LightningWindup" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 32
+amount = 20
 lifetime = 1.5
 one_shot = true
 explosiveness = 1.0
@@ -134,11 +144,10 @@ process_material = SubResource("ParticleProcessMaterial_nwtj8")
 draw_pass_1 = SubResource("CylinderMesh_on0fq")
 
 [node name="Hurtbox Area" type="Area3D" parent="."]
-unique_name_in_owner = true
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox Area"]
 shape = SubResource("SphereShape3D_ofjeh")
-disabled = true
 
 [node name="Windup Sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_nj8ke")

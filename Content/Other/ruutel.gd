@@ -1,20 +1,29 @@
 extends CharacterBody3D
 
-@export var HP: int = 100
+@export_range(0, 2) var start_state: int = 0 ##Default state with which the npc starts out with:[br]0 - chase tower[br]1 - chase enemies[br]2 - chase leader
+@export var HP: int = 10
+@export var damage: int = 1
 @export_range(0.1, 10.0) var nodrift: float = 1.0
 @onready var meh = $ruutel2_0
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var timer = $Timer
+@onready var attack = $attack
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-enum States{TOWER, ENEMY, ATTACK, FROG}
+enum States{TOWER, ENEMY, ATTACK, FOLLOW, FROG, FLEE}
 var current_state : States
-
+var default_state : States
 
 func _ready():
-	current_state = States.TOWER
+	match start_state:
+		0: default_state = States.TOWER
+		1: default_state = States.ENEMY
+		2: default_state = States.FOLLOW
+	current_state = default_state
+
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -30,7 +39,12 @@ func _physics_process(delta):
 	match current_state:
 		States.TOWER: nav.set_target_position(Vector3(0,0,0))
 		States.ENEMY: pass
-		States.ATTACK: pass
+		States.ATTACK:
+			if attack.has_overlapping_bodies():
+				await get_tree().create_timer(0.5).timeout # asendada animatsiooniga
+				for i in attack.get_overlapping_bodies():
+					i.damaged(damage)
+			else: current_state = default_state
 		States.FROG: pass
 	
 	var trajektoor = velocity + (nav.get_next_path_position() - global_position).normalized() * delta * nodrift * nav.max_speed
@@ -48,11 +62,8 @@ func velocity_computed(safe_velocity):
 
 
 func _on_attack_body_entered(body):
-	pass # Replace with function body.
+	current_state = States.ATTACK
 
-
-func _on_attack_body_exited(body):
-	pass # Replace with function body.
 
 func damaged(dam: int):
 	HP -= dam
