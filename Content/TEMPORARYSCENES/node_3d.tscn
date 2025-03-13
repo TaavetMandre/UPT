@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cvpkscqbrlah8"]
+[gd_scene load_steps=22 format=3 uid="uid://cvpkscqbrlah8"]
 
 [ext_resource type="PackedScene" uid="uid://df4uk73qmfihf" path="res://Content/Outside/Camera/camera.tscn" id="1_17a4g"]
 [ext_resource type="PackedScene" uid="uid://vko3tjcrqt8k" path="res://Models/tekstuurita_torn1.0.glb" id="2_1tfty"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0613fv4654ul" path="res://Models/maa_1_0.tscn" id="4_fn35a"]
 [ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/TEMPORARYPauseScript.gd" id="5_hkn4x"]
 [ext_resource type="Shader" path="res://Content/Outside/lowpolywater.gdshader" id="6_ealrg"]
+[ext_resource type="PackedScene" uid="uid://cbcgy4jq8jfmt" path="res://3d/maa1.glb" id="9_pc84s"]
 [ext_resource type="PackedScene" uid="uid://crch1b7fb1vt4" path="res://Content/Other/Spells/explosion.tscn" id="10_3cbit"]
 [ext_resource type="PackedScene" uid="uid://c82avvn6o54c2" path="res://Content/UI/indoor-outdoor_switcher.tscn" id="10_fvvxe"]
 [ext_resource type="PackedScene" uid="uid://ca55qpxds71t6" path="res://Content/Other/Spells/bubbles.tscn" id="12_r8wgv"]
@@ -54,36 +55,40 @@ subdivide_depth = 80
 [node name="Outdoor Camera" parent="." instance=ExtResource("1_17a4g")]
 
 [node name="Indoor camera" parent="." instance=ExtResource("2_101bp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 4.97981, -1.07736)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 78.692, -1.07736)
 
 [node name="Tempenvironment" type="Node" parent="."]
 
 [node name="Torn" parent="Tempenvironment" instance=ExtResource("2_1tfty")]
-transform = Transform3D(0.789277, 0, -0.614037, 0, 1, 0, 0.614037, 0, 0.789277, -1.49434, -0.319007, -0.860832)
+transform = Transform3D(0.789277, 0, -0.614037, 0, 1, 0, 0.614037, 0, 0.789277, 0, 0, 0)
 
 [node name="ruutel2_0" parent="Tempenvironment" instance=ExtResource("3_li0bm")]
-transform = Transform3D(-0.857994, 0.489824, -0.154656, 0.482055, 0.871821, 0.0868918, 0.177394, 7.33241e-09, -0.98414, 8.00466, 5.24714, 2.67113)
+transform = Transform3D(-0.781919, -0.0595326, -0.620531, -0.0664566, 0.997717, -0.0119791, 0.619828, 0.0318716, -0.78409, 3.93395, 1.94381, -1.8183)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Tempenvironment"]
 transform = Transform3D(-5.21887e-07, 0, 11.5527, 0, 1, 0, -11.9394, 0, -5.04987e-07, 4.48078, 3.09104, -36.1964)
+visible = false
 material_override = SubResource("StandardMaterial3D_gvrdr")
 mesh = SubResource("BoxMesh_sucd3")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Tempenvironment"]
 transform = Transform3D(-5.21887e-07, 0, 11.5527, 0, 1, 0, -11.9394, 0, -5.04987e-07, -9.99083, 3.09104, -34.3858)
+visible = false
 material_override = SubResource("StandardMaterial3D_i12jh")
 mesh = SubResource("BoxMesh_sucd3")
 skeleton = NodePath("")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="Tempenvironment"]
 transform = Transform3D(-5.21887e-07, 0, 11.5527, 0, 1, 0, -11.9394, 0, -5.04987e-07, 1.22708, 3.09104, -21.9989)
+visible = false
 material_override = SubResource("StandardMaterial3D_mgmfl")
 mesh = SubResource("BoxMesh_sucd3")
 skeleton = NodePath("")
 
 [node name="maa1_1" parent="Tempenvironment" instance=ExtResource("4_fn35a")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+visible = false
 
 [node name="Water" type="MeshInstance3D" parent="Tempenvironment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 0)
@@ -91,15 +96,20 @@ mesh = SubResource("PlaneMesh_fqwbn")
 
 [node name="Node3D" parent="Tempenvironment" instance=ExtResource("10_3cbit")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1.42251, -6)
+visible = false
 
 [node name="Bubbles" parent="Tempenvironment" instance=ExtResource("12_r8wgv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.89483, 3.59685, -36.0905)
+visible = false
+
+[node name="maa1" parent="Tempenvironment" instance=ExtResource("9_pc84s")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.42414, 0, 0)
 
 [node name="TEMPPauseMenuDetector" type="CanvasLayer" parent="."]
 script = ExtResource("5_hkn4x")
 
 [node name="Spell deploy bar" parent="." node_paths=PackedStringArray("ground", "camera") instance=ExtResource("12_xo07a")]
-ground = NodePath("../Tempenvironment/maa1_1")
+ground = NodePath("../Tempenvironment/maa1")
 camera = NodePath("../Outdoor Camera")
 
 [node name="Camera switcher" parent="." node_paths=PackedStringArray("camera_out_node", "camera_in_node") instance=ExtResource("10_fvvxe")]
