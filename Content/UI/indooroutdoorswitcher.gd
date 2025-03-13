@@ -29,8 +29,6 @@ func _ready():
 			push_warning("could not find a camera in camera_out_node, camera switching will not work")
 	else:
 		push_warning("camera_out_node not set, camera switching will not work")
-	
-	print(camera_in, camera_out)
 
 @warning_ignore("unused_parameter")
 func _process(delta):

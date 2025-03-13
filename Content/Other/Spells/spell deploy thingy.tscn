@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bs4t8lbvflsle"]
+[gd_scene load_steps=27 format=3 uid="uid://bs4t8lbvflsle"]
 
 [ext_resource type="Script" path="res://Content/Other/Spells/spell_deploy_bar_master.gd" id="1_2olev"]
 [ext_resource type="Shader" path="res://Textures/sidebar.gdshader" id="1_u46bc"]
@@ -6,10 +6,12 @@
 [ext_resource type="Script" path="res://Content/Other/Spells/Bar.gd" id="3_y7yvf"]
 [ext_resource type="Shader" path="res://Content/Other/Spells/balatrocardthingy.gdshader" id="4_ymv5u"]
 [ext_resource type="Texture2D" uid="uid://duvct07xo1lym" path="res://icon.svg" id="5_xhe6k"]
+[ext_resource type="Texture2D" uid="uid://tmwp5cedwldk" path="res://Textures/lightning.svg" id="6_qhv4f"]
 [ext_resource type="Script" path="res://Content/Other/Spells/untoolbalatrocard.gd" id="6_u1s5u"]
 [ext_resource type="PackedScene" uid="uid://c0ehtogoo644u" path="res://Content/Other/Spells/lightning.tscn" id="7_jcw33"]
 [ext_resource type="PackedScene" uid="uid://1ul8feuckgc6" path="res://Content/Other/Spells/spherical spell indicator.tscn" id="9_kin2f"]
 [ext_resource type="PackedScene" uid="uid://d3fcfy48iisy7" path="res://Content/Other/Spells/wave_spell.tscn" id="10_dvy8s"]
+[ext_resource type="Texture2D" uid="uid://bm55jpo3nnc7v" path="res://Textures/tsunami.svg" id="10_sqydg"]
 [ext_resource type="PackedScene" uid="uid://cy0r1gla4opln" path="res://Content/Other/Spells/beanical spell indicator.tscn" id="11_ofpea"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_o0wks"]
@@ -433,7 +435,7 @@ metadata/_edit_lock_ = true
 [node name="Lightning spell" type="Sprite2D" parent="." node_paths=PackedStringArray("card_show_area") groups=["spellcards"]]
 material = SubResource("ShaderMaterial_utdb3")
 position = Vector2(176, 552)
-texture = ExtResource("5_xhe6k")
+texture = ExtResource("6_qhv4f")
 script = ExtResource("6_u1s5u")
 card_show_area = NodePath("../Card Show Area")
 spell_scene = ExtResource("7_jcw33")
@@ -451,6 +453,7 @@ offset_bottom = 64.0
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Lightning spell"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -467,7 +470,7 @@ metadata/_edit_lock_ = true
 [node name="Wave spell" type="Sprite2D" parent="." node_paths=PackedStringArray("card_show_area") groups=["spellcards"]]
 material = SubResource("ShaderMaterial_0ryng")
 position = Vector2(350, 552)
-texture = ExtResource("5_xhe6k")
+texture = ExtResource("10_sqydg")
 script = ExtResource("6_u1s5u")
 card_show_area = NodePath("../Card Show Area")
 spell_scene = ExtResource("10_dvy8s")
@@ -485,6 +488,7 @@ offset_bottom = 64.0
 metadata/_edit_lock_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="Wave spell"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -498,6 +502,7 @@ mouse_filter = 2
 color = Color(0, 0, 1, 0.196078)
 
 [node name="Spellcard3" type="Sprite2D" parent="." node_paths=PackedStringArray("card_show_area") groups=["spellcards"]]
+visible = false
 material = SubResource("ShaderMaterial_4aqu4")
 position = Vector2(572, 552)
 texture = ExtResource("5_xhe6k")

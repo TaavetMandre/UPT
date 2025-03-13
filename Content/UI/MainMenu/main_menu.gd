@@ -17,6 +17,9 @@ func _ready():
 	get_tree().get_root().size_changed.connect(resize) # window size change signal
 	resize()
 	
+	%Title.size = Vector2(663, 175)
+	%VBoxContainer.size = Vector2(1000, 706)
+	
 	animation_player.play("RESET")
 	animation_player.play("Intro")
 	await get_tree().create_timer(5).timeout
@@ -33,11 +36,13 @@ func _on_play_button_pressed():
 	get_tree().change_scene_to_packed(play_button_scene)
 
 func _on_settings_button_pressed():
+	$"Main Menu/VBoxContainer/MenuSettings".load_states_from_global()
+
+	
 	var new_position = wrap(animation_player.current_animation_position + animation_player.current_animation_length / 2, # move the animation ahead by half of the length
 							0, animation_player.current_animation_length) # prevents overflow
 	
 	# save the curernt state to apply before tweening
-	var old_color = %WorldEnvironment.environment.fog_light_color
 	var rotation = %tekstuurita_torn1_0.rotation.y
 	var new_color = settings_gradient.sample(new_position / animation_player.current_animation_length)  # sample the new color based on the position of the animation
 	
@@ -57,7 +62,6 @@ func _on_back_button_pressed():
 							0, animation_player.current_animation_length) # prevents overflow
 	
 	# save the curernt state to apply before tweening
-	var old_color = %WorldEnvironment.environment.fog_light_color
 	var rotation = %tekstuurita_torn1_0.rotation.y
 	var new_color = main_gradient.sample(new_position / animation_player.current_animation_length)  # sample the new color based on the position of the animation
 	
