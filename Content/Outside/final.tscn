@@ -324,7 +324,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 20, 20.1, 30.9, 31, 56),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(4.357, 25.869, 8.86), Vector3(-9.382, 22.189, 8.86), Vector3(-37.7077, -16.0547, -84.2709), Vector3(-35.2509, -7.05702, -26.0356), Vector3(-36.34, -19, -271.29), Vector3(-36.34, -20.5, -271.29)]
+"values": [Vector3(-5, 10, 8.86), Vector3(4.357, 28, 8.86), Vector3(-37.7077, -16.0547, -84.2709), Vector3(-35.2509, -7.05702, -26.0356), Vector3(-36.34, -19, -523.061), Vector3(-36.34, -20.5, -523.061)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -336,7 +336,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 20, 20.1, 30.9, 31, 56),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.785398, 0.523599, 0), Vector3(-0.226125, -0.740927, -3.69235e-09), Vector3(0, -2.73668, 0), Vector3(0.270526, -2.2794, 0), Vector3(-1.5708, 0, 0), Vector3(-1.5708, -3.14159, 0)]
+"values": [Vector3(-0.785398, -0.523599, 0), Vector3(-0.785398, 0.523599, 0), Vector3(0, -2.73668, 0), Vector3(0.270526, -2.2794, 0), Vector3(-1.5708, 0, 0), Vector3(-1.5708, -3.14159, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -429,11 +429,20 @@ tracks/11/path = NodePath("AnimationPlayer")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 20, 53),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [true],
 "method": &"set_reverb_dialogue"
+}, {
+"args": [false],
+"method": &"toggle_fog_mesh"
+}, {
+"args": [false],
+"method": &"toggle_fog_mesh"
+}, {
+"args": [false],
+"method": &"toggle_fog_mesh"
 }]
 }
 tracks/12/type = "value"
@@ -589,12 +598,13 @@ camera_in_node = NodePath("../Indoor camera")
 ground = NodePath("../NavigationRegion3D/maa2")
 camera = NodePath("../Outdoor Camera")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." node_paths=PackedStringArray("ground")]
 libraries = {
 "": SubResource("AnimationLibrary_q3j2m")
 }
-autoplay = "intro"
+autoplay = "RESET"
 script = ExtResource("20_ynxnq")
+ground = NodePath("../NavigationRegion3D/maa2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="AnimationPlayer"]
 visible = false
@@ -607,6 +617,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Top Bar" type="ColorRect" parent="AnimationPlayer/CanvasLayer"]
 anchors_preset = -1
@@ -643,23 +654,24 @@ offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "INTRO1"
+metadata/_edit_use_anchors_ = true
 
 [node name="Camera3D" type="Camera3D" parent="AnimationPlayer"]
 transform = Transform3D(1, 0, 0, 0, 0.974542, 0.224203, 0, -0.224203, 0.974542, 3.8147e-06, 18.9443, 8.85959)
 
 [node name="Black ball" type="MeshInstance3D" parent="AnimationPlayer"]
-transform = Transform3D(-0.552723, 0, -0.833365, 0, 1, 0, 0.833365, 0, -0.552723, -36.34, -21.4485, -271.29)
+transform = Transform3D(-0.552723, 0, -0.833365, 0, 1, 0, 0.833365, 0, -0.552723, -36.34, -21.4485, -523.061)
 transparency = 0.05
 cast_shadow = 0
 mesh = SubResource("SphereMesh_k2med")
 
 [node name="Magic" type="MeshInstance3D" parent="AnimationPlayer"]
-transform = Transform3D(-0.552722, 8.9407e-08, -0.833365, -0.482397, 0.815431, 0.319945, 0.679552, 0.578854, -0.450707, -36.34, -21.4485, -271.29)
+transform = Transform3D(-0.552722, 8.9407e-08, -0.833365, -0.482396, 0.815431, 0.319945, 0.679552, 0.578854, -0.450707, -36.34, -21.4485, -523.061)
 mesh = SubResource("SphereMesh_8of26")
 skeleton = NodePath("../Black ball")
 
 [node name="Magic2" type="MeshInstance3D" parent="AnimationPlayer"]
-transform = Transform3D(-0.552723, 0, -0.833365, -0.482397, 0.815431, 0.319946, 0.679552, 0.578854, -0.450707, -36.34, -21.4485, -271.29)
+transform = Transform3D(-0.552723, 0, -0.833365, -0.482397, 0.815431, 0.319946, 0.679552, 0.578854, -0.450707, -36.34, -21.4485, -523.061)
 mesh = SubResource("SphereMesh_g1f15")
 skeleton = NodePath("../Black ball")
 

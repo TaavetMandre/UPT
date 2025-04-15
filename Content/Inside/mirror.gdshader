@@ -1,6 +1,6 @@
 // slightly modified fog of war cloud shader
 shader_type spatial;
-render_mode blend_mix, cull_back, diffuse_toon, unshaded;
+render_mode blend_mix, cull_disabled, diffuse_toon, unshaded;
 
 group_uniforms Texture;
 uniform sampler2D noise;
@@ -11,8 +11,14 @@ uniform float gradient_start = 1.0; // Where the gradient starts (in UV.y)
 uniform float gradient_end = 1.0;   // Where the gradient fully fades (in UV.y)
 group_uniforms;
 
+group_uniforms uv_stuff;
+uniform bool screen_align_uv = false;
+
 void fragment() {
 	vec4 tex = texture(noise, vec2(UV.x ,UV.y + TIME * speed));
+	if (screen_align_uv == true) {
+		tex = texture(noise, vec2(SCREEN_UV.x ,SCREEN_UV.y + TIME * speed));
+	}
 	
 	// Gradient
 	if (gradient_start != gradient_end) {
