@@ -9,14 +9,14 @@
 height = 4.2694
 radius = 3.61431
 
-[node name="torn" type="Node3D"]
+[node name="t_hitbox" type="StaticBody3D"]
+collision_layer = 9
+collision_mask = 9
+physics_material_override = SubResource("PhysicsMaterial_vhelt")
 script = ExtResource("1_pcgbd")
 
-[node name="torn1_0" parent="." instance=ExtResource("1_hfyfa")]
-
-[node name="t_hitbox" type="StaticBody3D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_vhelt")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="t_hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.99204, 1.15737, 0)
 shape = SubResource("CylinderShape3D_xaiuc")
+
+[node name="torn1_0" parent="." instance=ExtResource("1_hfyfa")]

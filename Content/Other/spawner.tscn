@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://nieqqrvopkwn"]
+
+[ext_resource type="Script" path="res://Content/Other/spawner.gd" id="1_mernn"]
+[ext_resource type="PackedScene" uid="uid://drkh1pv8xrjmg" path="res://Content/Other/ruutel.tscn" id="2_f4ts1"]
+
+[sub_resource type="Curve3D" id="Curve3D_hi8lv"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="spawner" type="Path3D"]
+curve = SubResource("Curve3D_hi8lv")
+script = ExtResource("1_mernn")
+mob = ExtResource("2_f4ts1")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+progress = 10.0

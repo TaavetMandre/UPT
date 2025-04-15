@@ -1,5 +1,6 @@
-extends Node3D
+extends StaticBody3D
 
+@onready var GameMaster = $".."
 @export var HP: int = 10
 var maxhp: int
 
@@ -8,9 +9,9 @@ func _ready():
 
 func damaged(dam):
 	HP -= dam
-	if HP >= 0:
+	if HP <= 0:
 		GameMaster.DEATH()
 	else:
-		pass #update UI hp texture bar
+		print("ai") #update UI hp texture bar
 func renew():
 	HP = maxhp
