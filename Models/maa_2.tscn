@@ -150,7 +150,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_rj2d5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_tqh1u"]
 resource_name = "maa2_Plane_002"
 _surfaces = [{
 "aabb": AABB(-1.84542, -1.13924, -3.33446, 3.89542, 2.21791, 5.12265),
@@ -216,7 +216,8 @@ mesh = SubResource("ArrayMesh_e0umt")
 mesh = SubResource("ArrayMesh_3r1fw")
 
 [node name="Udu" parent="." index="2"]
-mesh = SubResource("ArrayMesh_rj2d5")
+cast_shadow = 0
+mesh = SubResource("ArrayMesh_tqh1u")
 
 [node name="muru" parent="." index="3"]
 mesh = SubResource("ArrayMesh_qc11l")

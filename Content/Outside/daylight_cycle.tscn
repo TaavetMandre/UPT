@@ -23,7 +23,7 @@ glow_bloom = 0.4
 fog_light_energy = 0.0
 fog_density = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0065
+volumetric_fog_density = 0.0025
 volumetric_fog_anisotropy = 0.5
 
 [sub_resource type="InputEventKey" id="InputEventKey_w3rla"]

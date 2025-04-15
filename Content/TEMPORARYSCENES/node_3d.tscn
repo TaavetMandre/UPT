@@ -43,7 +43,7 @@ noise = SubResource("FastNoiseLite_xyolt")
 albedo_color = Color(0.156, 0, 0.39, 1)
 albedo_texture = SubResource("NoiseTexture2D_saun3")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gv5bb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8f2tl"]
 render_priority = -2
 shader = ExtResource("6_ealrg")
 shader_parameter/out_color = Color(0, 0.2, 1, 1)
@@ -55,7 +55,7 @@ shader_parameter/specular = 0.5
 shader_parameter/roughness = 0.4
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fqwbn"]
-material = SubResource("ShaderMaterial_gv5bb")
+material = SubResource("ShaderMaterial_8f2tl")
 size = Vector2(800, 600)
 subdivide_width = 160
 subdivide_depth = 120
@@ -88,16 +88,16 @@ void fragment() {
 	ALPHA = tex.a;
 }"
 
-[sub_resource type="Gradient" id="Gradient_0j11q"]
+[sub_resource type="Gradient" id="Gradient_ql5xv"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jsrfu"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_k3d2e"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fxo2e"]
 seamless = true
-color_ramp = SubResource("Gradient_0j11q")
-noise = SubResource("FastNoiseLite_jsrfu")
+color_ramp = SubResource("Gradient_ql5xv")
+noise = SubResource("FastNoiseLite_k3d2e")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcikw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_knjlg"]
 render_priority = 1
 shader = SubResource("Shader_spiep")
 shader_parameter/speed = 0.005
@@ -106,7 +106,7 @@ shader_parameter/gradient_end = 0.73
 shader_parameter/noise = SubResource("NoiseTexture2D_fxo2e")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f8w3s"]
-material = SubResource("ShaderMaterial_vcikw")
+material = SubResource("ShaderMaterial_knjlg")
 size = Vector2(500, 600)
 
 [sub_resource type="Shader" id="Shader_sq04s"]
@@ -526,27 +526,27 @@ _data = {
 "intro": SubResource("Animation_h1yk0")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o64dn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g082u"]
 shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 heightmap_scale = -3.659
 point_size = 17.6
 
 [sub_resource type="SphereMesh" id="SphereMesh_klgnk"]
-material = SubResource("StandardMaterial3D_o64dn")
+material = SubResource("StandardMaterial3D_g082u")
 flip_faces = true
 radius = 2.5
 height = 5.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rddae"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v3uor"]
 noise_type = 2
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nt0qk"]
 seamless = true
 as_normal_map = true
-noise = SubResource("FastNoiseLite_rddae")
+noise = SubResource("FastNoiseLite_v3uor")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxd2m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r41ie"]
 render_priority = 1
 shader = ExtResource("14_neb3n")
 shader_parameter/amplitude = 0.38
@@ -560,17 +560,17 @@ shader_parameter/glow = true
 shader_parameter/glow_intensity = 50.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_u1xte"]
-material = SubResource("ShaderMaterial_fxd2m")
+material = SubResource("ShaderMaterial_r41ie")
 radial_segments = 16
 rings = 8
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f2qbm"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5i4v7"]
 albedo_color = Color(0.49, 0.83, 1, 1)
 emission_enabled = true
 emission = Color(0.447059, 1, 1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_v83dw"]
-material = SubResource("StandardMaterial3D_f2qbm")
+material = SubResource("StandardMaterial3D_5i4v7")
 flip_faces = true
 radial_segments = 16
 rings = 8
