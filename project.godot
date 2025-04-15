@@ -80,5 +80,3 @@ locale/translation_remaps={
 "res://Sounds/Dialogue/intro/intro_en9.mp3": PackedStringArray("res://Sounds/Dialogue/intro/intro_et8.mp3:et")
 }
 locale/translations=PackedStringArray("res://Languages/languages.en.translation", "res://Languages/languages.et.translation")
-locale/test="en"
-locale/locale_filter_mode=0
