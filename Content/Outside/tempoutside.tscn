@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://duhlrddw3jmln" path="res://3d/tekstuurita_torn1.0.glb" id="1_wsryg"]
 [ext_resource type="PackedScene" uid="uid://drkh1pv8xrjmg" path="res://Content/Other/ruutel.tscn" id="2_ud6mv"]
-[ext_resource type="PackedScene" uid="uid://ta07jyp6vcp1" path="res://muru.tscn" id="3_70ytn"]
-[ext_resource type="ArrayMesh" uid="uid://baddp3sj76xl3" path="res://3d/rohi3.obj" id="4_crlen"]
+[ext_resource type="PackedScene" uid="uid://ta07jyp6vcp1" path="res://Content/Other/muru.tscn" id="3_70ytn"]
+[ext_resource type="ArrayMesh" uid="uid://baddp3sj76xl3" path="res://Models/rohi3.obj" id="4_crlen"]
 [ext_resource type="PackedScene" uid="uid://df4uk73qmfihf" path="res://Content/Outside/Camera/camera.tscn" id="5_msflc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_aj8pr"]

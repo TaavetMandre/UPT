@@ -42,7 +42,8 @@ debug_enabled = true
 
 [node name="attack" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
-monitorable = false
+collision_layer = 12
+collision_mask = 12
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attack"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)

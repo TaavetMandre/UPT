@@ -63,6 +63,8 @@ func velocity_computed(safe_velocity):
 
 func _on_attack_body_entered(body):
 	current_state = States.ATTACK
+	#wait some time
+	body.damaged(damage)
 
 
 func damaged(dam: int):
