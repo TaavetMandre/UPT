@@ -8,6 +8,8 @@ extends Control
 @onready var label = $Sidebar/Label
 
 func _ready():
+	# unlock the camera
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# Set up the ui elements
 	sidebar.position.x -= get_viewport().get_visible_rect().size[0] / 3 # move the sidebar 0.3 screens to the left
 	#bottom_particles.modulate.a = 0 # make the particles invisible

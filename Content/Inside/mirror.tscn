@@ -1,0 +1,213 @@
+[gd_scene load_steps=14 format=3 uid="uid://xf03irqfihod"]
+
+[ext_resource type="Texture2D" uid="uid://duvct07xo1lym" path="res://icon.svg" id="1_87tqv"]
+[ext_resource type="Shader" path="res://Content/Inside/mirror.gdshader" id="1_48638"]
+[ext_resource type="Script" path="res://Content/Inside/mirror.gd" id="1_aohpj"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c01tn"]
+albedo_texture = ExtResource("1_87tqv")
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.25
+
+[sub_resource type="Gradient" id="Gradient_woiem"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q5m2r"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_owucf"]
+height = 682
+seamless = true
+color_ramp = SubResource("Gradient_woiem")
+noise = SubResource("FastNoiseLite_q5m2r")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_shj4p"]
+render_priority = 0
+shader = ExtResource("1_48638")
+shader_parameter/speed = 0.05
+shader_parameter/gradient_start = 1.25
+shader_parameter/gradient_end = -1.25
+shader_parameter/noise = SubResource("NoiseTexture2D_owucf")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6e4k3"]
+size = Vector2(3, 4)
+
+[sub_resource type="Animation" id="Animation_4kul5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mirror Texture:material_overlay:shader_parameter/gradient_end")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.25]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mirror Texture:material_override:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_87tqv")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Panel:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1080)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i3p2i"]
+resource_name = "reveal"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mirror Texture:material_overlay:shader_parameter/gradient_end")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.203063, 0.203),
+"update": 0,
+"values": [-1.25, 0.75]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mirror Texture:material_override:albedo_texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_87tqv")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasLayer/Panel:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.420448, 0.42),
+"update": 0,
+"values": [Vector2(0, 1080), Vector2(0, 890)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasLayer/Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.659754, 0.659754),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_avyp5"]
+_data = {
+"RESET": SubResource("Animation_4kul5"),
+"reveal": SubResource("Animation_i3p2i")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jy6bk"]
+size = Vector3(2, 1, 3)
+
+[node name="Mirror" type="Node3D"]
+script = ExtResource("1_aohpj")
+
+[node name="Mirror Texture" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_c01tn")
+material_overlay = SubResource("ShaderMaterial_shj4p")
+mesh = SubResource("PlaneMesh_6e4k3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_avyp5")
+}
+
+[node name="InteractionArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+shape = SubResource("BoxShape3D_jy6bk")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_top = 0.824074
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1080.0
+offset_right = 19200.0
+offset_bottom = 2980.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Panel/MarginContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Welcome, young wizard,
+(Tervitused, noor võlur,)
+
+I know you find yourself somewhat... astray,
+(Ma tean, et oled pisut... eksinud,)
+
+but worry not, for I am here to guide you before I depart.
+(kuid ära põe, olen siin sind aitamaks enne oma lahkumist)
+
+I have set my years upon the defense of this tower.
+(Olen oma eluaastad pühendanud selle torni kaitsesse.)
+
+Now, my time has come to pass on this duty.
+(Nüüd on saabunud aeg anda see kohustus edasi.)
+
+What lies within this tower is beyond my knowledge,
+(Siin tornis peituv on mulle arusaamatu,)
+
+but I know that whatever it is, if it were to fall into the wrong hands...
+(kuid tean, et hoolimata sellest, mis see on, kui see satuks valedesse kätesse...)
+
+...the consequences would be beyond imagination...
+(...oleksid tagajärjed mõeldamatud...)"
+scroll_active = false

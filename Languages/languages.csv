@@ -31,4 +31,12 @@ WINDOWED;WINDOWED;AKENDATUD
 MAXIMIZED;MAXIMIZED;MAKSIMEERITUD
 FULLSCREEN;FULLSCREEN;TÄISEKRAAN
 BORDERLESS_WINDOWED;BORDERLESS WINDOWED;RAAMITA AKENDATUD
-DISMISS_SPELL_CAST;DISMISS;KATKESTA
+INTRO1;Welcome, young wizard,;Tervitused, noor võlur,
+INTRO2;I know you find yourself somewhat... astray,;Ma tean, et oled pisut... eksinud,
+INTRO3;but worry not, for I am here to guide you before I depart.;kuid ära põe, olen siin sind aitamaks enne oma lahkumist
+INTRO4;I have devoted my years to the defense of this tower.;Olen oma eluaastad pühendanud selle torni kaitsesse.
+INTRO5;Now, my time has come to pass on this duty.;Nüüd on saabunud aeg anda see kohustus edasi.
+INTRO6;What lies within this tower is beyond my knowledge,;Siin tornis peituv on mulle arusaamatu,
+INTRO7;but I know that whatever it is, if it were to fall into the wrong hands...;kuid tean, et hoolimata sellest, mis see on, kui see satuks valedesse kätesse...
+INTRO8;...the consequences would be beyond imagination...;...oleksid tagajärjed mõeldamatud...
+;;
