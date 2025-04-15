@@ -1,11 +1,11 @@
 shader_type spatial;
-
+// subdivide to size ratio - 1:5
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 
 // Water color
 uniform vec4 out_color: source_color = vec4(0.0, 0.2, 1.0, 1.0);
 // Amount of height for each triangle
-uniform float amount: hint_range(0.2, 5.0, 0.1) = 0.8;
+uniform float amount: hint_range(0.1, 5.0, 0.1) = 0.8;
 // The speed of the trangles height change
 uniform float speed: hint_range(0.1, 5.0, 0.1) = 1;
 // Beer factor (used to calculate how transparent the water is going to be) if equals to 0.0 then the alpha is going to be the out_color's alpha

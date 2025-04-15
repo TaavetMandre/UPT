@@ -3,8 +3,9 @@ extends TextureRect
 @export var move_amount = 150
 @export var dismiss_area_size = 200
 var bar_state = "raised"
-@onready var raised_height = get_window().size.y - move_amount
-@onready var lowered_height = get_window().size.y
+@onready var raised_height = position.y
+@onready var lowered_height = position.y + move_amount
+var card_zero_position_y: float
 
 ## Nodes
 @onready var card_show_area = %"Card Show Area"
@@ -13,8 +14,9 @@ var bar_state = "raised"
 
 
 func _ready():
-	get_tree().get_root().size_changed.connect(resize) # window size change signal
-	resize()
+	#get_tree().get_root().size_changed.connect(resize) # window size change signal
+	#resize()
+	pass
 
 func resize():
 	raised_height = get_window().size.y - move_amount
@@ -29,7 +31,7 @@ func resize():
 	get_tree().call_group("spellcards", "resize", dismiss_area_size)
 	get_tree().call_group("spellcards", "set_new_zero_position_y", get_window().size.y - dismiss_area_size / 2)
 
-func lower_bar():
+func lower_bar(neutral_position):
 	if bar_state == "raised":
 		get_tree().call_group("spellcards", "flip_is_called")
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
@@ -38,9 +40,12 @@ func lower_bar():
 		
 		tween.tween_property(dismiss_area, "modulate:a", 1, 0.5)
 		
-		get_tree().call_group("spellcards", "set_new_zero_position_y", get_window().size.y + dismiss_area_size / 2)
+		if neutral_position:
+			get_tree().call_group("spellcards", "set_new_zero_position_y", neutral_position.y + dismiss_area_size * 1.1)
+		else:
+			push_warning("neutral_position not passed in a group call to lower_bar()")
 
-func raise_bar():
+func raise_bar(neutral_position):
 	if bar_state == "lowered":
 		get_tree().call_group("spellcards", "flip_is_called")
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
@@ -49,5 +54,8 @@ func raise_bar():
 		
 		tween.tween_property(dismiss_area, "modulate:a", 0, 0.5)
 		
-		get_tree().call_group("spellcards", "set_new_zero_position_y", get_window().size.y - dismiss_area_size / 2)
+		if neutral_position:
+			get_tree().call_group("spellcards", "set_new_zero_position_y", neutral_position.y)
+		else:
+			push_warning("neutral_position not passed in a group call to lower_bar()")
 

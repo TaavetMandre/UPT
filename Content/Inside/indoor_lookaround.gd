@@ -1,12 +1,16 @@
 extends Node3D
 
+signal interact
+
 @export_category("Set by settings")
-@export var x_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_x  ## Look sensitivity set by SettingsGlobal
-@export var y_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_y  ## Look sensitivity set by SettingsGlobal
+@onready var x_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_x  ## Look sensitivity set by SettingsGlobal
+@onready var y_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_y  ## Look sensitivity set by SettingsGlobal
 
 @export_category("Set in the editor")
 @export var move_speed: float = 1.0  ## Player speed
 @export var gravity: float = -50.0
+@export var indoor_ui: Array[Node]
+@export var lock_camera := true
 
 @onready var camera = %Camera3D
 @onready var player = $bean
@@ -14,18 +18,26 @@ extends Node3D
 
 func _process(delta):
 	if camera.current:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # lock the mouse position to the center
+		if lock_camera: 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)  # lock the mouse position to the center
+		else: 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+		for ui_element in indoor_ui:
+			ui_element.visible = true
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		for ui_element in indoor_ui:
+			ui_element.visible = false
 
 func _input(event):
 	if camera.current:
-		if event is InputEventMouseMotion:
+		if event is InputEventMouseMotion: # Camera movement
 			camera.rotation_degrees.x -= event.relative.y * x_sensitivity
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)  # -90 to 90 degrees
 			
 			camera.rotation_degrees.y -= event.relative.x * y_sensitivity
 			camera.rotation_degrees.y = wrapf(camera.rotation_degrees.y, 0, 360)  # 0 to 360 degrees
+		
+		if Input.is_action_just_pressed("interact"): interact.emit()
 
 func _physics_process(delta):
 	if camera.current:
