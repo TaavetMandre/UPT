@@ -8,10 +8,11 @@ extends Node
 var times_of_day: Array[String] = ["morning", "day", "evening", "night"]
 var current_time: String = "night"
 
-var day: int = 1
+var day: int = 1 ## globalize
 var enemy_count: int = 0
 var day_difficulty: Array[int] = []
 var encouter_type: Array[int] = [] # 0 is knight attack, 1 is goblin attack, 2 is both attack, 3 is both fight, 4 is g attack k fight, 5 is k attack g fight, 6 is random attack
+
 func _ready():
 	match day:
 		1:
@@ -51,7 +52,7 @@ func advance_day():
 	current_time = times_of_day.pop_front()
 	times_of_day.append(current_time)
 	
-	daylight_cycle.cycle_current_time()
+	#daylight_cycle.cycle_current_time()
 	await get_tree().create_timer(6).timeout
 	#mängi mingi tu-tu tu-tuuuuu pasun, et horde tuleb
 	match current_time:

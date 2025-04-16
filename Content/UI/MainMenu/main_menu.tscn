@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://bucsa4n72ex87"]
 
 [ext_resource type="Script" path="res://Content/UI/MainMenu/main_menu.gd" id="1_4jorm"]
-[ext_resource type="PackedScene" uid="uid://cvpkscqbrlah8" path="res://Content/TEMPORARYSCENES/node_3d.tscn" id="2_xioy4"]
+[ext_resource type="PackedScene" uid="uid://rgoxiix74o85" path="res://Content/Outside/final.tscn" id="2_v0tj4"]
 [ext_resource type="PackedScene" uid="uid://bsquk5ia5rvbo" path="res://Content/UI/MainMenu/settings.tscn" id="3_e2v2i"]
 [ext_resource type="PackedScene" uid="uid://duhlrddw3jmln" path="res://3d/tekstuurita_torn1.0.glb" id="4_3i2an"]
 
@@ -1076,7 +1076,7 @@ volumetric_fog_detail_spread = 1.93187
 [node name="Main Menu" type="Node"]
 process_mode = 3
 script = ExtResource("1_4jorm")
-play_button_scene = ExtResource("2_xioy4")
+play_button_scene = ExtResource("2_v0tj4")
 main_gradient = SubResource("Gradient_q514l")
 settings_gradient = SubResource("Gradient_lx08i")
 
@@ -1169,8 +1169,8 @@ anchor_right = 0.455
 anchor_bottom = 0.399
 offset_left = -1000.0
 offset_top = 256.0
-offset_right = 22184.6
-offset_bottom = 6379.64
+offset_right = 22847.0
+offset_bottom = 6554.6
 theme_override_font_sizes/font_size = 128
 text = "UPT DEMO"
 

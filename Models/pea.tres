@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://bv6gl6kft6ep3"]
+[gd_resource type="ArrayMesh" load_steps=4 format=3 uid="uid://m2pa4fu48h6x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oand1"]
 resource_name = "Metal"
