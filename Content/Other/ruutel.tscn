@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://drkh1pv8xrjmg"]
+[gd_scene load_steps=10 format=3 uid="uid://drkh1pv8xrjmg"]
 
 [ext_resource type="Script" path="res://Content/Other/ruutel.gd" id="1_72kv8"]
-[ext_resource type="PackedScene" uid="uid://dqoo1ibyw4h5g" path="res://3d/ruutel_2_0.tscn" id="1_c2m8h"]
+[ext_resource type="ArrayMesh" uid="uid://n2vj28sonowh" path="res://Models/arm_l.tres" id="2_qoy65"]
+[ext_resource type="ArrayMesh" uid="uid://v28hdl8qycsw" path="res://Models/arm_r.tres" id="3_wgjg0"]
+[ext_resource type="ArrayMesh" uid="uid://c8ivf2u0ebe4" path="res://Models/leg_l.tres" id="4_oww3m"]
+[ext_resource type="ArrayMesh" uid="uid://dj306vsgebtv" path="res://Models/leg_r.tres" id="5_0ilrp"]
+[ext_resource type="ArrayMesh" uid="uid://c0tib6544s3wg" path="res://Models/new_array_mesh.tres" id="6_f4pnm"]
+[ext_resource type="ArrayMesh" uid="uid://bv6gl6kft6ep3" path="res://Models/pea.tres" id="7_lr1tb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgp3k"]
 radius = 0.65
@@ -22,9 +27,6 @@ script = ExtResource("1_72kv8")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tgp3k")
-
-[node name="ruutel2_0" parent="." instance=ExtResource("1_c2m8h")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0
@@ -48,6 +50,35 @@ collision_mask = 12
 [node name="CollisionShape3D" type="CollisionShape3D" parent="attack"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
 shape = SubResource("BoxShape3D_68h03")
+
+[node name="NewArrayMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.000165938, -4.95808e-05, 1, 2.19693e-05, 1, 4.95808e-05, -1, 2.19693e-05, -0.000165938, 0, 0, 0)
+mesh = ExtResource("6_f4pnm")
+
+[node name="Pea" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(1, 3.63798e-12, -2.91038e-11, -3.63798e-12, 1, 5.63682e-12, 2.91038e-11, -7.52665e-12, 1, 0.0707206, 1.11486, 6.70111e-05)
+mesh = ExtResource("7_lr1tb")
+skeleton = NodePath("../..")
+
+[node name="LegR" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(1, 1.81899e-12, -1.45519e-11, -1.81899e-12, 1, 1.9984e-12, 1.45519e-11, -3.88889e-12, 1, 0, 0, 0)
+mesh = ExtResource("5_0ilrp")
+skeleton = NodePath("../..")
+
+[node name="LegL" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(1, 1.81899e-12, -1.45519e-11, -1.81899e-12, 1, 1.9984e-12, 1.45519e-11, -3.88889e-12, 1, 0, 0, 0)
+mesh = ExtResource("4_oww3m")
+skeleton = NodePath("../..")
+
+[node name="ArmR" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(1, 1.81899e-12, -1.45519e-11, -1.81899e-12, 1, 1.9984e-12, 1.45519e-11, -3.88889e-12, 1, -4.47701e-05, 0.617404, 0.351542)
+mesh = ExtResource("3_wgjg0")
+skeleton = NodePath("../..")
+
+[node name="ArmL" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(0.993599, -0.0150086, -0.111959, 0.0147082, 0.999886, -0.00350884, 0.111999, 0.00183969, 0.993707, 0.0255783, 0.614882, -0.379371)
+mesh = ExtResource("2_qoy65")
+skeleton = NodePath("../..")
 
 [connection signal="timeout" from="Timer" to="." method="test_timer"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]

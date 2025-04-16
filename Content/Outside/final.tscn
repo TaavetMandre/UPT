@@ -1322,8 +1322,13 @@ script = ExtResource("1_gopvv")
 [node name="torn" parent="." instance=ExtResource("2_lamcr")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.6, 1)
 
-[node name="Knight_spawner_S" parent="." instance=ExtResource("3_3i5fv")]
+[node name="Knight_spawner_S" parent="." node_paths=PackedStringArray("master") instance=ExtResource("3_3i5fv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 220.35)
+master = NodePath("..")
+
+[node name="Knight_spawner_S_2" parent="." node_paths=PackedStringArray("master") instance=ExtResource("3_3i5fv")]
+transform = Transform3D(0.549052, 0, -0.835788, 0, 1, 0, 0.835788, 0, 0.549052, -178.522, 0.226031, 134.011)
+master = NodePath("..")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_a51l5")
@@ -1471,7 +1476,7 @@ skeleton = NodePath("../Black ball")
 
 [node name="Magic2" type="MeshInstance3D" parent="AnimationPlayer"]
 unique_name_in_owner = true
-transform = Transform3D(-0.552722, 8.9407e-08, -0.833365, -0.482396, 0.815431, 0.319945, 0.679551, 0.578854, -0.450707, -36.34, -21.4485, -523.061)
+transform = Transform3D(-0.552721, 8.94069e-08, -0.833365, -0.482396, 0.815431, 0.319945, 0.679551, 0.578854, -0.450707, -36.34, -21.4485, -523.061)
 transparency = 1.0
 mesh = SubResource("SphereMesh_g1f15")
 skeleton = NodePath("../Black ball")
