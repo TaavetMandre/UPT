@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b63k4240vn7gv"
+path="res://.godot/imported/evening weather2.mp3-f16d5049047e8ddd430bd4d7a261f3fa.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/evening weather2.mp3"
+dest_files=["res://.godot/imported/evening weather2.mp3-f16d5049047e8ddd430bd4d7a261f3fa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
