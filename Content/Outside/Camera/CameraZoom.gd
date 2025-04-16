@@ -47,9 +47,10 @@ func zoom_out(length:=0.0):
 	tween.tween_property(self, "position", position + zoom_distance, 0.5)
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == 4: # Scroll up detection
-		if position.y > lowest_height:
-			zoom_in()
-	if event is InputEventMouseButton and event.button_index == 5: # Scroll down detection
-		if position.y < highest_height:
-			zoom_out()
+	if get_parent().can_move:
+		if event is InputEventMouseButton and event.button_index == 4: # Scroll up detection
+			if position.y > lowest_height:
+				zoom_in()
+		if event is InputEventMouseButton and event.button_index == 5: # Scroll down detection
+			if position.y < highest_height:
+				zoom_out()

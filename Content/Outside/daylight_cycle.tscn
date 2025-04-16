@@ -1207,25 +1207,25 @@ xfade_time = 1.0
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iqyem"]
 "states/(day) Run time back/node" = SubResource("AnimationNodeStateMachine_3erlt")
-"states/(day) Run time back/position" = Vector2(347, 9)
+"states/(day) Run time back/position" = Vector2(619, 193)
 "states/(evening) Run time back/node" = SubResource("AnimationNodeStateMachine_i3lk2")
-"states/(evening) Run time back/position" = Vector2(347, -82)
+"states/(evening) Run time back/position" = Vector2(633, 278)
 states/End/position = Vector2(1046, 91)
 states/Start/position = Vector2(196, 91)
 states/day/node = SubResource("AnimationNodeAnimation_exhrw")
-states/day/position = Vector2(461, 91)
+states/day/position = Vector2(347, 193)
 states/evening/node = SubResource("AnimationNodeAnimation_2gbnf")
-states/evening/position = Vector2(589, 91)
+states/evening/position = Vector2(347, 278)
 states/morning/node = SubResource("AnimationNodeAnimation_ycgnv")
-states/morning/position = Vector2(347, 168)
+states/morning/position = Vector2(466, 91)
 states/morning2/node = SubResource("AnimationNodeAnimation_ynhp3")
 states/morning2/position = Vector2(347, 91)
 states/night1/node = SubResource("AnimationNodeAnimation_u3vkd")
-states/night1/position = Vector2(589, 168)
+states/night1/position = Vector2(347, 352)
 states/night2/node = SubResource("AnimationNodeAnimation_283vw")
-states/night2/position = Vector2(461, 168)
+states/night2/position = Vector2(466, 352)
 transitions = ["day", "evening", SubResource("AnimationNodeStateMachineTransition_ctdc6"), "evening", "night1", SubResource("AnimationNodeStateMachineTransition_xq7oe"), "night1", "night2", SubResource("AnimationNodeStateMachineTransition_x24am"), "night2", "morning", SubResource("AnimationNodeStateMachineTransition_ne16g"), "morning", "morning2", SubResource("AnimationNodeStateMachineTransition_4ixkf"), "morning2", "day", SubResource("AnimationNodeStateMachineTransition_73etp"), "Start", "morning2", SubResource("AnimationNodeStateMachineTransition_opitj"), "(evening) Run time back", "morning2", SubResource("AnimationNodeStateMachineTransition_y3qx0"), "(day) Run time back", "morning2", SubResource("AnimationNodeStateMachineTransition_cvmf6"), "day", "(day) Run time back", SubResource("AnimationNodeStateMachineTransition_eltxa"), "evening", "(evening) Run time back", SubResource("AnimationNodeStateMachineTransition_tdm7i")]
-graph_offset = Vector2(-165, -61)
+graph_offset = Vector2(-19, 131)
 
 [node name="Daylight Cycle" type="Node"]
 script = ExtResource("1_1cd0i")

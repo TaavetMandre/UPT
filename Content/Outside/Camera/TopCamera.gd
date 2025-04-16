@@ -22,6 +22,7 @@ var top_camera
 @export var map_visibility_restriction_plane: MeshInstance3D ## The mesh used to restrict visibility at the edges of the map
 @export var out_of_bounds_area_list: Array[CollisionObject3D] ## CollisionObjects used at the edges of the world to direct the player back to the origin of the scene
 @export var outdoor_ui: Array[Node]
+@export var can_move: bool = true
 
 var previous_frame_mouse_position = Vector2(0, 0) # the position of the mouse in the last frame, used to calculate camera movement with the mouse
 #@export var WASDVectorpos = Vector3(0, 0, 0)
@@ -29,6 +30,10 @@ var previous_frame_mouse_position = Vector2(0, 0) # the position of the mouse in
 
 # speed at max height - 15; speed at min height - 5, shifting reduces the speed; note: the speed is used in division
 #var speed: float = 0.0
+
+func reset_rotation():
+	rotation.y = clamp(rotation.y, 0, 2*PI)
+	create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).tween_property(self, "rotation:y", PI, 1)
 
 func shoot_ray():
 	var mouse_position = get_viewport().get_mouse_position()
@@ -86,7 +91,7 @@ func _process(delta):
 	var is_in_illegal_area = camera_move_restriction_area.has_overlapping_bodies()
 	var is_out_of_bounds = camera_move_restriction_area.get_overlapping_bodies().any(func(x): return out_of_bounds_area_list.has(x))
 	
-	if top_camera.current and !is_out_of_bounds:
+	if top_camera.current and !is_out_of_bounds and can_move:
 		#WASD movement
 		#var WASDVector = (WASDVectorpos - WASDVectorneg).rotated(Vector3.UP ,rotation.y)
 		var WASDVector = Vector3.ZERO
@@ -139,7 +144,7 @@ func _process(delta):
 				#top_camera.highest_height = top_camera.global_position.y - (collision_point.y + top_camera.highest_height)
 				#top_camera.lowest_height = top_camera.global_position.y - (collision_point.y + top_camera.lowest_height)
 				#top_camera.zoom_in()
-	elif top_camera.current:
+	elif top_camera.current and can_move:
 		var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		var position_to_origin: Vector3 = position.move_toward(Vector3.ZERO, 5)
 		tween.tween_property(self, "position", position_to_origin, 60 * delta)
