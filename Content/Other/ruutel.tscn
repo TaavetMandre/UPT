@@ -15,59 +15,6 @@ height = 2.9
 [sub_resource type="BoxShape3D" id="BoxShape3D_68h03"]
 size = Vector3(1, 1, 2.4)
 
-[sub_resource type="Animation" id="Animation_g53ei"]
-resource_name = "walk"
-length = 0.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NewArrayMesh/LegR:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.75, 2),
-"update": 0,
-"values": [Vector3(0, 0, -0.174533), Vector3(0, 0, 0.174533)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("NewArrayMesh/LegL:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 0.75),
-"update": 0,
-"values": [Vector3(0, 0, 0.174533), Vector3(0, 0, -0.174533)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("NewArrayMesh/ArmR:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(2, 0.75),
-"update": 0,
-"values": [Vector3(0, 0, 0.174533), Vector3(0, 0, -0.174533)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("NewArrayMesh/ArmL:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.75, 2),
-"update": 0,
-"values": [Vector3(0, 0, -0.174533), Vector3(0, 0, 0.174533)]
-}
-
 [sub_resource type="Animation" id="Animation_6286n"]
 length = 0.001
 tracks/0/type = "value"
@@ -183,6 +130,59 @@ tracks/2/keys = {
 "values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.10472), Vector3(0, 1.5708, -0.0872665)]
 }
 
+[sub_resource type="Animation" id="Animation_g53ei"]
+resource_name = "walk"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewArrayMesh/LegR:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.75, 2),
+"update": 0,
+"values": [Vector3(0, 0, -0.174533), Vector3(0, 0, 0.174533)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewArrayMesh/LegL:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0.75),
+"update": 0,
+"values": [Vector3(0, 0, 0.174533), Vector3(0, 0, -0.174533)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewArrayMesh/ArmR:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0.75),
+"update": 0,
+"values": [Vector3(0, 0, 0.174533), Vector3(0, 0, -0.174533)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewArrayMesh/ArmL:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.75, 2),
+"update": 0,
+"values": [Vector3(0, 0, -0.174533), Vector3(0, 0, 0.174533)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6kib1"]
 _data = {
 "RESET": SubResource("Animation_6286n"),
@@ -233,11 +233,11 @@ libraries = {
 autoplay = "walk"
 
 [node name="Pea" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.000165984, -4.95808e-05, 1, 2.19693e-05, 1, 4.95845e-05, -1, 2.19775e-05, -0.000165983, 2.11003e-10, 1.11486, -0.0706961)
+transform = Transform3D(-0.000163719, -4.95809e-05, 1, 2.19693e-05, 1, 4.95845e-05, -1, 2.19774e-05, -0.000163718, 2.11003e-10, 1.11486, -0.0706961)
 mesh = ExtResource("7_lr1tb")
 
 [node name="NewArrayMesh" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.000165984, -4.95808e-05, 1, 2.19693e-05, 1, 4.95844e-05, -1, 2.19775e-05, -0.000165983, 0, 0, 0)
+transform = Transform3D(-0.000163719, -4.95808e-05, 1, 2.19693e-05, 1, 4.95844e-05, -1, 2.19774e-05, -0.000163718, 0, 0, 0)
 mesh = ExtResource("6_f4pnm")
 
 [node name="LegR" type="MeshInstance3D" parent="NewArrayMesh"]
@@ -246,7 +246,6 @@ mesh = ExtResource("5_0ilrp")
 skeleton = NodePath("../..")
 
 [node name="LegL" type="MeshInstance3D" parent="NewArrayMesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 mesh = ExtResource("4_oww3m")
 skeleton = NodePath("../..")
 

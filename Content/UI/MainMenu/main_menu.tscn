@@ -1169,8 +1169,8 @@ anchor_right = 0.455
 anchor_bottom = 0.399
 offset_left = -1000.0
 offset_top = 256.0
-offset_right = 21522.2
-offset_bottom = 6204.68
+offset_right = 22184.6
+offset_bottom = 6379.64
 theme_override_font_sizes/font_size = 128
 text = "UPT DEMO"
 
