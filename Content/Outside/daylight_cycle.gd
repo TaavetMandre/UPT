@@ -72,9 +72,6 @@ extends Node
 var times_of_day: Array[String] = ["morning2", "day", "evening", "night2"]
 @export var current_time: String
 
-func _ready():
-	change_time_to("morning2")
-
 func cycle_current_time(): # changes the current time
 	current_time = times_of_day.pop_front()
 	times_of_day.append(current_time)

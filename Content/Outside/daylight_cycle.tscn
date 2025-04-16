@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://x6hudvnyuuvd"]
+[gd_scene load_steps=60 format=3 uid="uid://x6hudvnyuuvd"]
 
 [ext_resource type="Script" path="res://Content/Outside/daylight_cycle.gd" id="1_1cd0i"]
 [ext_resource type="Texture2D" uid="uid://ci2vbkh4datpp" path="res://Textures/clock_inside.png" id="2_vl5n1"]
@@ -23,7 +23,7 @@ glow_bloom = 0.4
 fog_light_energy = 0.0
 fog_density = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0025
+volumetric_fog_density = 0.0
 volumetric_fog_anisotropy = 0.5
 
 [sub_resource type="InputEventKey" id="InputEventKey_w3rla"]
@@ -567,7 +567,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("WorldEnvironment:environment:fog_density")
+tracks/7/path = NodePath("WorldEnvironment:environment:volumetric_fog_density")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -659,7 +659,7 @@ tracks/2/path = NodePath("Sun:light_energy")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.001),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
@@ -1080,63 +1080,8 @@ _data = {
 "night2": SubResource("Animation_yuusq")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5wkh0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o0io6"]
 animation = &"day"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7r20n"]
-animation = &"morning2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_icnfs"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_faqmc"]
-xfade_time = 1.0
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lq57j"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3erlt"]
-states/day/node = SubResource("AnimationNodeAnimation_5wkh0")
-states/day/position = Vector2(386, 100)
-states/morning2/node = SubResource("AnimationNodeAnimation_7r20n")
-states/morning2/position = Vector2(504, 100)
-transitions = ["Start", "day", SubResource("AnimationNodeStateMachineTransition_icnfs"), "day", "morning2", SubResource("AnimationNodeStateMachineTransition_faqmc"), "morning2", "End", SubResource("AnimationNodeStateMachineTransition_lq57j")]
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2tjgo"]
-animation = &"day"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d1mel"]
-animation = &"evening"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rakla"]
-animation = &"morning2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0meul"]
-xfade_time = 1.0
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rk28n"]
-advance_mode = 2
-advance_expression = "$\".\".current_time == evening"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pddur"]
-xfade_time = 1.0
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gqeba"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_i3lk2"]
-states/End/position = Vector2(819, 100)
-states/Start/position = Vector2(249, 100)
-states/day/node = SubResource("AnimationNodeAnimation_2tjgo")
-states/day/position = Vector2(537, 100)
-states/evening/node = SubResource("AnimationNodeAnimation_d1mel")
-states/evening/position = Vector2(411, 100)
-states/morning2/node = SubResource("AnimationNodeAnimation_rakla")
-states/morning2/position = Vector2(677, 100)
-transitions = ["evening", "day", SubResource("AnimationNodeStateMachineTransition_0meul"), "Start", "evening", SubResource("AnimationNodeStateMachineTransition_rk28n"), "day", "morning2", SubResource("AnimationNodeStateMachineTransition_pddur"), "morning2", "End", SubResource("AnimationNodeStateMachineTransition_gqeba")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_exhrw"]
 animation = &"day"
@@ -1144,8 +1089,23 @@ animation = &"day"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2gbnf"]
 animation = &"evening"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jmjvn"]
+animation = &"morning"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jt8xe"]
+animation = &"morning"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fip53"]
+animation = &"morning"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ycgnv"]
 animation = &"morning"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a0aji"]
+animation = &"morning2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xaqvj"]
+animation = &"morning2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ynhp3"]
 animation = &"morning2"
@@ -1153,7 +1113,13 @@ animation = &"morning2"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_u3vkd"]
 animation = &"night1"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_njagc"]
+animation = &"night2"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_283vw"]
+animation = &"night2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ue4u"]
 animation = &"night2"
 
 [sub_resource type="Curve" id="Curve_4xw6i"]
@@ -1173,6 +1139,7 @@ xfade_time = 2.0
 xfade_curve = SubResource("Curve_lub5f")
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x24am"]
+advance_mode = 2
 
 [sub_resource type="Curve" id="Curve_oatv6"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -1183,6 +1150,7 @@ xfade_time = 2.0
 xfade_curve = SubResource("Curve_oatv6")
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4ixkf"]
+advance_mode = 2
 
 [sub_resource type="Curve" id="Curve_vulnk"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -1192,40 +1160,106 @@ point_count = 2
 xfade_time = 2.0
 xfade_curve = SubResource("Curve_vulnk")
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_opitj"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jfibs"]
+xfade_time = 2.5
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6ftgb"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_y3qx0"]
-xfade_time = 1.0
+[sub_resource type="Curve" id="Curve_2hudc"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cvmf6"]
-xfade_time = 1.0
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqdit"]
+xfade_time = 2.5
+xfade_curve = SubResource("Curve_2hudc")
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eltxa"]
+[sub_resource type="Curve" id="Curve_nbqn6"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tdm7i"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iee2l"]
+xfade_time = 2.0
+xfade_curve = SubResource("Curve_nbqn6")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lj81e"]
+xfade_time = 1.67
+priority = 0
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_08mu1"]
+xfade_time = 1.67
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v623m"]
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_mfc6l"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_da4vh"]
+xfade_time = 1.67
+xfade_curve = SubResource("Curve_mfc6l")
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u27iq"]
+
+[sub_resource type="Curve" id="Curve_fi3gh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.663462, 0.340659), 1.49754, 1.49754, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1j7v"]
+xfade_time = 5.0
+xfade_curve = SubResource("Curve_fi3gh")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2twrl"]
+advance_mode = 2
+
+[sub_resource type="Curve" id="Curve_8oo00"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a5c4x"]
+xfade_time = 2.0
+xfade_curve = SubResource("Curve_8oo00")
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_818cl"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_iqyem"]
-"states/(day) Run time back/node" = SubResource("AnimationNodeStateMachine_3erlt")
-"states/(day) Run time back/position" = Vector2(619, 193)
-"states/(evening) Run time back/node" = SubResource("AnimationNodeStateMachine_i3lk2")
-"states/(evening) Run time back/position" = Vector2(633, 278)
-states/End/position = Vector2(1046, 91)
-states/Start/position = Vector2(196, 91)
+states/End/position = Vector2(1054, 48)
+states/Start/position = Vector2(98.4641, 7)
 states/day/node = SubResource("AnimationNodeAnimation_exhrw")
 states/day/position = Vector2(347, 193)
+"states/day 2/node" = SubResource("AnimationNodeAnimation_o0io6")
+"states/day 2/position" = Vector2(742.464, 278)
 states/evening/node = SubResource("AnimationNodeAnimation_2gbnf")
 states/evening/position = Vector2(347, 278)
 states/morning/node = SubResource("AnimationNodeAnimation_ycgnv")
 states/morning/position = Vector2(466, 91)
+"states/morning 2/node" = SubResource("AnimationNodeAnimation_jmjvn")
+"states/morning 2/position" = Vector2(608.464, 91)
+"states/morning 3/node" = SubResource("AnimationNodeAnimation_jt8xe")
+"states/morning 3/position" = Vector2(741.464, 91)
+"states/morning 4/node" = SubResource("AnimationNodeAnimation_fip53")
+"states/morning 4/position" = Vector2(226.464, 91)
 states/morning2/node = SubResource("AnimationNodeAnimation_ynhp3")
 states/morning2/position = Vector2(347, 91)
+"states/morning2 2/node" = SubResource("AnimationNodeAnimation_a0aji")
+"states/morning2 2/position" = Vector2(608.464, 193)
+"states/morning2 3/node" = SubResource("AnimationNodeAnimation_xaqvj")
+"states/morning2 3/position" = Vector2(741.464, 193)
 states/night1/node = SubResource("AnimationNodeAnimation_u3vkd")
 states/night1/position = Vector2(347, 352)
 states/night2/node = SubResource("AnimationNodeAnimation_283vw")
 states/night2/position = Vector2(466, 352)
-transitions = ["day", "evening", SubResource("AnimationNodeStateMachineTransition_ctdc6"), "evening", "night1", SubResource("AnimationNodeStateMachineTransition_xq7oe"), "night1", "night2", SubResource("AnimationNodeStateMachineTransition_x24am"), "night2", "morning", SubResource("AnimationNodeStateMachineTransition_ne16g"), "morning", "morning2", SubResource("AnimationNodeStateMachineTransition_4ixkf"), "morning2", "day", SubResource("AnimationNodeStateMachineTransition_73etp"), "Start", "morning2", SubResource("AnimationNodeStateMachineTransition_opitj"), "(evening) Run time back", "morning2", SubResource("AnimationNodeStateMachineTransition_y3qx0"), "(day) Run time back", "morning2", SubResource("AnimationNodeStateMachineTransition_cvmf6"), "day", "(day) Run time back", SubResource("AnimationNodeStateMachineTransition_eltxa"), "evening", "(evening) Run time back", SubResource("AnimationNodeStateMachineTransition_tdm7i")]
-graph_offset = Vector2(-19, 131)
+"states/night2 2/node" = SubResource("AnimationNodeAnimation_njagc")
+"states/night2 2/position" = Vector2(98.4641, 91)
+"states/undo day/node" = SubResource("AnimationNodeAnimation_1ue4u")
+"states/undo day/position" = Vector2(466, 7)
+transitions = ["day", "evening", SubResource("AnimationNodeStateMachineTransition_ctdc6"), "evening", "night1", SubResource("AnimationNodeStateMachineTransition_xq7oe"), "night1", "night2", SubResource("AnimationNodeStateMachineTransition_x24am"), "night2", "morning", SubResource("AnimationNodeStateMachineTransition_ne16g"), "morning", "morning2", SubResource("AnimationNodeStateMachineTransition_4ixkf"), "morning2", "day", SubResource("AnimationNodeStateMachineTransition_73etp"), "day", "morning2 2", SubResource("AnimationNodeStateMachineTransition_jfibs"), "morning2 2", "morning 2", SubResource("AnimationNodeStateMachineTransition_6ftgb"), "morning 2", "undo day", SubResource("AnimationNodeStateMachineTransition_tqdit"), "undo day", "morning", SubResource("AnimationNodeStateMachineTransition_iee2l"), "evening", "day 2", SubResource("AnimationNodeStateMachineTransition_lj81e"), "day 2", "morning2 3", SubResource("AnimationNodeStateMachineTransition_08mu1"), "morning2 3", "morning 3", SubResource("AnimationNodeStateMachineTransition_v623m"), "morning 3", "undo day", SubResource("AnimationNodeStateMachineTransition_da4vh"), "morning2", "morning", SubResource("AnimationNodeStateMachineTransition_u27iq"), "morning", "undo day", SubResource("AnimationNodeStateMachineTransition_u1j7v"), "Start", "night2 2", SubResource("AnimationNodeStateMachineTransition_2twrl"), "night2 2", "morning 4", SubResource("AnimationNodeStateMachineTransition_a5c4x"), "morning 4", "morning2", SubResource("AnimationNodeStateMachineTransition_818cl")]
+graph_offset = Vector2(-93.5359, -41)
 
 [node name="Daylight Cycle" type="Node"]
 script = ExtResource("1_1cd0i")

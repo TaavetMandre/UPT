@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ded6k02mj40es"
+path="res://.godot/imported/night weather2.mp3-66d4fe2760ac9a5e20d1dff17c6b8214.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/night weather2.mp3"
+dest_files=["res://.godot/imported/night weather2.mp3-66d4fe2760ac9a5e20d1dff17c6b8214.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

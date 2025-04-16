@@ -28,6 +28,7 @@ shader_parameter/direction = Vector2(1, 0)
 shader_parameter/noise_speed = 0.01
 shader_parameter/gradient_start = 1.0
 shader_parameter/gradient_end = 1.0
+shader_parameter/color_reduction = 1.0
 shader_parameter/noise = SubResource("NoiseTexture2D_tm31h")
 
 [sub_resource type="LabelSettings" id="LabelSettings_3nnhv"]
@@ -151,6 +152,7 @@ particles = ExtResource("7_vsh06")
 
 [node name="SettingsButton" type="Button" parent="Sidebar" groups=["pause_main"]]
 unique_name_in_owner = true
+visible = false
 material = SubResource("ShaderMaterial_sm21p")
 layout_mode = 2
 offset_left = 3450.0
