@@ -9,6 +9,7 @@ extends CharacterBody3D
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var timer = $Timer
 @onready var attack = $attack
+@onready var anim = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -38,11 +39,13 @@ func _physics_process(delta):
 			global_transform.basis.z=lerp(global_transform.basis.z, T.basis.z, 0.2)
 	
 	match current_state:
-		States.TOWER: nav.set_target_position(Vector3(0,0,0))
+		States.TOWER:
+			nav.set_target_position(Vector3(0,0,0))
 		States.ENEMY: pass
 		States.ATTACK:
 			if attack.has_overlapping_bodies():
-				await get_tree().create_timer(1).timeout # asendada animatsiooniga
+				anim.play("hit")
+				await get_tree().create_timer(0.7).timeout # asendada animatsiooniga
 				for i in attack.get_overlapping_bodies():
 					i.damaged(damage)
 			else: current_state = default_state
