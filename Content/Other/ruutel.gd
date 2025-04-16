@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
 @export_range(0, 2) var start_state: int = 0 ##Default state with which the npc starts out with:[br]0 - chase tower[br]1 - chase enemies[br]2 - chase leader
-@export var HP: int = 10
+@export var HP: int = 3
 @export var damage: int = 1
+@export var master: Node
 @export_range(0.1, 10.0) var nodrift: float = 1.0
 @onready var meh = $ruutel2_0
 @onready var nav : NavigationAgent3D = $NavigationAgent3D
 @onready var timer = $Timer
 @onready var attack = $attack
+@onready var anim = $AnimationPlayer
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -37,11 +39,13 @@ func _physics_process(delta):
 			global_transform.basis.z=lerp(global_transform.basis.z, T.basis.z, 0.2)
 	
 	match current_state:
-		States.TOWER: nav.set_target_position(Vector3(0,0,0))
+		States.TOWER:
+			nav.set_target_position(Vector3(0,0,0))
 		States.ENEMY: pass
 		States.ATTACK:
 			if attack.has_overlapping_bodies():
-				await get_tree().create_timer(0.5).timeout # asendada animatsiooniga
+				anim.play("hit")
+				await get_tree().create_timer(0.7).timeout # asendada animatsiooniga
 				for i in attack.get_overlapping_bodies():
 					i.damaged(damage)
 			else: current_state = default_state
@@ -71,6 +75,7 @@ func damaged(dam: int):
 	HP -= dam
 	#animatsioon/indikaator vahel
 	if HP <= 0 and timer.is_stopped():
+		master.enemy_death()
 		#animatsioon/indikaator vahel
 		#maailmale (globalile arvatavasti) teade, et surid
 		timer.start()

@@ -12,3 +12,4 @@ func _ready():
 
 func _on_hurtbox_area_body_entered(body):
 	body.damaged(damage)
+	body.velocity += self.basis.x * 150

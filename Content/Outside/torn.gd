@@ -1,7 +1,7 @@
 extends StaticBody3D
 
 @onready var GameMaster = $".."
-@export var HP: int = 10
+@export var HP: int = 20
 var maxhp: int
 
 func _ready():

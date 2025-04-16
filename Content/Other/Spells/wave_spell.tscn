@@ -328,6 +328,7 @@ height = 1.5
 [node name="Wave spell" type="Node3D"]
 transform = Transform3D(-4.37114e-09, 0, 0.1, 0, 0.1, 0, -0.1, 0, -4.37114e-09, 0, 0, 0)
 script = ExtResource("1_x1r47")
+damage = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -342,6 +343,7 @@ mesh = SubResource("PrismMesh_03flu")
 [node name="Hurtbox Area" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, -10, 0)
 monitorable = false
+gravity_point_unit_distance = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox Area"]
 transform = Transform3D(1, 0, 2.13163e-14, 0, 1, 0, -2.13163e-14, 0, 1, 0, 0, -8.9945e-07)
