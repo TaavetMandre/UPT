@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dptu1tos1cvqk"
+path="res://.godot/imported/morning weather.mp3-8989ef63b41b2b760ab5483af91baed7.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/morning weather.mp3"
+dest_files=["res://.godot/imported/morning weather.mp3-8989ef63b41b2b760ab5483af91baed7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -31,9 +31,22 @@ func move_animation_camera_to_current_position() -> void: # useless right now
 	if animation_camera:
 		outdoor_camera.reset_rotation()
 
+func undo_day():
+	%"Daylight Cycle".change_time_to("undo day")
+
+func set_time(state: String):
+	%"Daylight Cycle".change_time_to(state)
+
+func reload_scene():
+	await get_tree().process_frame
+	get_tree().reload_current_scene()
 
 func _input(event):
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("cast"):
 			#$AnimationTree["parameters/playback"].travel("death")
 			play("death")
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://Content/UI/MainMenu/main_menu.tscn")

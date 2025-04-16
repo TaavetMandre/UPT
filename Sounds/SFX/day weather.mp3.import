@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bouufhdstikke"
+path="res://.godot/imported/day weather.mp3-5ba978422f30ea9dca8e55c8ab4ba5eb.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/day weather.mp3"
+dest_files=["res://.godot/imported/day weather.mp3-5ba978422f30ea9dca8e55c8ab4ba5eb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

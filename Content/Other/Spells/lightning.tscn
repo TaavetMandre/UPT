@@ -151,16 +151,18 @@ shape = SubResource("SphereShape3D_ofjeh")
 
 [node name="Windup Sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_nj8ke")
-volume_db = -10.0
-unit_size = 75.0
-max_distance = 500.0
-max_polyphony = 5
+attenuation_model = 3
+volume_db = -15.0
+unit_size = 50.0
+max_distance = 200.0
 bus = &"sfx"
+attenuation_filter_db = -10.0
 
 [node name="Explosion Sound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_5nh1v")
-volume_db = -10.0
-unit_size = 75.0
-max_distance = 500.0
-max_polyphony = 5
+attenuation_model = 3
+volume_db = -15.0
+unit_size = 50.0
+max_distance = 200.0
 bus = &"sfx"
+attenuation_filter_db = -10.0
