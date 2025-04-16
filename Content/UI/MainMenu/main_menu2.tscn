@@ -1,9 +1,9 @@
 [gd_scene load_steps=20 format=3 uid="uid://bucsa4n72ex87"]
 
-[ext_resource type="Script" path="res://Content/UI/MainMenu/main_menu.gd" id="1_4jorm"]
-[ext_resource type="PackedScene" uid="uid://rgoxiix74o85" path="res://Content/Outside/final.tscn" id="2_5ds82"]
-[ext_resource type="PackedScene" uid="uid://bsquk5ia5rvbo" path="res://Content/UI/MainMenu/settings.tscn" id="3_e2v2i"]
-[ext_resource type="PackedScene" uid="uid://duhlrddw3jmln" path="res://3d/tekstuurita_torn1.0.glb" id="4_3i2an"]
+[ext_resource type="Script" path="res://Content/UI/MainMenu/main_menu.gd" id="1_lx4jd"]
+[ext_resource type="PackedScene" uid="uid://rgoxiix74o85" path="res://Content/Outside/final2.tscn" id="2_ejhle"]
+[ext_resource type="PackedScene" uid="uid://duhlrddw3jmln" path="res://3d/tekstuurita_torn1.0.glb" id="3_05p73"]
+[ext_resource type="PackedScene" uid="uid://bsquk5ia5rvbo" path="res://Content/UI/MainMenu/settings.tscn" id="4_lcbqn"]
 
 [sub_resource type="Gradient" id="Gradient_q514l"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -1075,8 +1075,8 @@ volumetric_fog_detail_spread = 1.93187
 
 [node name="Main Menu" type="Node"]
 process_mode = 3
-script = ExtResource("1_4jorm")
-play_button_scene = ExtResource("2_5ds82")
+script = ExtResource("1_lx4jd")
+play_button_scene = ExtResource("2_ejhle")
 main_gradient = SubResource("Gradient_q514l")
 settings_gradient = SubResource("Gradient_lx08i")
 
@@ -1096,7 +1096,7 @@ render_target_update_mode = 4
 
 [node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
 
-[node name="tekstuurita_torn1_0" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("4_3i2an")]
+[node name="tekstuurita_torn1_0" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("3_05p73")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
 
@@ -1148,7 +1148,7 @@ offset_bottom = 897.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="MenuSettings" parent="Main Menu/VBoxContainer" instance=ExtResource("3_e2v2i")]
+[node name="MenuSettings" parent="Main Menu/VBoxContainer" instance=ExtResource("4_lcbqn")]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -1167,10 +1167,10 @@ anchor_left = 0.11
 anchor_top = 0.237
 anchor_right = 0.455
 anchor_bottom = 0.399
-offset_left = -1211.2
-offset_top = 0.0399933
-offset_right = 17999.0
-offset_bottom = 5073.92
+offset_left = -1000.0
+offset_top = 256.0
+offset_right = 18872.6
+offset_bottom = 5504.84
 theme_override_font_sizes/font_size = 128
 text = "UPT DEMO"
 

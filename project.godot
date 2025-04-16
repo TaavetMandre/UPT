@@ -12,7 +12,7 @@ config_version=5
 
 config/name="UPT1.1"
 config/tags=PackedStringArray("upt")
-run/main_scene="res://Content/UI/MainMenu/main_menu.tscn"
+run/main_scene="res://Content/UI/MainMenu/main_menu2.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
