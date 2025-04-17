@@ -10,11 +10,11 @@ config_version=5
 
 [application]
 
-config/name="UPT1.1"
+config/name="UPT Demo"
 config/tags=PackedStringArray("upt")
 run/main_scene="res://Content/UI/MainMenu/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://torn.svg"
 
 [autoload]
 
@@ -29,6 +29,10 @@ window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
 
 [gui]
 
