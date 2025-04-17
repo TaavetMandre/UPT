@@ -1996,15 +1996,15 @@ navigation_mesh = SubResource("NavigationMesh_a51l5")
 
 [node name="maa2" parent="NavigationRegion3D" instance=ExtResource("2_j8u58")]
 
-[node name="Indoor camera" parent="." node_paths=PackedStringArray("indoor_ui") instance=ExtResource("6_7k04s")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
-indoor_ui = [NodePath("../Mirror")]
-
 [node name="Outdoor Camera" parent="." node_paths=PackedStringArray("map_visibility_restriction_plane", "out_of_bounds_area_list", "outdoor_ui") instance=ExtResource("5_2doj7")]
 transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, 0)
 map_visibility_restriction_plane = NodePath("../Clouds")
 out_of_bounds_area_list = [NodePath("../World Borders/North Border"), NodePath("../World Borders/East Border"), NodePath("../World Borders/South Border"), NodePath("../World Borders/West Border")]
 outdoor_ui = [NodePath("../Spell deploy bar")]
+
+[node name="Indoor camera" parent="." node_paths=PackedStringArray("indoor_ui") instance=ExtResource("6_7k04s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
+indoor_ui = [NodePath("../Mirror")]
 
 [node name="sisemus" parent="." instance=ExtResource("35_ctnw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
@@ -2234,7 +2234,7 @@ mesh = SubResource("SphereMesh_s02o2")
 
 [node name="Magic" type="MeshInstance3D" parent="AnimationPlayer"]
 unique_name_in_owner = true
-transform = Transform3D(-0.552721, 8.94069e-08, -0.833365, -0.482396, 0.815431, 0.319945, 0.67955, 0.578854, -0.450707, -36.34, -21.4485, -523.061)
+transform = Transform3D(-0.552721, 8.9407e-08, -0.833365, -0.482396, 0.815431, 0.319945, 0.67955, 0.578854, -0.450707, -36.34, -21.4485, -523.061)
 transparency = 1.0
 mesh = SubResource("SphereMesh_dhtgj")
 skeleton = NodePath("../Black ball")
