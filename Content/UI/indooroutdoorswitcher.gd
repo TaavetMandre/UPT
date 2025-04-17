@@ -11,7 +11,7 @@ var dissolve_amount: float = 0.0
 var burn_amount: float = 0.1
 var noise_texture
 var noise
-var current_camera = true # false = in; true = out
+var current_camera := "in" # in or out
 
 func _ready():
 	if camera_in_node:
@@ -43,12 +43,22 @@ func randomize_noise():
 	noise_texture.noise = noise
 	screen.material.set("shader_parameter/dissolve_texture", noise_texture)
 
-func toggle_camera():
-	camera_out.current = !current_camera
-	camera_in.current = current_camera
-	current_camera = !current_camera
+func toggle_camera(state: String):
+	match state:
+		"out":
+			camera_out.current = true
+			camera_in.current = false
+			current_camera = "out"
+			return
+		"in":
+			camera_out.current = false
+			camera_in.current = true
+			current_camera = "in"
+			return
+	push_warning(state, " is not a valid state for the camera")
 
-func _on_pressed():
+func switch_camera_to(state: String): ## state "in" or "out"
+	print(state)
 	dissolve_amount = 0.0
 	randomize_noise()
 	
@@ -58,7 +68,7 @@ func _on_pressed():
 
 	await get_tree().create_timer(2.0).timeout
 	if camera_in and camera_out:
-		toggle_camera()
+		toggle_camera(state)
 
 	randomize_noise()
 	

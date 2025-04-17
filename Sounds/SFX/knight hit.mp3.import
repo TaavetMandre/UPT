@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8l8vmchmajr3"
+path="res://.godot/imported/knight hit.mp3-c63ccb969cc087da2760e767342fa9ec.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/knight hit.mp3"
+dest_files=["res://.godot/imported/knight hit.mp3-c63ccb969cc087da2760e767342fa9ec.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

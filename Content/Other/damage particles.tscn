@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://1hgxlpgc6wim"]
+
+[ext_resource type="Script" path="res://Content/Other/damage_particle.gd" id="1_25i54"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xakx2"]
+inherit_velocity_ratio = 0.25
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ufgjh"]
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0.3455, 0.23, 1)
+billboard_mode = 1
+
+[sub_resource type="TextMesh" id="TextMesh_esc7y"]
+material = SubResource("StandardMaterial3D_ufgjh")
+text = "1"
+pixel_size = 0.1
+depth = 0.0
+
+[node name="GPUParticles3D" type="GPUParticles3D"]
+cast_shadow = 0
+emitting = false
+amount = 1
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_xakx2")
+draw_pass_1 = SubResource("TextMesh_esc7y")
+script = ExtResource("1_25i54")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.91716)
+visible = false
+
+[connection signal="finished" from="." to="." method="_on_finished"]

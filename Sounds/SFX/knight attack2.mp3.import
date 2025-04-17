@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0dmbrlxd63"
+path="res://.godot/imported/knight attack2.mp3-36920b2340fae7dfba89a733e728b8f3.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/knight attack2.mp3"
+dest_files=["res://.godot/imported/knight attack2.mp3-36920b2340fae7dfba89a733e728b8f3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

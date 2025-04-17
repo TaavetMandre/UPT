@@ -50,11 +50,10 @@ mouse_filter = 2
 texture = SubResource("NoiseTexture2D_utah3")
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 446.0
 offset_top = 14.0
 offset_right = 642.0
 offset_bottom = 70.0
 text = "switch camera to indoor"
-
-[connection signal="pressed" from="Button" to="." method="_on_pressed"]
