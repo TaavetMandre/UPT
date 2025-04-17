@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://cv1khu0s48y0l" path="res://Sounds/SFX/explosion.ogg" id="6_5nh1v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sojy5"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("3_odkd3")
 shader_parameter/albedo = null
@@ -144,6 +145,7 @@ process_material = SubResource("ParticleProcessMaterial_nwtj8")
 draw_pass_1 = SubResource("CylinderMesh_on0fq")
 
 [node name="Hurtbox Area" type="Area3D" parent="."]
+collision_layer = 6
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox Area"]

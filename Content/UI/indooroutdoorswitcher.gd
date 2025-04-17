@@ -1,5 +1,7 @@
 extends Control
 
+signal game_ready
+
 @onready var button = $Button
 @onready var screen = %Clouds
 @export var camera_out_node: Node
@@ -58,7 +60,7 @@ func toggle_camera(state: String):
 	push_warning(state, " is not a valid state for the camera")
 
 func switch_camera_to(state: String): ## state "in" or "out"
-	print(state)
+	$AudioStreamPlayer.play()
 	dissolve_amount = 0.0
 	randomize_noise()
 	
@@ -69,6 +71,7 @@ func switch_camera_to(state: String): ## state "in" or "out"
 	await get_tree().create_timer(2.0).timeout
 	if camera_in and camera_out:
 		toggle_camera(state)
+		game_ready.emit()
 
 	randomize_noise()
 	

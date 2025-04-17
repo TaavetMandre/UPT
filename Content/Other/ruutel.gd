@@ -11,6 +11,11 @@ extends CharacterBody3D
 @onready var attack = $attack
 @onready var anim = $AnimationPlayer
 
+@onready var attack_sound = $Attack
+@export var ATTACK_SOUNDS: Array[AudioStream]
+@onready var hurt_sound = $Hurt
+@onready var damage_particle := preload("res://Content/Other/damage particles.tscn")
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -43,7 +48,7 @@ func _physics_process(delta):
 			nav.set_target_position(Vector3(0,0,0))
 		States.ENEMY: pass
 		States.ATTACK:
-			if attack.has_overlapping_bodies():
+			if attack.has_overlapping_bodies():# and anim.current_animation != "hit":
 				anim.play("hit")
 			else: current_state = default_state
 		States.FROG: pass
@@ -65,11 +70,19 @@ func velocity_computed(safe_velocity):
 func _on_attack_body_entered(body):
 	current_state = States.ATTACK
 	#wait some time
-	body.damaged(damage)
 
 
 func damaged(dam: int):
 	HP -= dam
+	
+	hurt_sound.pitch_scale += randf_range(-0.05, 0.05)
+	hurt_sound.play()
+	hurt_sound.pitch_scale = 1
+	
+	var particle = damage_particle.instantiate()
+	particle.damage_amount = dam
+	add_child(particle)
+	
 	#animatsioon/indikaator vahel
 	if HP <= 0 and timer.is_stopped():
 		master.enemy_death()
@@ -81,4 +94,10 @@ func damaged(dam: int):
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "hit":
 		for i in attack.get_overlapping_bodies():
-					i.damaged(damage)
+			i.damaged(damage)
+		
+		var attack_sound_file = ATTACK_SOUNDS.pick_random()
+		attack_sound.stream = attack_sound_file
+		attack_sound.pitch_scale += randf_range(-0.05, 0.05)
+		attack_sound.play()
+		attack_sound.pitch_scale = 1

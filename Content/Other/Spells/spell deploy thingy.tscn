@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bs4t8lbvflsle"]
+[gd_scene load_steps=29 format=3 uid="uid://bs4t8lbvflsle"]
 
 [ext_resource type="Script" path="res://Content/Other/Spells/spell_deploy_bar_master.gd" id="1_2olev"]
 [ext_resource type="Shader" path="res://Textures/sidebar.gdshader" id="1_u46bc"]
@@ -37,7 +37,7 @@ shader_parameter/noise = SubResource("NoiseTexture2D_vf6w1")
 
 [sub_resource type="Gradient" id="Gradient_lnvg3"]
 offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0, 1, 1, 1, 0.983334, 0, 1, 1, 0, 1, 1, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0.433333, 0, 1, 1, 0, 1, 1, 1)
 metadata/_snap_count = 4
 metadata/_snap_enabled = true
 
@@ -265,6 +265,18 @@ subpixel_positioning = 0
 font = SubResource("SystemFont_f0mid")
 font_size = 48
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o1xto"]
+bg_color = Color(0.368627, 0.478431, 0.619608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gcisf"]
+bg_color = Color(0.3864, 0.67988, 0.92, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fl3ye"]
+bg_color = Color(0.35, 0.5, 0.4175, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jipmj"]
+bg_color = Color(0, 0.76, 0.266, 1)
+
 [node name="Spell deploy bar" type="Control" node_paths=PackedStringArray("spells")]
 layout_mode = 3
 anchors_preset = 15
@@ -309,6 +321,7 @@ grow_horizontal = 2
 [node name="Label" type="Label" parent="Spell guide"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -327,16 +340,19 @@ vertical_alignment = 1
 [node name="Spell 2 Position" type="Label" parent="Spell guide"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Label3" type="Label" parent="Spell guide"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Spell 3 Position" type="Label" parent="Spell guide"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 horizontal_alignment = 1
@@ -386,6 +402,7 @@ card_position_guide = NodePath("../Spell guide/Spell 2 Position")
 card_show_area = NodePath("../Card Show Area")
 spell_scene = ExtResource("10_dvy8s")
 indicator_scene = ExtResource("11_ofpea")
+cost = 5
 
 [node name="Spellcard hitbox" type="Control" parent="Wave spell"]
 material = SubResource("ShaderMaterial_vf3ll")
@@ -537,12 +554,16 @@ theme_override_constants/separation = 5
 [node name="Mana" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_o1xto")
+theme_override_styles/fill = SubResource("StyleBoxFlat_gcisf")
 value = 60.0
 show_percentage = false
 
 [node name="Hp" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_fl3ye")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jipmj")
 value = 75.0
 show_percentage = false
 

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blml61wn8f0c"
+path="res://.godot/imported/orb ready.mp3-8ae26c70a7fa7a35149305a522bb58f7.mp3str"
+
+[deps]
+
+source_file="res://Sounds/SFX/orb ready.mp3"
+dest_files=["res://.godot/imported/orb ready.mp3-8ae26c70a7fa7a35149305a522bb58f7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

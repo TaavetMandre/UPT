@@ -1,6 +1,6 @@
 // slightly modified fog of war cloud shader
 shader_type spatial;
-render_mode blend_mix, cull_disabled, diffuse_toon, unshaded;
+render_mode cull_disabled;
 
 group_uniforms Texture;
 uniform sampler2D noise;
@@ -9,6 +9,8 @@ uniform float speed = 0.01;
 // Transparency gradient
 uniform float gradient_start = 1.0; // Where the gradient starts (in UV.y)
 uniform float gradient_end = 1.0;   // Where the gradient fully fades (in UV.y)
+
+uniform sampler2D roughness : hint_roughness_r;
 group_uniforms;
 
 group_uniforms uv_stuff;
@@ -30,8 +32,11 @@ void fragment() {
 		tex.a *= (1.0 - fade_factor);  // Invert to fade out as UV.y increases
 	}
 	
+	float roughness_texture = texture(roughness, UV).r;
+	ROUGHNESS = 0.83 * roughness_texture;
+	
 	ALBEDO = tex.rgb;
 	ALPHA = tex.a;
-	SPECULAR = 10.0;
-	METALLIC = 10.0;
+	SPECULAR = 0.8;
+	METALLIC = 0.5;
 }

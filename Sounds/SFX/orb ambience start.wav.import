@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dk535n6dljvge"
+path="res://.godot/imported/orb ambience start.wav-c68fb8ea47db4056deb643b0d5fe931d.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/orb ambience start.wav"
+dest_files=["res://.godot/imported/orb ambience start.wav-c68fb8ea47db4056deb643b0d5fe931d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

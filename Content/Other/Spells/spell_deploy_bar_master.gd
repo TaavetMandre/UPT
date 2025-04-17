@@ -11,7 +11,17 @@ var spell_card_rotation
 var indicators = {}
 var spell_instance
 
+@onready var mana_bar = $MarginContainer/VBoxContainer/Mana
+@export var max_mana: int = 100
+var mana: int
+
 func _ready():
+	mana = max_mana
+	mana_bar.max_value = max_mana
+	mana_bar.value = mana
+	
+	print("Max mana: ", max_mana)
+	
 	for spell in spells:
 		#spell_rotate_to_surface_normal = spell.rotate_to_surface_normal
 		spell.ground = ground
@@ -72,16 +82,24 @@ func show_indicator(spell_card):
 			indicator.visible = false
 
 func deploy_spell(spell_card):
-	var indicator_list = indicators.get(spell_card)
-	var indicator
-	if indicator_list: indicator = indicator_list[0]
-	if spell_card.indicator_scene and camera and indicator and spell_card.spell_scene:
-		if indicator.visible: # if there is no valid position do not cast the spell
-			spell_instance = spell_card.spell_scene.instantiate()
-			spell_instance.position = indicator_position
-			spell_instance.rotation.y = indicator.rotation.y
-			add_child(spell_instance)
-		indicator.visible = false
+	var cost = spell_card.cost
+	
+	if mana - cost >= 0:
+		mana -= cost
+		mana_bar.value = mana
+		
+		var indicator_list = indicators.get(spell_card)
+		var indicator
+		if indicator_list: indicator = indicator_list[0]
+		if spell_card.indicator_scene and camera and indicator and spell_card.spell_scene:
+			if indicator.visible: # if there is no valid position do not cast the spell
+				spell_instance = spell_card.spell_scene.instantiate()
+				spell_instance.position = indicator_position
+				spell_instance.rotation.y = indicator.rotation.y
+				add_child(spell_instance)
+			indicator.visible = false
+	else:
+		hide_indicator(spell_card)
 
 func hide_indicator(spell_card):
 	var indicator_list = indicators.get(spell_card)

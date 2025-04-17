@@ -1,12 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://drkh1pv8xrjmg"]
+[gd_scene load_steps=18 format=3 uid="uid://drkh1pv8xrjmg"]
 
 [ext_resource type="Script" path="res://Content/Other/ruutel.gd" id="1_72kv8"]
 [ext_resource type="ArrayMesh" uid="uid://bwvkyq4j0l6br" path="res://Models/arm_l.tres" id="2_qoy65"]
+[ext_resource type="AudioStream" uid="uid://c0dmbrlxd63" path="res://Sounds/SFX/knight attack2.mp3" id="3_7qjl4"]
 [ext_resource type="ArrayMesh" uid="uid://dfm0pgxoghctl" path="res://Models/arm_r.tres" id="3_wgjg0"]
 [ext_resource type="ArrayMesh" uid="uid://choul7am4gron" path="res://Models/leg_l.tres" id="4_oww3m"]
+[ext_resource type="AudioStream" uid="uid://bd30u186wkhag" path="res://Sounds/SFX/knight attack3.mp3" id="4_tk82m"]
 [ext_resource type="ArrayMesh" uid="uid://ddysi2fw3k2b0" path="res://Models/leg_r.tres" id="5_0ilrp"]
 [ext_resource type="ArrayMesh" uid="uid://xb2oebic7yi6" path="res://Models/new_array_mesh.tres" id="6_f4pnm"]
 [ext_resource type="ArrayMesh" uid="uid://m2pa4fu48h6x" path="res://Models/pea.tres" id="7_lr1tb"]
+[ext_resource type="AudioStream" uid="uid://c6mm0fnu0bjx1" path="res://Sounds/SFX/knight attack1.mp3" id="8_0eved"]
+[ext_resource type="AudioStream" uid="uid://8l8vmchmajr3" path="res://Sounds/SFX/knight hit.mp3" id="9_wuq3n"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgp3k"]
 radius = 0.65
@@ -199,6 +203,7 @@ floor_constant_speed = true
 floor_max_angle = 1.40674
 floor_snap_length = 0.15
 script = ExtResource("1_72kv8")
+ATTACK_SOUNDS = Array[AudioStream]([ExtResource("8_0eved"), ExtResource("3_7qjl4"), ExtResource("4_tk82m")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_tgp3k")
@@ -215,7 +220,6 @@ avoidance_enabled = true
 height = 3.0
 radius = 1.0
 max_speed = 5.0
-debug_enabled = true
 
 [node name="attack" type="Area3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
@@ -258,6 +262,23 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0255783, 0.614882, -0.379371)
 mesh = ExtResource("2_qoy65")
 skeleton = NodePath("../..")
+
+[node name="Attack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_0eved")
+attenuation_model = 3
+volume_db = -10.0
+unit_size = 20.0
+max_distance = 200.0
+max_polyphony = 3
+bus = &"sfx"
+
+[node name="Hurt" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_wuq3n")
+attenuation_model = 3
+volume_db = -10.0
+unit_size = 20.0
+max_distance = 200.0
+bus = &"sfx"
 
 [connection signal="timeout" from="Timer" to="." method="test_timer"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]

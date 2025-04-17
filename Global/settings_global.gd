@@ -22,6 +22,9 @@ var indoors_mouse_sensitivity_y: float
 var outdoor_mouse_sensitivity: float
 var outdoor_rotation_sensitivity: float
 
+## Gameplay
+var intro_seen: bool = true
+
 func _ready():
 	await ConfigFileHandler.ready
 	framerate_index = ConfigFileHandler.load_video_setting("framerate")

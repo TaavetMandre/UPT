@@ -5,6 +5,7 @@ extends Node3D
 @onready var interaction_area = $InteractionArea
 #@onready var animation = $AnimationPlayer
 @onready var key_prompt = $Sprite3D
+@onready var ambience = $Ambience
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,9 @@ func interact() -> void:
 	for body in interaction_area.get_overlapping_bodies():
 		if body.get_parent() == player: # The player node is a parent of the body that the area collides with
 			camera_switcher.switch_camera_to("out")
+			key_prompt.visible = false
+			interaction_area.monitoring = false
+			create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).tween_property(ambience, "volume_db", -80, 2)
 
 
 func _on_interaction_area_body_entered(body):

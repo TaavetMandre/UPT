@@ -4,6 +4,7 @@ extends Path3D
 
 @export var mob: PackedScene
 @export var master: Node
+@onready var spawn_sound = $AudioStreamPlayer3D
 
 func _ready():
 	pass # Replace with function body.
@@ -28,3 +29,5 @@ func create(state: int):
 	individ.master = master
 	add_child(individ)
 
+func horn_sound():
+	spawn_sound.play()

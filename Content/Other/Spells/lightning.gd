@@ -25,6 +25,7 @@ func _ready():
 	await get_tree().create_timer(0.5).timeout
 	windup_sound.pitch_scale += randf_range(-0.05, 0.05)
 	windup_sound.play()
+	windup_sound.pitch_scale = 1
 	var tween = create_tween().set_ease(Tween.EASE_IN)
 	tween.tween_property(self, "indicator_intensity", 0, 1)
 	

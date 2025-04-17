@@ -11,6 +11,7 @@ signal disable_camera_dragging
 @export var indicator_scene: PackedScene
 @export var ground: Node
 @export var camera: Node
+@export var cost: int = 10
 #@export var rotate_to_surface_normal: bool
 var hover
 var click_pressed

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://c82avvn6o54c2"]
+[gd_scene load_steps=10 format=3 uid="uid://c82avvn6o54c2"]
 
 [ext_resource type="Shader" path="res://Content/Other/dissolve.gdshader" id="1_qoo6o"]
 [ext_resource type="Script" path="res://Content/UI/indooroutdoorswitcher.gd" id="2_crq5a"]
+[ext_resource type="AudioStream" uid="uid://d0hpuo8agnx8b" path="res://Sounds/SFX/camera transition cloudy.mp3" id="3_2cc2s"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_lnwwt"]
 noise_type = 4
@@ -57,3 +58,8 @@ offset_top = 14.0
 offset_right = 642.0
 offset_bottom = 70.0
 text = "switch camera to indoor"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2cc2s")
+volume_db = -10.0
+bus = &"sfx"
