@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://buv3brrjuek3h"]
+[gd_scene load_steps=26 format=3 uid="uid://buv3brrjuek3h"]
 
 [ext_resource type="Script" path="res://Content/UI/Pause/Pause.gd" id="1_yn3ha"]
 [ext_resource type="Shader" path="res://Textures/Blur.gdshader" id="2_8b070"]
@@ -7,6 +7,8 @@
 [ext_resource type="Shader" path="res://Content/UI/Pause/ButtonSkew.gdshader" id="5_w8hop"]
 [ext_resource type="Script" path="res://Content/UI/Pause/buttonparticles_button.gd" id="6_vrtfn"]
 [ext_resource type="PackedScene" uid="uid://cdy5c37cavjak" path="res://Content/UI/Pause/buttonparticles.tscn" id="7_vsh06"]
+[ext_resource type="PackedScene" uid="uid://bprnsq2fqlj3p" path="res://Content/UI/MainMenu/settings_pause.tscn" id="8_rx7rd"]
+[ext_resource type="Script" path="res://Content/UI/MainMenu/settings_pause.gd" id="9_wan0c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qxakv"]
 shader = ExtResource("2_8b070")
@@ -152,7 +154,6 @@ particles = ExtResource("7_vsh06")
 
 [node name="SettingsButton" type="Button" parent="Sidebar" groups=["pause_main"]]
 unique_name_in_owner = true
-visible = false
 material = SubResource("ShaderMaterial_sm21p")
 layout_mode = 2
 offset_left = 3450.0
@@ -351,6 +352,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="MenuBar" parent="." instance=ExtResource("8_rx7rd")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.405
+anchor_top = 0.222
+anchor_right = 0.926
+anchor_bottom = 0.778
+offset_left = -0.600037
+offset_top = 0.239975
+offset_right = -0.919922
+offset_bottom = -0.240051
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("9_wan0c")
 
 [connection signal="mouse_entered" from="Sidebar/ContinueButton" to="Sidebar/ContinueButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Sidebar/ContinueButton" to="Sidebar/ContinueButton" method="_on_mouse_exited"]

@@ -31,10 +31,10 @@ func _process(delta):
 func _input(event):
 	if camera.current:
 		if event is InputEventMouseMotion: # Camera movement
-			camera.rotation_degrees.x -= event.relative.y * x_sensitivity
+			camera.rotation_degrees.x -= event.relative.y * SettingsGlobal.indoors_mouse_sensitivity_x / 2
 			camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90, 90)  # -90 to 90 degrees
 			
-			camera.rotation_degrees.y -= event.relative.x * y_sensitivity
+			camera.rotation_degrees.y -= event.relative.x * SettingsGlobal.indoors_mouse_sensitivity_y / 2
 			camera.rotation_degrees.y = wrapf(camera.rotation_degrees.y, 0, 360)  # 0 to 360 degrees
 		
 		if Input.is_action_just_pressed("interact"): interact.emit()

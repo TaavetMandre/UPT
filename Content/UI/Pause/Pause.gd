@@ -8,6 +8,8 @@ extends Control
 @onready var label = $Sidebar/Label
 
 func _ready():
+	$MenuBar.position = Vector2(get_window().size.x + 777, 240)
+	
 	# unlock the camera
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	# Set up the ui elements
@@ -36,6 +38,9 @@ func _on_continue_button_pressed():
 	# Disables the visible keys and moves them up
 	get_tree().call_group("pause_main", "disable_button_controls")
 	get_tree().call_group("pause_main", "move_up")
+	
+	create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC).tween_property($MenuBar, "position", Vector2(get_window().size.x + 777, 240), 0.5)
+	
 	#bottom_particles.emitting = false # Disables the bottom particles
 	
 	var tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
@@ -53,11 +58,12 @@ func _on_continue_button_pressed():
 	get_tree().paused = false
 
 func _on_settings_button_pressed():
-	get_tree().call_group("pause_main", "disable_button_controls") # Switches the click checking on the buttons to be appropriate
-	get_tree().call_group("pause_settings", "enable_button_controls")
-	get_tree().call_group("pause_main", "quit_buttons", 1000) # int is the final y position in the sidebar
-	get_tree().call_group("pause_settings", "quit_buttons", 300)
+	#get_tree().call_group("pause_main", "disable_button_controls") # Switches the click checking on the buttons to be appropriate
+	#get_tree().call_group("pause_settings", "enable_button_controls")
+	#get_tree().call_group("pause_main", "quit_buttons", 1000) # int is the final y position in the sidebar
+	#get_tree().call_group("pause_settings", "quit_buttons", 300)
 	label.text = "SETTINGS"
+	create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).tween_property($MenuBar, "position", Vector2(777, 240), 1)
 
 func _on_menu_button_pressed():
 	get_tree().call_group("pause_main", "disable_button_controls") # Disable all of the buttons so they dont detect the mouse or escape keys anymore

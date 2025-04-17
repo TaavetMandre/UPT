@@ -108,7 +108,7 @@ func _process(delta):
 			
 			if position_difference != Vector2(0, 0): # The if condition checks for movement to avoid creating unnecessary tweens
 				var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC) # Smoothing
-				tween.tween_property(self, "position", position - position_difference3 / speed * movement_sensitivity, 25 * delta)
+				tween.tween_property(self, "position", position - position_difference3 / speed * SettingsGlobal.outdoor_mouse_sensitivity, 25 * delta)
 				if is_in_illegal_area: tween.kill()
 		
 		#if dragging:
@@ -119,7 +119,7 @@ func _process(delta):
 		if rotating and !is_in_illegal_area: # Camera rotation using right click
 			var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			var mouse_movementx = previous_frame_mouse_position[0] - get_viewport().get_mouse_position()[0]
-			tween.tween_property(self, "rotation:y", rotation.y + mouse_movementx / 10 * rotation_sensitivity, 50 * delta) #rotation_degrees.y += previous_frame_mouse_position[0] - get_viewport().get_mouse_position()[0]
+			tween.tween_property(self, "rotation:y", rotation.y + mouse_movementx / 10 * SettingsGlobal.outdoor_rotation_sensitivity, 50 * delta) #rotation_degrees.y += previous_frame_mouse_position[0] - get_viewport().get_mouse_position()[0]
 			tween.tween_callback(tween.kill)
 			if is_in_illegal_area: tween.kill()
 		previous_frame_mouse_position = get_viewport().get_mouse_position()
@@ -133,7 +133,7 @@ func _process(delta):
 			var speed = 5 - (2.5 * (top_camera.position.y - top_camera.lowest_height) / (top_camera.highest_height - top_camera.lowest_height)) # ln48
 			var tweenWASD = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			tweenWASD.tween_property(self, "position",
-									position - WASDVector * 10 / speed / sqrt(WASDVector.dot(WASDVector)) * movement_sensitivity, 0.5)
+									position - WASDVector * 10 / speed / sqrt(WASDVector.dot(WASDVector)) * SettingsGlobal.outdoor_mouse_sensitivity, 0.5)
 			if is_in_illegal_area: tweenWASD.kill()
 		
 		## Camera height restrictions

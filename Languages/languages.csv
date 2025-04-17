@@ -48,6 +48,10 @@ BACK;BACK;TAGASI
 YES;YES;JAH
 NO;NO;EI
 ARE YOU SURE?;ARE YOU SURE?;KINDEL?
-THE END;THE END;MÄNGU LÕPP
+THE END;END OF DEMO;MÄNGU DEMO LÕPP
 More content will be coming soon;More content will be coming soon;Rohkem sisu tuleb varsti
  Return to main menu ; Return to main menu ; Tagasi menüüsse 
+KING1;Give me the treasures of your tower, or you shall die!!!;Anna mulle oma torni varandus, või sa sured!!!
+KING2;My soldiers will arrive soon for your surrender…;Mu sõdurid saabuvad varsti su kapituleerumiseks…
+DISMISS/KATKESTA;DISMISS;KATKESTA
+SETTINGS;SETTINGS;SEADED
