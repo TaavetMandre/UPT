@@ -45,9 +45,6 @@ func _physics_process(delta):
 		States.ATTACK:
 			if attack.has_overlapping_bodies():
 				anim.play("hit")
-				await get_tree().create_timer(0.7).timeout # asendada animatsiooniga
-				for i in attack.get_overlapping_bodies():
-					i.damaged(damage)
 			else: current_state = default_state
 		States.FROG: pass
 	
@@ -79,3 +76,9 @@ func damaged(dam: int):
 		#animatsioon/indikaator vahel
 		#maailmale (globalile arvatavasti) teade, et surid
 		timer.start()
+
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "hit":
+		for i in attack.get_overlapping_bodies():
+					i.damaged(damage)

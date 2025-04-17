@@ -1,12 +1,12 @@
 [gd_scene load_steps=14 format=3 uid="uid://drkh1pv8xrjmg"]
 
 [ext_resource type="Script" path="res://Content/Other/ruutel.gd" id="1_72kv8"]
-[ext_resource type="ArrayMesh" uid="uid://n2vj28sonowh" path="res://Models/arm_l.tres" id="2_qoy65"]
-[ext_resource type="ArrayMesh" uid="uid://v28hdl8qycsw" path="res://Models/arm_r.tres" id="3_wgjg0"]
-[ext_resource type="ArrayMesh" uid="uid://c8ivf2u0ebe4" path="res://Models/leg_l.tres" id="4_oww3m"]
-[ext_resource type="ArrayMesh" uid="uid://dj306vsgebtv" path="res://Models/leg_r.tres" id="5_0ilrp"]
-[ext_resource type="ArrayMesh" uid="uid://c0tib6544s3wg" path="res://Models/new_array_mesh.tres" id="6_f4pnm"]
-[ext_resource type="ArrayMesh" uid="uid://bv6gl6kft6ep3" path="res://Models/pea.tres" id="7_lr1tb"]
+[ext_resource type="ArrayMesh" uid="uid://bwvkyq4j0l6br" path="res://Models/arm_l.tres" id="2_qoy65"]
+[ext_resource type="ArrayMesh" uid="uid://dfm0pgxoghctl" path="res://Models/arm_r.tres" id="3_wgjg0"]
+[ext_resource type="ArrayMesh" uid="uid://choul7am4gron" path="res://Models/leg_l.tres" id="4_oww3m"]
+[ext_resource type="ArrayMesh" uid="uid://ddysi2fw3k2b0" path="res://Models/leg_r.tres" id="5_0ilrp"]
+[ext_resource type="ArrayMesh" uid="uid://xb2oebic7yi6" path="res://Models/new_array_mesh.tres" id="6_f4pnm"]
+[ext_resource type="ArrayMesh" uid="uid://m2pa4fu48h6x" path="res://Models/pea.tres" id="7_lr1tb"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgp3k"]
 radius = 0.65
@@ -262,3 +262,4 @@ skeleton = NodePath("../..")
 [connection signal="timeout" from="Timer" to="." method="test_timer"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]
 [connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
