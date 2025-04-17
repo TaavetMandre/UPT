@@ -3,8 +3,8 @@ extends Node3D
 signal interact
 
 @export_category("Set by settings")
-@onready var x_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_x  ## Look sensitivity set by SettingsGlobal
-@onready var y_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_y  ## Look sensitivity set by SettingsGlobal
+@onready var x_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_x / 2  ## Look sensitivity set by SettingsGlobal
+@onready var y_sensitivity: float = SettingsGlobal.indoors_mouse_sensitivity_y / 2 ## Look sensitivity set by SettingsGlobal
 
 @export_category("Set in the editor")
 @export var move_speed: float = 1.0  ## Player speed

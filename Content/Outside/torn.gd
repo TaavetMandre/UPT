@@ -3,7 +3,7 @@ extends StaticBody3D
 @onready var GameMaster = $".."
 @export var HP: int = 20
 var maxhp: int
-@onready var health_bar = $"../TEMPPauseMenuDetector/Spell deploy bar/MarginContainer/VBoxContainer/Hp"
+@onready var health_bar = $"../Spell deploy bar/MarginContainer/VBoxContainer/Hp"
 
 @onready var damage_particle: PackedScene = preload("res://Content/Other/damage particles.tscn")
 @onready var hurt_sound = $AudioStreamPlayer3D

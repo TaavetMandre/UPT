@@ -42,8 +42,8 @@ func _ready():
 			pass
 		10:
 			pass
-	await $"TEMPPauseMenuDetector/Camera switcher".game_ready
-	
+	await $"Camera switcher".game_ready
+	await get_tree().create_timer(2).timeout
 	advance_day()
 
 #for enemyes 0 - tower
@@ -61,21 +61,26 @@ func advance_day():
 	times_of_day.append(current_time)
 	
 	#daylight_cycle.cycle_current_time()
-	await get_tree().create_timer(3).timeout
 	#mängi mingi tu-tu tu-tuuuuu pasun, et horde tuleb
 	match current_time:
 		"morning":
-			generate_wave(day_difficulty[0], encouter_type[0])
 			daylight_cycle.change_time_to("morning2")
 			time_sound_player.play(["morning", "morning (2)"].pick_random())
+			
+			await get_tree().create_timer(3).timeout
+			generate_wave(day_difficulty[0], encouter_type[0])
 		"day":
-			generate_wave(day_difficulty[1], encouter_type[1])
 			daylight_cycle.change_time_to("day")
 			time_sound_player.play(["day", "day (2)"].pick_random())
+			
+			await get_tree().create_timer(3).timeout
+			generate_wave(day_difficulty[1], encouter_type[1])
 		"evening":
-			generate_wave(day_difficulty[2], encouter_type[2])
 			daylight_cycle.change_time_to("evening")
 			time_sound_player.play(["evening", "evening (2)"].pick_random())
+			
+			await get_tree().create_timer(3).timeout
+			generate_wave(day_difficulty[2], encouter_type[2])
 		"night": event()
 
 
@@ -99,13 +104,11 @@ func spawn_knight_wave(A: int, B: int, state):
 	enemy_count = A + B
 	
 	knight_spawner_s.spawn(A, state)
-	if A > 0:
-		await get_tree().create_timer(randf()).timeout
-		knight_spawner_s.horn_sound()
-	
 	knight_spawner_s_2.spawn(B, state)
+	
+	if A > 0:
+		knight_spawner_s.horn_sound()
 	if B > 0:
-		await get_tree().create_timer(randf()).timeout
 		knight_spawner_s_2.horn_sound()
 
 func event():

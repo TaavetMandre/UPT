@@ -23,7 +23,7 @@ var outdoor_mouse_sensitivity: float
 var outdoor_rotation_sensitivity: float
 
 ## Gameplay
-var intro_seen: bool = true
+var intro_seen: bool = false
 
 func _ready():
 	await ConfigFileHandler.ready

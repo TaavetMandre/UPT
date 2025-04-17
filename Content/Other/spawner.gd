@@ -30,4 +30,5 @@ func create(state: int):
 	add_child(individ)
 
 func horn_sound():
+	await get_tree().create_timer(randf()).timeout
 	spawn_sound.play()
