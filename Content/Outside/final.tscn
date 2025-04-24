@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://rgoxiix74o85"]
+[gd_scene load_steps=115 format=3 uid="uid://rgoxiix74o85"]
 
 [ext_resource type="Script" path="res://Global/GAMEMASTER.gd" id="1_gopvv"]
 [ext_resource type="PackedScene" uid="uid://b5lm4ik7jrs68" path="res://Models/maa_2.tscn" id="2_j8u58"]
@@ -1092,6 +1092,30 @@ tracks/33/keys = {
 "method": &"toggle_fog_mesh"
 }]
 }
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Camera switcher:visible")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Outdoor Camera:can_move")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_863c4"]
 resource_name = "death"
@@ -2059,6 +2083,34 @@ tracks/23/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_8gsb8"]
+resource_name = "outdoor"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera switcher:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Outdoor Camera:can_move")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="Animation" id="Animation_n0fli"]
 resource_name = "scene start"
 tracks/0/type = "value"
@@ -2148,6 +2200,7 @@ _data = {
 "death": SubResource("Animation_863c4"),
 "demo win": SubResource("Animation_l7xbs"),
 "intro": SubResource("Animation_h1yk0"),
+"outdoor": SubResource("Animation_8gsb8"),
 "scene start": SubResource("Animation_n0fli"),
 "setup_death": SubResource("Animation_d7c31")
 }
@@ -2414,6 +2467,7 @@ transform = Transform3D(-1, 0, 2.53518e-06, 0, 1, 0, -2.53518e-06, 0, -1, 0, 0, 
 map_visibility_restriction_plane = NodePath("../Clouds")
 out_of_bounds_area_list = [NodePath("../World Borders/North Border"), NodePath("../World Borders/East Border"), NodePath("../World Borders/South Border"), NodePath("../World Borders/West Border")]
 outdoor_ui = [NodePath("../Spell deploy bar")]
+can_move = false
 
 [node name="sisemus" parent="." instance=ExtResource("7_p8q5w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 0)
@@ -2449,9 +2503,8 @@ anchors_preset = -1
 anchor_top = 0.824074
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 1080.0
-offset_right = 1920.0
-offset_bottom = 1280.0
+offset_top = 190.0
+offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 0
 metadata/_edit_use_anchors_ = true
@@ -2485,6 +2538,11 @@ player = NodePath("../../Indoor camera")
 
 [node name="InteractionArea" parent="sisemus/Orb" index="1"]
 monitoring = false
+
+[node name="Panel" parent="sisemus/Orb/CanvasLayer" index="0"]
+offset_top = 190.0
+offset_right = 0.0
+offset_bottom = 200.0
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="sisemus/Orb"]
 stream = ExtResource("15_7cd1h")
@@ -2744,8 +2802,6 @@ skeleton = NodePath("")
 script = ExtResource("8_1cr52")
 
 [node name="Spell deploy bar" parent="." node_paths=PackedStringArray("ground", "camera") instance=ExtResource("10_jjlnm")]
-offset_right = 1920.0
-offset_bottom = 1080.0
 ground = NodePath("../NavigationRegion3D/maa2")
 camera = NodePath("../Outdoor Camera")
 max_mana = 175

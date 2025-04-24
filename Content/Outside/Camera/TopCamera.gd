@@ -31,6 +31,9 @@ var previous_frame_mouse_position = Vector2(0, 0) # the position of the mouse in
 # speed at max height - 15; speed at min height - 5, shifting reduces the speed; note: the speed is used in division
 #var speed: float = 0.0
 
+func enable():
+	can_move = true
+
 func reset_rotation():
 	rotation.y = clamp(rotation.y, 0, 2*PI)
 	create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).tween_property(self, "rotation:y", PI, 1)

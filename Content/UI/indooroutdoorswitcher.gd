@@ -49,6 +49,7 @@ func toggle_camera(state: String):
 	match state:
 		"out":
 			camera_out.current = true
+			camera_out.enable()
 			camera_in.current = false
 			current_camera = "out"
 			return
@@ -78,3 +79,6 @@ func switch_camera_to(state: String): ## state "in" or "out"
 	tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC).set_parallel()
 	tween.tween_property(self, "dissolve_amount", 0, 2.0)
 	tween.tween_property(self, "burn_amount", 0.1, 1.0)
+	
+	await get_tree().create_timer(2).timeout
+	$"../AnimationPlayer".play("outdoor")
