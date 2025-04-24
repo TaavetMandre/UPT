@@ -33,7 +33,6 @@ func _ready():
 	explosion_sound.play()
 	indicator.visible = false
 	
-	# flash the hurtbox for a frame probably? ---- no just keep enabled and damage once.
 	for i in hurtbox.get_overlapping_bodies():
 		i.damaged(damage)
 		

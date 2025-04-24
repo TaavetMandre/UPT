@@ -46,7 +46,7 @@ func _ready():
 	await get_tree().create_timer(2).timeout
 	advance_day()
 
-#for enemyes 0 - tower
+#for enemys 0 - tower
 #            1 - other faction
 #            2 - own leader
 
@@ -60,8 +60,6 @@ func advance_day():
 	current_time = times_of_day.pop_front()
 	times_of_day.append(current_time)
 	
-	#daylight_cycle.cycle_current_time()
-	#mängi mingi tu-tu tu-tuuuuu pasun, et horde tuleb
 	match current_time:
 		"morning":
 			daylight_cycle.change_time_to("morning2")

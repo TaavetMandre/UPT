@@ -38,7 +38,7 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		if velocity :
-			var T = global_transform.looking_at(self.global_transform.origin + velocity.normalized(), Vector3(0, 1, 0)) #internetist varastatud lahendus mis on sobivaks muudetud, mulle isegi suuremosalt arusaadav
+			var T = global_transform.looking_at(self.global_transform.origin + velocity.normalized(), Vector3(0, 1, 0)) 
 			global_transform.basis.y=lerp(global_transform.basis.y, T.basis.y, 0.2)
 			global_transform.basis.x=lerp(global_transform.basis.x, T.basis.x, 0.2)
 			global_transform.basis.z=lerp(global_transform.basis.z, T.basis.z, 0.2)
@@ -48,7 +48,7 @@ func _physics_process(delta):
 			nav.set_target_position(Vector3(0,0,0))
 		States.ENEMY: pass
 		States.ATTACK:
-			if attack.has_overlapping_bodies():# and anim.current_animation != "hit":
+			if attack.has_overlapping_bodies():
 				anim.play("hit")
 			else: current_state = default_state
 		States.FROG: pass
@@ -83,11 +83,8 @@ func damaged(dam: int):
 	particle.damage_amount = dam
 	add_child(particle)
 	
-	#animatsioon/indikaator vahel
 	if HP <= 0 and timer.is_stopped():
 		master.enemy_death()
-		#animatsioon/indikaator vahel
-		#maailmale (globalile arvatavasti) teade, et surid
 		timer.start()
 
 
