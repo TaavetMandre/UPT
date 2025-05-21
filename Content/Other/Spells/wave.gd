@@ -6,9 +6,8 @@ extends Node3D
 
 func _ready():
 	position.y += 2.5
-	audio_stream_player_3d.pitch_scale += randf_range(-0.05, 0.05)
+	audio_stream_player_3d.pitch_scale = 1 + randf_range(-0.05, 0.05)
 	animation_player.play("Wave")
-	audio_stream_player_3d.pitch_scale = 1
 	await get_tree().create_timer(animation_player.current_animation_length).timeout
 	queue_free()
 

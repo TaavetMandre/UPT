@@ -75,9 +75,8 @@ func _on_attack_body_entered(body):
 func damaged(dam: int):
 	HP -= dam
 	
-	hurt_sound.pitch_scale += randf_range(-0.05, 0.05)
+	hurt_sound.pitch_scale = 1 + randf_range(-0.05, 0.05)
 	hurt_sound.play()
-	hurt_sound.pitch_scale = 1
 	
 	var particle = damage_particle.instantiate()
 	particle.damage_amount = dam
@@ -98,6 +97,5 @@ func _on_animation_player_animation_finished(anim_name):
 		
 		var attack_sound_file = ATTACK_SOUNDS.pick_random()
 		attack_sound.stream = attack_sound_file
-		attack_sound.pitch_scale += randf_range(-0.05, 0.05)
+		attack_sound.pitch_scale = 1 + randf_range(-0.05, 0.05)
 		attack_sound.play()
-		attack_sound.pitch_scale = 1

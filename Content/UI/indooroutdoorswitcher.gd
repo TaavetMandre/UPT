@@ -49,7 +49,7 @@ func toggle_camera(state: String):
 	match state:
 		"out":
 			camera_out.current = true
-			camera_out.enable()
+			camera_out_node.enable()
 			camera_in.current = false
 			current_camera = "out"
 			return

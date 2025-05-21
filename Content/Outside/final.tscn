@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=3 uid="uid://rgoxiix74o85"]
+[gd_scene load_steps=123 format=3 uid="uid://rgoxiix74o85"]
 
 [ext_resource type="Script" path="res://Global/GAMEMASTER.gd" id="1_gopvv"]
 [ext_resource type="PackedScene" uid="uid://b5lm4ik7jrs68" path="res://Models/maa_2.tscn" id="2_j8u58"]
@@ -40,10 +40,17 @@
 [ext_resource type="AudioStream" uid="uid://c7v7si5yj2fcx" path="res://Sounds/Dialogue/intro/intro_en8.mp3" id="18_r7lav"]
 [ext_resource type="AudioStream" uid="uid://ded6k02mj40es" path="res://Sounds/SFX/night weather2.mp3" id="18_snbp2"]
 [ext_resource type="AudioStream" uid="uid://bqo2h0wg2rn3a" path="res://Sounds/Dialogue/intro/intro_en9.mp3" id="19_hlphs"]
+[ext_resource type="Script" path="res://Content/Inside/parmupill.gd" id="20_pi2fd"]
 [ext_resource type="Script" path="res://Content/Other/intro_scripts.gd" id="20_ynxnq"]
 [ext_resource type="Shader" path="res://Content/Other/intromagicball.gdshader" id="21_f800a"]
+[ext_resource type="AudioStream" uid="uid://ce3k557h8bq0f" path="res://Sounds/SFX/Parm1.mp3" id="21_mxr7c"]
 [ext_resource type="AudioStream" uid="uid://dr4xxl0ba0ah" path="res://Sounds/SFX/death.mp3" id="22_mp83c"]
+[ext_resource type="AudioStream" uid="uid://b7vyer2e6apym" path="res://Sounds/SFX/Parm2.mp3" id="22_seh13"]
+[ext_resource type="AudioStream" uid="uid://bi7qdcvd6nvvc" path="res://Sounds/SFX/Parm3.mp3" id="23_e73ex"]
 [ext_resource type="AudioStream" uid="uid://dxtmmk0f32hgp" path="res://Sounds/SFX/win demo mystery.mp3" id="23_grwwp"]
+[ext_resource type="AudioStream" uid="uid://eu7samdopv5b" path="res://Sounds/SFX/Parm4.mp3" id="24_86u75"]
+[ext_resource type="AudioStream" uid="uid://fnv3qbiuisqw" path="res://Sounds/SFX/Parm5.mp3" id="25_euphe"]
+[ext_resource type="AudioStream" uid="uid://cinnmweqthcoc" path="res://Sounds/SFX/Parm6.mp3" id="26_5owbb"]
 [ext_resource type="Texture2D" uid="uid://duvct07xo1lym" path="res://icon.svg" id="32_3sry5"]
 [ext_resource type="Texture2D" uid="uid://x840vd2wxsed" path="res://Textures/murg.png" id="33_f020s"]
 
@@ -358,6 +365,9 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c1r24"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_721dy"]
 size = Vector3(3, 1, 3)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gv5bb"]
@@ -2580,6 +2590,32 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.004, 4.19225, 5.18019)
 light_color = Color(1, 1, 0.176471, 1)
 light_energy = 0.33
 
+[node name="Parmupill" type="Node3D" parent="sisemus" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.66668, 2.92252, -9.68006)
+script = ExtResource("20_pi2fd")
+random_audios = Array[AudioStream]([ExtResource("21_mxr7c"), ExtResource("22_seh13"), ExtResource("23_e73ex"), ExtResource("24_86u75"), ExtResource("25_euphe"), ExtResource("26_5owbb")])
+player = NodePath("../../Indoor camera")
+
+[node name="InteractionArea" type="Area3D" parent="sisemus/Parmupill"]
+transform = Transform3D(0.488804, 0, -0.872394, 0, 1, 0, 0.872394, 0, 0.488804, 1.16762, -1.56177, 0.425235)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="sisemus/Parmupill/InteractionArea"]
+shape = SubResource("BoxShape3D_721dy")
+
+[node name="Sprite3D" type="Sprite3D" parent="sisemus/Parmupill"]
+sorting_offset = 0.065
+pixel_size = 0.001
+billboard = 1
+no_depth_test = true
+render_priority = 10
+texture = ExtResource("12_pqd26")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="sisemus/Parmupill"]
+stream = ExtResource("21_mxr7c")
+volume_db = -10.0
+unit_size = 3.0
+bus = &"sfx"
+
 [node name="Water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.18, -62.087, -328.472)
 mesh = SubResource("PlaneMesh_2xh85")
@@ -2598,6 +2634,7 @@ bus = &"sfx"
 
 [node name="Clouds" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+visible = false
 mesh = SubResource("PlaneMesh_c464i")
 
 [node name="World Borders" type="Node3D" parent="."]
@@ -2813,6 +2850,8 @@ camera_in_node = NodePath("../Indoor camera")
 
 [connection signal="body_entered" from="sisemus/mirror/InteractionArea" to="sisemus/mirror" method="_on_interaction_area_body_entered"]
 [connection signal="body_exited" from="sisemus/mirror/InteractionArea" to="sisemus/mirror" method="_on_interaction_area_body_exited"]
+[connection signal="body_entered" from="sisemus/Parmupill/InteractionArea" to="sisemus/Parmupill" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="sisemus/Parmupill/InteractionArea" to="sisemus/Parmupill" method="_on_interaction_area_body_exited"]
 [connection signal="pressed" from="AnimationPlayer/CanvasLayer/Win Screen/ColorRect/VBoxContainer/Button" to="AnimationPlayer" method="_on_button_pressed"]
 
 [editable path="torn"]

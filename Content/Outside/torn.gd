@@ -20,9 +20,8 @@ func damaged(dam):
 	
 	var hurt_sound_file = HURT_SOUNDS.pick_random()
 	hurt_sound.stream = hurt_sound_file
-	hurt_sound.pitch_scale += randf_range(-0.05, 0.05)
+	hurt_sound.pitch_scale = 1 + randf_range(-0.05, 0.05)
 	hurt_sound.play()
-	hurt_sound.pitch_scale = 1
 	
 	var particle = damage_particle.instantiate()
 	particle.damage_amount = dam
