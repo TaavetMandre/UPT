@@ -1,0 +1,235 @@
+[gd_scene load_steps=14 format=3 uid="uid://cushilp5bxtqs"]
+
+[ext_resource type="Script" path="res://Content/Other/goblin.gd" id="1_e28ih"]
+[ext_resource type="AudioStream" uid="uid://c6mm0fnu0bjx1" path="res://Sounds/SFX/knight attack1.mp3" id="2_vub67"]
+[ext_resource type="ArrayMesh" uid="uid://coc0unpnauwg8" path="res://Models/gob_leg_r.res" id="5_haum8"]
+[ext_resource type="ArrayMesh" uid="uid://b3hil2x6qxih" path="res://Models/gob_leg_l.res" id="6_512sn"]
+[ext_resource type="ArrayMesh" uid="uid://cd3ul57khnnvi" path="res://Models/gob_head.res" id="7_8mcms"]
+[ext_resource type="ArrayMesh" uid="uid://dwmsbi42vmdq2" path="res://Models/gob_body.res" id="8_8rn2g"]
+[ext_resource type="AudioStream" uid="uid://8l8vmchmajr3" path="res://Sounds/SFX/knight hit.mp3" id="11_d2sjt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgp3k"]
+radius = 0.65
+height = 2.9
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_68h03"]
+size = Vector3(1, 1, 2.4)
+
+[sub_resource type="Animation" id="Animation_6286n"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewArrayMesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.95844e-05, 1.57096, 2.19693e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4.95845e-05, 1.57096, 2.19693e-05)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("NewArrayMesh/LegR:mesh")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_haum8")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("NewArrayMesh/LegL:mesh")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_512sn")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("NewArrayMesh/LegR:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.24, 0.175)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("NewArrayMesh/LegL:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -1.24, -0.175)]
+}
+
+[sub_resource type="Animation" id="Animation_gsekk"]
+resource_name = "hit"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewArrayMesh:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1.6245, 2, 2.59922),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.22173, 0), Vector3(0, 1.5708, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pea:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 0.435275, 1.36604),
+"update": 0,
+"values": [Vector3(0, 1.5708, 0), Vector3(0, 1.5708, 0.0872665), Vector3(0, 1.5708, -0.0523599)]
+}
+
+[sub_resource type="Animation" id="Animation_g53ei"]
+resource_name = "walk"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NewArrayMesh/LegR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.1, -1.24, 0.175), Vector3(-0.04, -1.2, 0.175), Vector3(0.05, -1.24, 0.175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("NewArrayMesh/LegL:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.05, -1.24, -0.175), Vector3(-0.01, -1.2, -0.175), Vector3(-0.1, -1.24, -0.175)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6kib1"]
+_data = {
+"RESET": SubResource("Animation_6286n"),
+"hit": SubResource("Animation_gsekk"),
+"walk": SubResource("Animation_g53ei")
+}
+
+[node name="ruutel" type="CharacterBody3D"]
+rotation_edit_mode = 2
+collision_layer = 5
+collision_mask = 5
+slide_on_ceiling = false
+floor_constant_speed = true
+floor_max_angle = 1.40674
+floor_snap_length = 0.15
+script = ExtResource("1_e28ih")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_tgp3k")
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+path_height_offset = 0.25
+avoidance_enabled = true
+height = 3.0
+radius = 1.0
+
+[node name="attack" type="Area3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
+collision_layer = 12
+collision_mask = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="attack"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 0, 0)
+shape = SubResource("BoxShape3D_68h03")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6kib1")
+}
+autoplay = "walk"
+
+[node name="Pea" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.000163719, -4.95809e-05, 1, 2.19693e-05, 1, 4.95845e-05, -1, 2.19774e-05, -0.000163718, 0, 0.42564, -0.0484716)
+mesh = ExtResource("7_8mcms")
+
+[node name="NewArrayMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.000163719, -4.95808e-05, 1, 2.19693e-05, 1, 4.95844e-05, -1, 2.19774e-05, -0.000163718, 0, 0, 0)
+mesh = ExtResource("8_8rn2g")
+
+[node name="LegR" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.39222e-13, 0, -1.39222e-13, 1, 0, -1.24, 0.175)
+mesh = ExtResource("5_haum8")
+skeleton = NodePath("../..")
+
+[node name="LegL" type="MeshInstance3D" parent="NewArrayMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, -1.39222e-13, 0, -1.39222e-13, 1, 0, -1.24, -0.175)
+mesh = ExtResource("6_512sn")
+skeleton = NodePath("../..")
+
+[node name="Attack" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_vub67")
+attenuation_model = 3
+volume_db = -10.0
+unit_size = 20.0
+max_distance = 200.0
+max_polyphony = 3
+bus = &"sfx"
+
+[node name="Hurt" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_d2sjt")
+attenuation_model = 3
+volume_db = -10.0
+unit_size = 20.0
+max_distance = 200.0
+bus = &"sfx"
+
+[connection signal="timeout" from="Timer" to="." method="test_timer"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="velocity_computed"]
+[connection signal="body_entered" from="attack" to="." method="_on_attack_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

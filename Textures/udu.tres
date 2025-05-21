@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://d0wgpch1jr2be"]
+
+[ext_resource type="Shader" path="res://Content/Inside/mirror.gdshader" id="1_8o0wf"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_34lua"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_plbfs"]
+width = 960
+height = 540
+seamless = true
+noise = SubResource("FastNoiseLite_34lua")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_8o0wf")
+shader_parameter/speed = 0.01
+shader_parameter/gradient_start = 1.0
+shader_parameter/gradient_end = 1.0
+shader_parameter/noise = SubResource("NoiseTexture2D_plbfs")
+shader_parameter/screen_align_uv = true
