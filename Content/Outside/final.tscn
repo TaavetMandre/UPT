@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c2gguyquo2lu2" path="res://Content/Inside/indoor_camera.tscn" id="6_7k04s"]
 [ext_resource type="AudioStream" uid="uid://cwawrhgpo0s41" path="res://Sounds/SFX/knights spawn.wav" id="6_exw40"]
 [ext_resource type="PackedScene" uid="uid://d2ky0oiei8jne" path="res://Content/Other/ruutel_shield.tscn" id="6_la6da"]
-[ext_resource type="PackedScene" uid="uid://c73whkxcc8kq4" path="res://Content/Inside/sisemus_final.tscn" id="7_p8q5w"]
+[ext_resource type="PackedScene" path="res://Content/Inside/sisemus_final.tscn" id="7_p8q5w"]
 [ext_resource type="Script" path="res://Content/TEMPORARYSCRIPTS/TEMPORARYPauseScript.gd" id="8_1cr52"]
 [ext_resource type="Shader" path="res://Content/Outside/lowpolywater.gdshader" id="8_33o5o"]
 [ext_resource type="PackedScene" uid="uid://nhtqhp7t7h3f" path="res://Content/Inside/mirror_model.tscn" id="8_377o1"]
@@ -2668,7 +2668,6 @@ bus = &"sfx"
 
 [node name="Clouds" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
-visible = false
 mesh = SubResource("PlaneMesh_c464i")
 
 [node name="World Borders" type="Node3D" parent="."]

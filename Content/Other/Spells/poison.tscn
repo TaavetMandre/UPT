@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://Content/Other/Spells/poison_area.gdshader" id="4_kfnth"]
 [ext_resource type="AudioStream" uid="uid://dov0c0ywmynnb" path="res://Sounds/SFX/poison_cast_1.mp3" id="4_nw5yb"]
 [ext_resource type="AudioStream" uid="uid://csmnemcw6x66m" path="res://Sounds/SFX/poison_cast_2.mp3" id="5_hcmox"]
-[ext_resource type="Material" uid="uid://bikqpgx2tlw4g" path="res://Textures/klaas.tres" id="7_7jwkl"]
+[ext_resource type="Material" path="res://Textures/klaas.tres" id="7_7jwkl"]
 
 [sub_resource type="Shader" id="Shader_0pksj"]
 code = "shader_type spatial;
